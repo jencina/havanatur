@@ -1,0 +1,198 @@
+body{
+	font-family: helvetica !important;
+}
+
+/* PANEL SUCCESS*/
+.panel-success .panel-heading {
+    background-color:#5cb85c !important;
+    border-color: #d6e9c6 !important;
+}
+
+.panel-success .panel-heading h3{
+    color: #ffffff !important;
+}
+/* FIN PANEL SUCCCESS*/
+
+/* PANEL PRIMARY*/
+.panel-primary .panel-heading {
+    background-color: #428bca;
+    border-color: #428bca;
+}
+
+.panel-primary .panel-heading h3{
+    color: #ffffff !important;
+}
+/* FIN PANEL PRIMARY*/
+
+/* PANEL INFO*/
+.panel-info .panel-heading {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.panel-info .panel-heading h3{
+    color: #ffffff !important;
+}
+/* FIN PANEL INFO*/
+
+
+/* PANEL DANGER*/
+.panel-danger .panel-heading {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.panel-danger .panel-heading h3{
+    color: #ffffff !important;
+}
+/* FIN PANEL DANGER*/
+
+
+#incluye{
+    padding: 0 !important;
+}
+#incluye ul{
+    margin: 0 !important;
+    font-size: 10px;
+}
+
+
+
+#panel div{
+    float: left;
+}
+
+/*TABLE CON 2 TARIFAS*/
+
+#panel .contenido2{
+    float: left;
+    width:1024px;
+    padding: 0 !important;
+}
+
+#panel .contenido2 .ocupacion{
+    float: left;
+    width:90px;
+    border: 1px solid #ddd;
+
+}
+
+#panel .contenido2 .vigencias2{
+    width: 560px;
+}
+
+#panel .contenido2 .vigencia{
+    float: left;
+    width: 100px;
+}
+
+#panel .contenido2 .vigencia div{
+    float: left;
+    width: 100px;
+}
+
+#panel .contenido2 .tarifa{
+    float: left;
+    width: 440px;
+}
+
+#panel .contenido2 .tarifa .contendor{
+    float: left;
+    width: 440px;
+}
+
+#panel .contenido2 .tarifa .contenedor div{
+    text-align: center;
+    padding: 3px;
+    float: left;
+    width: 45px;
+    border: 1px solid #ddd;
+}
+
+/*FIN TABLE CON 2 TARIFAS*/
+
+/*TABLE CON 3 TARIFAS*/
+#panel{
+    padding: 5px !important;
+}
+
+.panel{
+    width: 800px !important;
+}
+
+#panel .contenido3{
+    float: left;
+    width:800px !important;
+    padding: 0 !important;
+    font-size: 9px !important;
+    height: auto;
+}
+
+#panel .contenido3 .ocupacion{
+    float: left;
+    width:100px;
+    height: auto;
+    display: block;
+    vertical-align: middle;
+    line-height: 2.5;
+}
+
+#panel .contenido3 .ocupacion div.titulo{
+    border: 1px solid #ddd;
+}
+
+#panel .contenido3 .ocupacion div.contenido{
+    vertical-align: middle;
+    display: block;
+    float: left;
+    border: 1px solid #ddd;
+
+}
+
+#panel .contenido3 .ocupacion div{
+    padding: 2px;
+    text-align: center;
+}
+
+#panel .contenido3 .vigencias3{
+    width: 565px;
+}
+
+#panel .contenido3 .vigencia{
+    float: left;
+    width: 107px;
+    vertical-align: middle;
+    line-height: 2.5;
+}
+
+#panel .contenido3 .vigencia div{
+    float: left;
+    width: 107px;
+    padding: 2px;
+    text-align: center;
+    border: 1px solid #ddd;
+    height: 25px !important;
+}
+
+#panel .contenido3 .tarifa{
+    float: left;
+    width: 455px;
+}
+
+#panel .contenido3 .tarifa .contendor{
+    float: left;
+    width: 455px;
+}
+
+#panel .contenido3 .tarifa .contenedor div{
+    text-align: center;
+    padding: 2px;
+    float: left;
+    width: 31.9px;
+    border: 1px solid #ddd;
+    height: 25px !important;
+    vertical-align: middle;
+    line-height: 2.5;
+}
+
+/*FIN TABLE CON 3 TARIFAS*/

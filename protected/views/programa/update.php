@@ -1,0 +1,18 @@
+    <?php
+    /* @var $this UsuarioController */
+    /* @var $model Usuario */
+    $this->widget(
+        'booster.widgets.TbBreadcrumbs',
+        array(
+            'homeLink' => CHtml::link(Yii::t('zii', 'Programa'), array('programa/admin')),
+            'links' => array('Editar'),
+        )
+    );
+    ?>
+
+    <div class="page-header">
+        <h1>Programa <small><?php $model->nombre?></small></h1>
+    </div>
+
+
+    <?php $this->renderPartial('_form', array('model'=>$model,'ciudades'=>$ciudades)); ?>

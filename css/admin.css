@@ -1,0 +1,145 @@
+
+#page{
+    margin-bottom: 100px;
+    min-height: 440px;
+}
+.page-header-detail{
+    border-bottom: 1px solid #eee;
+    color: #fff;
+    float: left;
+    padding-bottom: 9px;
+    padding: 5px;
+    width: 100%;
+}
+
+#incluye ,#modalIncluye .modal-header{
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    vertical-align: middle;
+}
+
+#noIncluye ,#modalNoIncluye .modal-header ,.modal-header {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+#suplemento ,#modalSuplemento .modal-header{
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.page-header-detail h3{
+    float: left;
+}
+
+.page-header-detail a{
+    color: #fff;
+    float: right;
+    font-size: 40px;
+}
+
+.include {
+    float: left;
+    width: 100%;
+}
+
+.modal-header {
+    color: #fff;
+}
+
+td a{
+    background-color: #428bca;
+    border: 1px solid #2972b1;
+    border-radius: 100%;
+    color: #fff;
+    font-size: 17px;
+    padding: 4px 6px;
+}
+
+td a:hover{
+    background-color: #fff !important;
+    border-radius: 100%;
+    color: 428bca !important;
+    border: 1px solid #2972b1;
+    font-size: 17px;
+    padding: 4px 6px;
+}
+
+/* FOOTER */
+.footer-wrapper {
+    background-color: #f6f6f6;
+    padding: 0;
+}
+
+.footer-wrapper .footer {
+    padding: 40px 0 50px;
+}
+
+.footer-wrapper .footer .footer-box h4 {
+    color: #efc94c;
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-wrapper .footer .footer-box ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-wrapper .footer .footer-box ul li {
+    display: block;
+}
+
+.footer-wrapper .footer .footer-box ul li a {
+    color: rgba(62, 68, 76, 0.5);
+    line-height: 22px;
+}
+.footer-wrapper .footer a {
+    color: rgba(62, 68, 76, 0.5);
+    font-weight: normal;
+}
+
+
+.footer-wrapper .copyright {
+    background-color: #31353d;
+    font-size: 11px;
+    line-height: 20px;
+    margin: 0 auto;
+}
+
+.footer-wrapper .copyright .footer-copyright {
+    color: #758290;
+    margin: 0;
+    padding: 23px 0 24px;
+}
+
+.footer-wrapper .social-icon {
+    background-color: #999;
+    border-radius: 50%;
+    box-shadow: -1px 0 0 rgba(0, 0, 0, 0.15) inset;
+    color: #333;
+    display: inline-block;
+    font-size: 20px;
+    height: 36px;
+    margin-right: 5px;
+    text-align: center;
+    width: 36px;
+}
+
+.social-icon i {
+    padding-top: 8px;
+}
+
+table thead{
+    background: #fff;
+}
+
+#gallery  a img { 
+	height: 150px !important;
+	max-height: 150px !important;
+}
+
