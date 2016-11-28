@@ -67,7 +67,7 @@ $this->pageTitle=Yii::app()->name;
         <?php foreach($programaDestacados as $programaDestacado):
            $imagen = $programaDestacado->getImagenDestacado();
             ?>
-            <div class="col-xs-6 col-sm-4 col-md-3">
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
                 <div class="thumbnail">
                     <div class="img" style="background-image: url('<?php echo Yii::app()->request->baseUrl; ?>/images/<?php echo $imagen;?>')"></div>
                     <div class="caption">
@@ -78,7 +78,7 @@ $this->pageTitle=Yii::app()->name;
                         </div>
 
                         <div class="price">
-                            <span class="new">$<?php echo $programaDestacado->precio_desde?></span>
+                            <span class="new"><span style="font-size:15px;">desde</span> $<?php echo $programaDestacado->precio_desde?></span>
                             <!-- <span class="old">$4000</span> -->
                         </div>
 
@@ -98,6 +98,21 @@ $this->pageTitle=Yii::app()->name;
         <?php endforeach;?>
 
     </div>
+</div>
+
+<div class="page-header">
+    <h1>
+        Noticias
+        <small></small>
+    </h1>
+</div>
+
+<div class="noticias">
+    <?php
+            foreach ($noticias as $noticia){
+                $this->renderPartial('noticiaDestacado',array('noticia'=>$noticia));
+            }
+    ?>
 </div>
 
 <div class="page-header">

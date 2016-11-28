@@ -15,21 +15,21 @@ class Controller extends CController
 	 */
 	public $menu=array();
 	
-	 public $menu_activo = '';
+	public $menu_activo = '';
 
     /*menu*/
-    public $quienessomos  = 1;
-    public $informaciones = 2;
-	public $otros		  = 3;
+        public $quienessomos  = 1;
+        public $informaciones = 2;
+	public $otros         = 3;
 	public $turismo       = 4;
 
     /*Programa*/
 
-    public $programas     = 1;
-    public $bloqueos      = 2;
-    public $otroDestino   = 3;
-    public $turismoSalud  = 4;
-    public $otroServicio  = 5;
+        public $programas     = 1;
+        public $bloqueos      = 2;
+        public $otroDestino   = 3;
+        public $turismoSalud  = 4;
+        public $otroServicio  = 5;
 
 
 
@@ -132,12 +132,34 @@ class Controller extends CController
 
         return $html;
     }
-
-
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
 	 * for more details on how to specify this property.
 	 */
-	public $breadcrumbs=array();
+    public $breadcrumbs     = array();
+    public $widthPageClass  = '';
+    public $headerTitulo          = '';
+    public $headerImagen          = '';
+    
+    function img_350_150($img){
+         if(!empty($img)){
+            $imagen = explode(".", $img);
+            return $imagen[0].'_350_150.'.$imagen[1];
+        }else{
+            return $img;
+        }
+    }
+    
+    function img_450_350($img){
+        if(!empty($img)){
+            $imagen = explode(".", $img);
+            return $imagen[0].'_450_350.'.$imagen[1];
+        }else{
+            return $img;
+        }
+        
+    }
+    
+    
 }

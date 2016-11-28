@@ -1,14 +1,23 @@
 body{
     background: #dedede;
-    font-family: "Arial",sans-serif;
+   /* font-family: "Arial",sans-serif;*/
 }
 
 .container {
-    max-width: 1024px !important;
+    /*max-width: 1024px !important;*/
     padding-left: 10px ;
     padding-right: 10px ;
     position: relative;
 }
+
+.news-body{
+    max-width: 945px;
+    color: #898989;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 18px;
+}
+
 
 .header{
     overflow: hidden;
@@ -142,22 +151,22 @@ body{
     height: 100%;
 }
 
-.navbar-inverse {
+.navbar{
     background-color: #002575 !important;
 }
 
 
 
-@media screen and (min-width:770px){
+
+
+@media screen and (min-width:1200px){
 
     .row{
         margin: 0 !important;
     }
 
-    #mainmenu .navbar-brand{
-        display: none;
-    }
-    .navbar-inverse {
+    
+    .navbar{
         border: medium none !important;
         border-radius: unset !important;
     }
@@ -170,7 +179,7 @@ body{
         border: 1px solid #002575;
     }
 
-    .navbar-inverse .navbar-nav > .active > a,.navbar-nav > li.active > a:focus,.navbar-nav > li > a:focus,.navbar-nav > li > a:hover{
+    .navbar .navbar-nav > .active > a,.navbar-nav > li.active > a:focus,.navbar-nav > li > a:focus,.navbar-nav > li > a:hover{
         background-color: #000d5d !important;
         border: 1px solid #00104d !important;
         color: #fff;

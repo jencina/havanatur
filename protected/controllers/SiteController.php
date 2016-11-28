@@ -29,31 +29,29 @@ class SiteController extends Controller
 	{
         $ca = Carousel::model()->findAll(array('condition'=>'activo = 1 ORDER BY orden ASC'));
         $programaDestacados = Programa::model()->findAllByAttributes(array('destacado'=>1));
-
+        $noticias = Noticia::model()->findAll();
+        
         $carousel = array();
         foreach ($ca as $caro) {
+            $imagen = explode(".", $caro->foto);
             $carousel[] =array(
                 //'image' => Yii::app()->request->baseUrl.'/images/carousel/'.$caro->foto,
-				'div' => '<div style="background-image: url('."'".Yii::app()->request->baseUrl.'/images/carousel/'.$caro->foto."'".')"></div>',
+                'div' => '<div style="background-image: url('."'".Yii::app()->request->baseUrl.'/images/carousel/'.$imagen[0].'_1024_400.'.$imagen[1]."'".')"></div>',
                 'label' => $caro->titulo,
                 'caption' => $caro->descripcion
             );
         }
-
-        /*foreach ($programaDestacados as $programaDestacado) {
-            print_r('<pre>');
-            print_r($programaDestacado->programaImagens[0]->imagen);
-            print_r('</pre>');
-            exit;
-        }*/
-
         // renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index',array('carousel'=>$carousel,'programaDestacados'=>$programaDestacados));
+		$this->render('index',array(
+                    'carousel'          => $carousel,
+                    'programaDestacados'=> $programaDestacados,
+                    'noticias'          => $noticias
+                        ));
 	}
 
     public function actionNuestraEmpresa(){
-		Yii::app()->controller->menu_activo= 'nuestraEmpresa';
+        Yii::app()->controller->menu_activo= 'nuestraEmpresa';
 		
         $id   = Yii::app()->request->getParam('id');
         $model = Contenido::model()->findByPk($id);
@@ -91,7 +89,7 @@ class SiteController extends Controller
     }
 
     public function actionInformaciones(){
-		Yii::app()->controller->menu_activo= 'informaciones';
+        Yii::app()->controller->menu_activo= 'informaciones';
 		
         $id   = Yii::app()->request->getParam('id');
         $model = Contenido::model()->findByPk($id);
@@ -129,8 +127,8 @@ class SiteController extends Controller
             'bottom_model'=>$bottom_model));
     }
 	
-	public function actionTurismoSalud(){
-		Yii::app()->controller->menu_activo= 'turismoSalud';
+    public function actionTurismoSalud(){
+        Yii::app()->controller->menu_activo= 'turismoSalud';
 		
         $id   = Yii::app()->request->getParam('id');
         $model = Contenido::model()->findByPk($id);
@@ -209,7 +207,7 @@ class SiteController extends Controller
 
     public function actionPrograma()
     {
-		Yii::app()->controller->menu_activo= 'programa';
+        Yii::app()->controller->menu_activo= 'programa';
 		
         $id   = Yii::app()->request->getParam('id');
 
@@ -367,32 +365,32 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-		$model=new LoginForm;
+            $model=new LoginForm;
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+            // if it is ajax validation request
+            if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+            {
+                    echo CActiveForm::validate($model);
+                    Yii::app()->end();
+            }
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
+            // collect user input data
+            if(isset($_POST['LoginForm']))
+            {
+                    $model->attributes=$_POST['LoginForm'];
+                    // validate user input and redirect to the previous page if valid
+                    if($model->validate() && $model->login())
+                            $this->redirect(Yii::app()->user->returnUrl);
+            }
+            // display the login form
+            $this->render('login',array('model'=>$model));
 	}
 	
 	
 	public function obtenerIndicadores($date){
 		
         //$indicadores = $this->General_model->findAllByPk('par_indicadoresFinancieros',$date,'ind_fecha');
-		$indicadores = SbifRecursos::model()->findAllByAttributes(array('sbif_fecha'=>$date));
+        $indicadores = SbifRecursos::model()->findAllByAttributes(array('sbif_fecha'=>$date));
        
         if(count($indicadores) > 0){
             $dato = array();
@@ -422,6 +420,7 @@ class SiteController extends Controller
             $anio = date("Y", strtotime($date));
             $mes  = date("m", strtotime($date));
             $dia  = date("d", strtotime($date));
+            
             $tipos = array('dolar','euro','uf','utm','ipc');
             $dato = array();
             foreach ($tipos as $tipo){
@@ -432,14 +431,15 @@ class SiteController extends Controller
                 $result['ind_fecha'] = $date;
 				
                 $dato[$tipo] = $result;
+                
+                SbifRecursos::model()->deleteAll();
 			
-				$ind = new SbifRecursos();
-				$ind->sbif_valor = $result['ind_valor'];
-				$ind->sbif_recurso = $result['ind_tipo'];
-				$ind->sbif_vigencia = $result['ind_vigencia'];
-				$ind->sbif_fecha = $result['ind_fecha'];
-				
-				$ind->insert();
+                $ind = new SbifRecursos();
+                $ind->sbif_valor = $result['ind_valor'];
+                $ind->sbif_recurso = $result['ind_tipo'];
+                $ind->sbif_vigencia = $result['ind_vigencia'];
+                $ind->sbif_fecha = $result['ind_fecha'];
+                $ind->insert();
             }
 
             return $dato;
@@ -448,7 +448,7 @@ class SiteController extends Controller
     }
     
 	
-	public function actionGetIndicadoresHome(){
+    public function actionGetIndicadoresHome(){
         
         $date = date("Y-m-d");
        
@@ -462,14 +462,19 @@ class SiteController extends Controller
         exit;
     }
 	
-	function getSbifRecurso($recurso,$anio,$mes,$dia) {
+    function getSbifRecurso($recurso,$anio,$mes,$dia) {
         $tuCurl = curl_init();
         if($recurso == 'utm' || $recurso == 'ipc'){
             curl_setopt($tuCurl, CURLOPT_URL, "http://api.sbif.cl/api-sbifv3/recursos_api/{$recurso}/{$anio}/{$mes}?apikey=185102d489e7c2c9e9be8b2ba890044eee89e98c&formato=json");
         }else{
+            if(date("D") == 'Sun'){
+                $dia = date("d",strtotime ( '-2 day' , strtotime (date("Y-m-d")))) ;  
+            }else if(date("D") == 'Sat'){
+                $dia = date("d",strtotime ( '-1 day' , strtotime (date("Y-m-d")))) ; 
+                
+            }
             curl_setopt($tuCurl, CURLOPT_URL, "http://api.sbif.cl/api-sbifv3/recursos_api/{$recurso}/{$anio}/{$mes}/dias/{$dia}?apikey=185102d489e7c2c9e9be8b2ba890044eee89e98c&formato=json");
         }
-
         curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, true);
         $tuData = curl_exec($tuCurl);
 
@@ -479,7 +484,7 @@ class SiteController extends Controller
         switch($recurso){
             case 'dolar':
                 $vigencia ='d';
-                $dolar = $dolar->Dolares[0];
+                $dolar = (isset($dolar->Dolares[0]))?$dolar->Dolares[0]:0;
                 break;
             case 'euro':
                 $vigencia ='d';
@@ -502,7 +507,6 @@ class SiteController extends Controller
         $data = array(
             'ind_tipo'  => $recurso,
             'ind_valor' => floatval(str_replace(',', '.',  str_replace('.','',$dolar->Valor))),
-            //'ind_fecha' => $dolar->Fecha,
             'ind_vigencia'=> $vigencia 
         );
                 
@@ -517,4 +521,43 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+        
+        public function actionNoticias(){
+            
+            $this->layout='//layouts/main-eventos';
+            
+            Yii::app()->controller->menu_activo= 'eventos';
+            
+            $categorias = Categoria::model()->findAll();
+            
+            $criteria = new CDbCriteria();
+            
+            
+            
+            if(isset($_GET['id'])){
+                if($_GET['id'] != 0){
+                    $criteria->addCondition('categoria_cat_id = '.$_GET['id']);
+                }
+            }
+            
+            $dataProvider=new CActiveDataProvider('Noticia', array(
+                'criteria'=>$criteria
+            ));
+            
+            $this->render('noticias',array('dataProvider'=>$dataProvider,'categorias'=>$categorias));
+            
+        }
+        
+         public function actionNoticiaDetalle(){
+            $this->layout='//layouts/main-eventos';
+            Yii::app()->controller->menu_activo= 'eventos';
+            
+            $id   = Yii::app()->request->getParam('id');
+            
+            $noticia = Noticia::model()->findByPk($id);
+            
+            $this->render('noticiaDetalle',array('noticia'=>$noticia));
+            
+        }
+        
 }

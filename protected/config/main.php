@@ -32,6 +32,11 @@ return array(
     ),
     // application components
     'components' => array(
+        'phpThumb'=>array(
+            'class'=>'ext.EPhpThumb.EPhpThumb',
+            'options'=>array()
+        ),
+
         'swiftMailer' => array(
             'class' => 'ext.swiftMailer.SwiftMailer',
         ),

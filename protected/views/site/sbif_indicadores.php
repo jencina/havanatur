@@ -4,27 +4,27 @@
         case 'dolar':
             $icon  = 'fa fa-usd';
             $signo = 'peso';
-            $fecha = $dato['ind_fecha'];
+            //$fecha = $dato['ind_fecha'];
             break;
         case 'euro':
             $icon  = 'fa fa-eur';
             $signo = 'peso';
-            $fecha = $dato['ind_fecha'];
+           // $fecha = $dato['ind_fecha'];
             break;
         case 'uf':
             $icon  = 'fa fa-money';
             $signo = 'peso';
-            $fecha = $dato['ind_fecha'];
+           // $fecha = $dato['ind_fecha'];
             break;
         case 'utm':
             $icon  = 'fa fa-money';
             $signo = 'peso';
-            $fecha = $dato['ind_fecha'];
+           // $fecha = $dato['ind_fecha'];
             break;
         case 'ipc':
             $icon  = 'fa fa-user';
             $signo = 'porcen';
-            $fecha = $dato['ind_fecha'];
+           // $fecha = $dato['ind_fecha'];
             break;
     }
 ?>

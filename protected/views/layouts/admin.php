@@ -41,6 +41,15 @@
                             array('label' => 'Contenido', 'url' => array('contenido/admin')),
                             array('label' => 'Programa', 'url' => array('programa/admin')),
                             array('label' => 'Hotel', 'url' => array('hotel/admin')),
+                            
+                            array('label'=>'Noticias','url'=>'',
+                                'items'=>array(
+                                    array('label' => 'Adminisrador', 'url' => array('noticia/admin')),
+                                    array('label' => 'Categorias', 'url' => array('noticia/categorias')),
+                                    )
+                                ),
+                            
+                            
                             array('label' => 'Cotizaciones <span class="badge">'.$cot.'</span>', 'url' => array('cotizacion/index')),
                             array('label' => 'Configuraciones',
                                     'icon'  =>'fa fa-cog',
