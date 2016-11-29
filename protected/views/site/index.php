@@ -1,3 +1,5 @@
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.jcarousel-core.min.js"></script>
+
 <section>
     <div>
         <?php $lightbox = Lightbox::model()->findAllByAttributes(array('activo'=>1));
@@ -16,12 +18,11 @@
 </section>
 
 <?php
-$this->pageTitle=Yii::app()->name;
+    $this->pageTitle=Yii::app()->name;
 ?>
 
 <div id="carousel" class="carousel">
     <?php
-
     $this->widget(
         'booster.widgets.TbCarousel',
         array(
@@ -62,13 +63,13 @@ $this->pageTitle=Yii::app()->name;
 <!-- THUMBNAIL -->
 
 <div class="destacados">
-    <div class="row">
-
+    <div id="myCarousel" class="jcarousel">
+        <ul>
         <?php foreach($programaDestacados as $programaDestacado):
            $imagen = $programaDestacado->getImagenDestacado();
-            ?>
-            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                <div class="thumbnail">
+        ?>
+            <li class="padding-10">
+                <div class="thumbnail" style="padding:0">
                     <div class="img" style="background-image: url('<?php echo Yii::app()->request->baseUrl; ?>/images/<?php echo $imagen;?>')"></div>
                     <div class="caption">
                         <a class="product-name"><?php echo $programaDestacado->nombre; ?></a>
@@ -79,24 +80,18 @@ $this->pageTitle=Yii::app()->name;
 
                         <div class="price">
                             <span class="new"><span style="font-size:15px;">desde</span> $<?php echo $programaDestacado->precio_desde?></span>
-                            <!-- <span class="old">$4000</span> -->
                         </div>
 
                         <div class="button-container">
                             <?php echo CHtml::link('<i class="fa fa-info"></i>',array('site/programa','id'=>$programaDestacado->id),array('class'=>'cotizar')); ?>
-                            <!-- <a href="#" class="cotizar" role="button">
-                                <i class="fa fa-shopping-cart"></i>
-                            </a>-->
-                            <!--
-                            <a href="#" class="info" role="button">
-                                <i class="fa fa-info"></i>
-                            </a>-->
                         </div>
                     </div>
                 </div>
-            </div>
+            </li>
         <?php endforeach;?>
-
+        </ul>
+        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
     </div>
 </div>
 
@@ -108,11 +103,19 @@ $this->pageTitle=Yii::app()->name;
 </div>
 
 <div class="noticias">
-    <?php
-            foreach ($noticias as $noticia){
-                $this->renderPartial('noticiaDestacado',array('noticia'=>$noticia));
-            }
-    ?>
+    <div id="myCarousel2" class="jcarousel">
+        <ul>
+            <?php
+                foreach ($noticias as $noticia){
+                    echo '<li class="padding-10">';
+                        $this->renderPartial('noticiaDestacado',array('noticia'=>$noticia));
+                    echo '</li>';
+                }
+            ?>
+        </ul>
+        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+    </div>
 </div>
 
 <div class="page-header">
@@ -129,3 +132,53 @@ $this->pageTitle=Yii::app()->name;
 
     ?>
 </div>
+
+
+
+<script>
+ $(function() {
+        var jcarousel = $('.jcarousel');
+        jcarousel.on('jcarousel:reload jcarousel:create', function () {
+                var carousel = $(this),
+                    width = carousel.innerWidth();
+
+                if (width >= 600) {
+                    width = width / 3;
+                } else if (width >= 350) {
+                    width = width / 2;
+                }
+
+                carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
+            })
+            .jcarousel({
+                wrap: 'circular'
+            });
+
+        $('.jcarousel-control-prev')
+            .jcarouselControl({
+                target: '-=1'
+            });
+
+        $('.jcarousel-control-next')
+            .jcarouselControl({
+                target: '+=1'
+            });
+
+        $('.jcarousel-pagination')
+            .on('jcarouselpagination:active', 'a', function() {
+                $(this).addClass('active');
+            })
+            .on('jcarouselpagination:inactive', 'a', function() {
+                $(this).removeClass('active');
+            })
+            .on('click', function(e) {
+                e.preventDefault();
+            })
+            .jcarouselPagination({
+                perPage: 1,
+                item: function(page) {
+                    return '<a href="#' + page + '">' + page + '</a>';
+                }
+            });
+    });
+</script>

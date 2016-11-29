@@ -392,7 +392,7 @@ class SiteController extends Controller
         //$indicadores = $this->General_model->findAllByPk('par_indicadoresFinancieros',$date,'ind_fecha');
         $indicadores = SbifRecursos::model()->findAllByAttributes(array('sbif_fecha'=>$date));
        
-        if(count($indicadores) > 0){
+        if(count($indicadores)==5){
             $dato = array();
             foreach ($indicadores as $indicador){
                 
@@ -423,6 +423,7 @@ class SiteController extends Controller
             
             $tipos = array('dolar','euro','uf','utm','ipc');
             $dato = array();
+            SbifRecursos::model()->deleteAll();
             foreach ($tipos as $tipo){
                 if($tipo == 'ipc'){
                     $mes  = date("m", strtotime('-1 month',strtotime($date)));
@@ -431,9 +432,6 @@ class SiteController extends Controller
                 $result['ind_fecha'] = $date;
 				
                 $dato[$tipo] = $result;
-                
-                SbifRecursos::model()->deleteAll();
-			
                 $ind = new SbifRecursos();
                 $ind->sbif_valor = $result['ind_valor'];
                 $ind->sbif_recurso = $result['ind_tipo'];
@@ -471,7 +469,6 @@ class SiteController extends Controller
                 $dia = date("d",strtotime ( '-2 day' , strtotime (date("Y-m-d")))) ;  
             }else if(date("D") == 'Sat'){
                 $dia = date("d",strtotime ( '-1 day' , strtotime (date("Y-m-d")))) ; 
-                
             }
             curl_setopt($tuCurl, CURLOPT_URL, "http://api.sbif.cl/api-sbifv3/recursos_api/{$recurso}/{$anio}/{$mes}/dias/{$dia}?apikey=185102d489e7c2c9e9be8b2ba890044eee89e98c&formato=json");
         }
@@ -481,83 +478,81 @@ class SiteController extends Controller
         curl_close($tuCurl);
 
         $dolar = json_decode($tuData);
+
         switch($recurso){
             case 'dolar':
                 $vigencia ='d';
-                $dolar = (isset($dolar->Dolares[0]))?$dolar->Dolares[0]:0;
+                $dolar = (isset($dolar->Dolares[0]))?$dolar->Dolares[0]->Valor:0;
                 break;
             case 'euro':
                 $vigencia ='d';
-                $dolar = $dolar->Euros[0];
+                $dolar = (isset($dolar->Euros[0]))?$dolar->Euros[0]->Valor:0;
                 break;
             case 'uf':
                 $vigencia ='d';
-                $dolar = $dolar->UFs[0];
+                $dolar = (isset($dolar->UFs[0]))?$dolar->UFs[0]->Valor:0;
                 break;
             case 'utm':
                 $vigencia ='m';
-                $dolar = $dolar->UTMs[0];
+                $dolar = $dolar->UTMs[0]->Valor;
                 break;
             case 'ipc':
                 $vigencia ='m';
-                $dolar = $dolar->IPCs[0];
+                $dolar = $dolar->IPCs[0]->Valor;
                 break;
         }
                
         $data = array(
             'ind_tipo'  => $recurso,
-            'ind_valor' => floatval(str_replace(',', '.',  str_replace('.','',$dolar->Valor))),
+            'ind_valor' => floatval(str_replace(',', '.',  str_replace('.','',$dolar))),
             'ind_vigencia'=> $vigencia 
         );
                 
         return $data;
     }
 
-	/**
-	 * Logs out the current user and redirect to homepage.
-	 */
-	public function actionLogout()
-	{
-		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
-	}
+    /**
+     * Logs out the current user and redirect to homepage.
+     */
+    public function actionLogout()
+    {
+            Yii::app()->user->logout();
+            $this->redirect(Yii::app()->homeUrl);
+    }
         
-        public function actionNoticias(){
-            
-            $this->layout='//layouts/main-eventos';
-            
-            Yii::app()->controller->menu_activo= 'eventos';
-            
-            $categorias = Categoria::model()->findAll();
-            
-            $criteria = new CDbCriteria();
-            
-            
-            
-            if(isset($_GET['id'])){
-                if($_GET['id'] != 0){
-                    $criteria->addCondition('categoria_cat_id = '.$_GET['id']);
-                }
+    public function actionNoticias(){
+
+        $this->layout='//layouts/main-eventos';
+
+        Yii::app()->controller->menu_activo= 'eventos';
+
+        $categorias = Categoria::model()->findAll();
+
+        $criteria = new CDbCriteria();
+
+        if(isset($_GET['id'])){
+            if($_GET['id'] != 0){
+                $criteria->addCondition('categoria_cat_id = '.$_GET['id']);
             }
-            
-            $dataProvider=new CActiveDataProvider('Noticia', array(
-                'criteria'=>$criteria
-            ));
-            
-            $this->render('noticias',array('dataProvider'=>$dataProvider,'categorias'=>$categorias));
-            
         }
+
+        $dataProvider=new CActiveDataProvider('Noticia', array(
+            'criteria'=>$criteria
+        ));
+
+        $this->render('noticias',array('dataProvider'=>$dataProvider,'categorias'=>$categorias));
+
+    }
         
-         public function actionNoticiaDetalle(){
-            $this->layout='//layouts/main-eventos';
-            Yii::app()->controller->menu_activo= 'eventos';
-            
-            $id   = Yii::app()->request->getParam('id');
-            
-            $noticia = Noticia::model()->findByPk($id);
-            
-            $this->render('noticiaDetalle',array('noticia'=>$noticia));
-            
-        }
+    public function actionNoticiaDetalle(){
+        $this->layout='//layouts/main-eventos';
+        Yii::app()->controller->menu_activo= 'eventos';
+
+        $id   = Yii::app()->request->getParam('id');
+
+        $noticia = Noticia::model()->findByPk($id);
+
+        $this->render('noticiaDetalle',array('noticia'=>$noticia));
+    }
         
 }

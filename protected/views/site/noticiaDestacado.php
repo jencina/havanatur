@@ -62,7 +62,7 @@
 </style>
 
 
-<div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+<div class="">
     <div class="related-news-ctn" style="background-image: url(<?php echo Yii::app()->request->baseUrl.'/images/noticias/'.$this->img_350_150($noticia->not_imagen);?>);">
         <div class="related-news-ctn-filter">
             <span class="news-label innovation-news-label"><?php echo $noticia->categoriaCat->cat_nombre?></span>
