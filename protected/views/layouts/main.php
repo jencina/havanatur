@@ -134,6 +134,14 @@ foreach ($informaciones as $info) {
     $informacion[] = array('label' => $info->titulo, 'url' => array('site/informaciones', 'id' => $info->id));
 }
 
+$eventos = EventoCategoria::model()->findAll();
+
+$evenMenu = array();
+foreach ($eventos as $even){
+    $evenMenu[] = array('label' => 'Evento de '. $even->cat_nombre, 'url' => array('site/informaciones', 'id' => $info->id));
+}
+$evenMenu[] = array('label' => 'NOTICIAS', 'url' => array('site/noticias'));
+
 $this->widget(
         'booster.widgets.TbNavbar', array(
     'type' => 'inverse',
@@ -177,9 +185,7 @@ $this->widget(
                     'label' => 'EVENTOS ACADEMICOS',
                     'url' => '#',
                     'active' => (Yii::app()->controller->menu_activo == 'bloqueos') ? true : false,
-                    'items' => array(
-                        array('label' => 'NOTICIAS', 'url' => array('site/noticias'))
-                    )
+                    'items' => $evenMenu
                 ),
                 array('label' => 'TURISMO Y SALUD',
                     'active' => (Yii::app()->controller->menu_activo == 'turismoSalud') ? true : false,

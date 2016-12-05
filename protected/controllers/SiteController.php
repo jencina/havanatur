@@ -30,6 +30,7 @@ class SiteController extends Controller
         $ca = Carousel::model()->findAll(array('condition'=>'activo = 1 ORDER BY orden ASC'));
         $programaDestacados = Programa::model()->findAllByAttributes(array('destacado'=>1));
         $noticias = Noticia::model()->findAll();
+        $eventos   = Evento::model()->findAll();
         
         $carousel = array();
         foreach ($ca as $caro) {
@@ -46,7 +47,8 @@ class SiteController extends Controller
 		$this->render('index',array(
                     'carousel'          => $carousel,
                     'programaDestacados'=> $programaDestacados,
-                    'noticias'          => $noticias
+                    'noticias'          => $noticias,
+                    'eventos'           => $eventos
                         ));
 	}
 
@@ -553,6 +555,18 @@ class SiteController extends Controller
         $noticia = Noticia::model()->findByPk($id);
 
         $this->render('noticiaDetalle',array('noticia'=>$noticia));
+    }
+    
+    public function actionEventoDetalle(){
+        $this->layout='//layouts/main-eventos';
+        Yii::app()->controller->menu_activo= 'eventos';
+
+        $id   = Yii::app()->request->getParam('id');
+
+        $evento = Evento::model()->findByPk($id);
+        $categorias = EventoCategoria::model()->findAll();
+
+        $this->render('eventoDetalle',array('evento'=>$evento,'categorias'=>$categorias));
     }
         
 }

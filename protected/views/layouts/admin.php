@@ -44,8 +44,14 @@
                             
                             array('label'=>'Noticias','url'=>'',
                                 'items'=>array(
-                                    array('label' => 'Adminisrador', 'url' => array('noticia/admin')),
+                                    array('label' => 'Administrador', 'url' => array('noticia/admin')),
                                     array('label' => 'Categorias', 'url' => array('noticia/categorias')),
+                                    )
+                                ),
+                            array('label'=>'Eventos',null,
+                                'items'=>array(
+                                    array('label' => 'Administrador', 'url' => array('evento/admin')),
+                                    array('label' => 'Categorias', 'url' => array('evento/categorias')),
                                     )
                                 ),
                             

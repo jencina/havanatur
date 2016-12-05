@@ -120,6 +120,29 @@
 
 <div class="page-header">
     <h1>
+        Eventos
+        <small></small>
+    </h1>
+</div>
+
+<div class="noticias">
+    <div id="myCarousel2" class="jcarousel">
+        <ul>
+            <?php
+                foreach ($eventos as $evento){
+                    echo '<li class="padding-10">';
+                        $this->renderPartial('eventoDestacado',array('evento'=>$evento));
+                    echo '</li>';
+                }
+            ?>
+        </ul>
+        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1>
        Asociados
         <small></small>
     </h1>
