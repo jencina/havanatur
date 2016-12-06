@@ -1,6 +1,7 @@
 <?php
     $this->breadcrumbs =   array('Eventos Academicos','Noticias');
     $this->headerTitulo = 'Noticias';
+    $this->headerImagen = '';
 ?>
 
 <style>

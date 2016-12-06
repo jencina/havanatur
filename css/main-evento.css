@@ -174,3 +174,26 @@ body{
     width: 250px;
 }
 
+.biography-icon {
+            background-color: #ffffff;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            height: 70px !important;
+            left: 50%;
+            margin-left: -35px;
+            margin-right: auto;
+            margin-top: 10px;
+            padding: 10px;
+            position: absolute;
+            width: 70px !important;
+            line-height: 70px !important;
+            cursor: pointer;
+        }
+
+        .biography-ctn {
+            background-color: #f6f6f6;
+            font-size: 16px;
+            margin-top: 50px;
+               padding: 20px 20px 60px 20px;
+        }

@@ -9,41 +9,15 @@
     
     <?php echo $evento->even_contenido?>
     
-    <style>
-        .biography-icon {
-            background-color: #ffffff;
-            background-position: center center;
-            background-repeat: no-repeat;
-            border-radius: 50%;
-            height: 70px !important;
-            left: 50%;
-            margin-left: -35px;
-            margin-right: auto;
-            margin-top: 10px;
-            padding: 10px;
-            position: absolute;
-            width: 70px !important;
-            line-height: 70px !important;
-            cursor: pointer;
-        }
-
-        .biography-ctn {
-            background-color: #f6f6f6;
-            font-size: 16px;
-            margin-top: 50px;
-            padding: 50px 70px 65px;
-        }
-        
-    </style>
-    
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 button-container" style="min-height: 80px">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 button-container" style="min-height: 80px;margin:0;">
             <a class="biography-icon cotizar" onclick="js:$('.biography-ctn').toggle('slow');"><i class="fa fa-user"></i></a>
             
-            <div class="biography-ctn" style="display:none;min-width: 100%">            
+            <div class="biography-ctn" style="display:none;min-width: 100%"> 
                 
                 
-
+                
+               
     <?php
     $model = new Interesado();
     $form = $this->beginWidget(
@@ -53,6 +27,12 @@
             'type' => 'vertical',
         )
     ); ?>
+                
+                <div class="page-header" style="text-align:center;">
+        <h1>
+            Formulario Registro Evento
+        </h1>
+    </div>
 
     <?php echo $form->textFieldGroup(
         $model,
@@ -116,7 +96,7 @@ unset($form);
 </div>
 
 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="font-size: 18px;color:#898989;padding: 20px 25px">
-    <div class="page-header-detail btn-info">
+    <div class="page-header-detail">
         <h4 style="margin-top:15px;">
             <i class="fa fa-calendar"></i> Otros Eventos
         </h4>
