@@ -557,6 +557,26 @@ class SiteController extends Controller
         $this->render('noticiaDetalle',array('noticia'=>$noticia));
     }
     
+    public function actionEventos(){
+
+        $this->layout='//layouts/main-eventos';
+
+        Yii::app()->controller->menu_activo= 'eventos';
+        $id   = Yii::app()->request->getParam('id');
+         
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('even_cat_id = '.$id);
+
+        $dataProvider=new CActiveDataProvider('Evento', array(
+            'criteria'=>$criteria
+        ));
+        
+        $categoria = EventoCategoria::model()->findByPk($id);
+
+        $this->render('eventos',array('dataProvider'=>$dataProvider,'categoria'=>$categoria));
+
+    }
+    
     public function actionEventoDetalle(){
         $this->layout='//layouts/main-eventos';
         Yii::app()->controller->menu_activo= 'eventos';

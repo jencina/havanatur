@@ -21,37 +21,10 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main-evento.css">
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/lightbox2-master/css/lightbox.min.css">
-
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">-->
-
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
 
     <body>
-        
-        <!--<div class="top">
-            <div class="container">
-
-                <?php
-                $cambio1 = Configuracion::model()->findByAttributes(array('nombre' => 'tipo_cambio_1'));
-                $cambio2 = Configuracion::model()->findByAttributes(array('nombre' => 'tipo_cambio_2'));
-                ?>
-                <div class="contenido">
-
-                    <div class="body">
-                        <div class="icon"><i class="fa fa-usd"></i></div>
-                        <div class="titulo"><?php echo $cambio1->valor; ?></div>
-                        <div class="valor"><?php echo $cambio1->valor2; ?></div>
-                    </div>
-
-                    <div class="body">
-                        <div class="icon"><i class="fa fa-usd"></i></div>
-                        <div class="titulo"><?php echo $cambio2->valor; ?></div>
-                        <div class="valor"><?php echo $cambio2->valor2; ?></div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
                 <?php
                 $programas = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->programas));
 
@@ -84,14 +57,6 @@
 
                     $bloqueo[] = array('label' => $blo->nombre, 'url' => array('site/programa', 'id' => $blo->id));
                 }
-
-                /* $otroDestino = array();
-
-                  foreach($otroDestinos as $otro){
-
-                  $otroDestino[] = array('label' => $otro->nombre, 'url' => array('site/programa','id'=>$otro->id));
-
-                  } */
 
                 $turismoSalud = array();
 
@@ -129,85 +94,31 @@
                 foreach ($informaciones as $info) {
 
                     $informacion[] = array('label' => $info->titulo, 'url' => array('site/informaciones', 'id' => $info->id));
-                }?>
+                }
+
+                $eventos = EventoCategoria::model()->findAll();
+                $evenMenu = array();
+                foreach ($eventos as $even) {
+                    $evenMenu[] = array('label' => 'Evento de ' . $even->cat_nombre, 'url' => array('site/eventos', 'id' => $even->cat_id));
+                }
+                $evenMenu[] = array('label' => 'NOTICIAS', 'url' => array('site/noticias'));
+                ?>
                 
         <style>
-        @media (min-width: 768px) and (max-width: 1200px) {
-	.navbar-nav .open .dropdown-menu {
-		position: static;
-		float: none;
-		width: auto;
-		margin-top: 0;
-		background-color: transparent;
-		border: 0;
-		-webkit-box-shadow: none;
-		box-shadow: none;
-	}
-	.navbar-nav .open .dropdown-menu > li > a {
-		line-height: 20px;
-	}
-	.navbar-nav .open .dropdown-menu > li > a,
-	.navbar-nav .open .dropdown-menu .dropdown-header {
-		padding: 5px 15px 5px 25px;
-	}
-	.dropdown-menu > li > a {
-		display: block;
-		padding: 3px 20px;
-		clear: both;
-		font-weight: normal;
-		line-height: 1.42857143;
-		color: #333;
-		white-space: nowrap;
-	}
-    .navbar-header {
-        float: none;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-        /*margin: 7.5px -15px;*/
-		margin: 7.5px 50px 7.5px -15px
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .navbar-text {
-        float: none;
-        margin: 15px 0;
-    }
-    /* since 3.1.0 */
-    .navbar-collapse.collapse.in { 
-        display: block!important;
-    }
-    .collapsing {
-        overflow: hidden!important;
-    }
-}
+        
         </style>
         
 <?php
+                
                 $this->widget(
                     'booster.widgets.TbNavbar', array(
                     'id'=>'menu',
-                    //'type' => 'inverse',
+                    'type' => 'havana',
                     'brand' => '<img width="80" src="'.Yii::app()->request->baseUrl.'/images/logo-havana1.png">',
                     'brandOptions' => array('style' => 'padding:0;'),
                     'brandUrl' => '#',
                     'fixed' => 'top',
-                    'htmlOptions' => array('class' => 'affix-top','id'=>'menu',),
+                    'htmlOptions' => array('class' => 'background-havana-blue','id'=>'menu'),
                     'items' => array(
                         array(
                             'class' => 'booster.widgets.TbMenu',
@@ -228,23 +139,11 @@
                                     'active' => (Yii::app()->controller->menu_activo == 'programa') ? true : false,
                                     'items' => $programa
                                 ),
-                                /* array('label' => 'OTROS DESTINOS',
-                                  'url'   =>'#',
-                                  'items' => $otroDestino), */
-
-                                /* array(
-                                  'label' => 'BLOQUEOS',
-                                  'url' => '#',
-                                  'active' => (Yii::app()->controller->menu_activo == 'bloqueos') ? true : false,
-                                  'items' => $bloqueo
-                                  ), */
                                 array(
-                                    'label' => 'EVENTOS ACADEMICOS',
-                                    'url' => '#',
+                                    'label'  => 'EVENTOS ACADEMICOS',
+                                    'url'    => '#',
                                     'active' => (Yii::app()->controller->menu_activo == 'eventos') ? true : false,
-                                    'items' => array(
-                                        array('label' => 'NOTICIAS', 'url' => array('site/noticias'))
-                                    )
+                                    'items'  => $evenMenu
                                 ),
                                 array('label' => 'TURISMO Y SALUD',
                                     'active' => (Yii::app()->controller->menu_activo == 'turismoSalud') ? true : false,
@@ -260,13 +159,6 @@
                         )
                 );
                 ?>
-        
-        <style>
-        header img {
-           
-        }
-            
-        </style>
 
         <?php if($this->headerTitulo != ''){?>
         <header class="masthead subhead" style="background-color: #000000;" > 
@@ -341,12 +233,8 @@
                 </div>
             </header><!-- header -->
         <?php } ?>
-
-        
-
-        
-        
-        <div id="breadcrums" style="background-color:#f5f5f5;">
+            
+        <div id="breadcrums" class="background-havana-gris">
             <div class="container" >
             <?php if(isset($this->breadcrumbs)): ?>
             <?php
@@ -368,7 +256,6 @@
         <div class="container <?php echo $this->widthPageClass?>" id="page">
             <?php echo $content; ?>
         </div>
-        
 
         <div class="footer-wrapper">
             <div class="container">

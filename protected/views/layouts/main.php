@@ -8,6 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="language" content="en">
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main-menu.css">
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/lightbox2-master/css/lightbox.min.css">
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
@@ -71,12 +72,10 @@
                 </div>
             </div>
         </div><!-- header -->
-
-        <div class="container" id="page">
-
-
-
-        <div id="mainmenu" class="row">
+        
+        <div  id="main-menu" class="background-havana-blue">
+          <div class="container">
+             <div id="mainmenu" class="row">
 
 <?php
 $programas     = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->programas));
@@ -134,17 +133,16 @@ foreach ($informaciones as $info) {
     $informacion[] = array('label' => $info->titulo, 'url' => array('site/informaciones', 'id' => $info->id));
 }
 
-$eventos = EventoCategoria::model()->findAll();
-
+$eventos  = EventoCategoria::model()->findAll();
 $evenMenu = array();
 foreach ($eventos as $even){
-    $evenMenu[] = array('label' => 'Evento de '. $even->cat_nombre, 'url' => array('site/informaciones', 'id' => $info->id));
+    $evenMenu[] = array('label' => 'Evento de '. $even->cat_nombre, 'url' => array('site/eventos', 'id' => $even->cat_id));
 }
 $evenMenu[] = array('label' => 'NOTICIAS', 'url' => array('site/noticias'));
 
 $this->widget(
-        'booster.widgets.TbNavbar', array(
-    'type' => 'inverse',
+    'booster.widgets.TbNavbar', array(
+    //'type' => 'inverse',
     'brand' => '',
     'brandUrl' => '#',
     'collapse' => true, // requires bootstrap-responsive.css
@@ -184,7 +182,7 @@ $this->widget(
                 array(
                     'label' => 'EVENTOS ACADEMICOS',
                     'url' => '#',
-                    'active' => (Yii::app()->controller->menu_activo == 'bloqueos') ? true : false,
+                    'active' => (Yii::app()->controller->menu_activo == 'eventos') ? true : false,
                     'items' => $evenMenu
                 ),
                 array('label' => 'TURISMO Y SALUD',
@@ -204,15 +202,29 @@ $this->widget(
 ?>
 
             </div><!-- mainmenu -->
-                <?php if (isset($this->breadcrumbs)): ?>
+        </div>
+    </div>
+        
+        <div id="breadcrums" class="background-havana-gris">
+            <div class="container">
+                  <?php if(isset($this->breadcrumbs)): ?>
+            <?php
+            $this->widget(
+                    'booster.widgets.TbBreadcrumbs',
+                    array(
+                        'htmlOptions'=>array('style'=>'margin:0;','class'=>'breadcrumb'),
+                        'homeLink' => CHtml::link('Home',array('site/index')),
+                        //'links' => array($model->nombre)
+                        'links' => $this->breadcrumbs
+                    )
+                );
+            ?><!-- breadcrumbs -->
+            <?php endif ?>   
+            </div>
+        </div>
+        
 
-                    <?php
-                    $this->widget('zii.widgets.CBreadcrumbs', array(
-                        'links' => $this->breadcrumbs,
-                    ));
-                    ?><!-- breadcrumbs -->
-
-                <?php endif ?>
+        <div class="container" id="page">
                 <?php echo $content; ?>
             <div class="clear"></div>
         </div><!-- page -->

@@ -1,19 +1,10 @@
 
 <?php
-
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link('Home',array('site/index')),
-        //'links' => array($model->nombre)
-		 'links' => array($model->programaTipo->nombre,$model->nombre)
-    )
-);
+$this->breadcrumbs = array($model->programaTipo->nombre,$model->nombre);
 
 ?>
 
-
-<div class="page-header-detail">
+<div class="page-header-detail" style="margin-top: 20px">
     <h1>
         <?php echo strtoupper($model->nombre);?>
         <?php if(!empty($model->pdf)):?>

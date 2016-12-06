@@ -1,5 +1,5 @@
 <?php
-    $this->breadcrumbs = array('Eventos Academicos','Eventos'=>array('site/eventos'),$evento->even_titulo);
+    $this->breadcrumbs = array('Eventos Academicos','Eventos de '.$evento->evenCat->cat_nombre =>array('site/eventos','id'=>$evento->even_cat_id),$evento->even_titulo);
     $this->widthPageClass = '';
     $this->headerTitulo = $evento->even_titulo;
     $this->headerImagen = $evento->even_imagen_detail;
@@ -44,25 +44,25 @@
                 
                 
 
-<?php
-$model = new Interesado();
-$form = $this->beginWidget(
-    'booster.widgets.TbActiveForm',
-    array(
-        'id' => 'horizontalForm',
-        'type' => 'vertical',
-    )
-); ?>
+    <?php
+    $model = new Interesado();
+    $form = $this->beginWidget(
+        'booster.widgets.TbActiveForm',
+        array(
+            'id' => 'horizontalForm',
+            'type' => 'vertical',
+        )
+    ); ?>
 
-        <?php echo $form->textFieldGroup(
-            $model,
-            'int_nombre',
-            array(
-                'wrapperHtmlOptions' => array(
-                    'class' => 'col-sm-5',
-                ),
-            )
-        ); ?>
+    <?php echo $form->textFieldGroup(
+        $model,
+        'int_nombre',
+        array(
+            'wrapperHtmlOptions' => array(
+                'class' => 'col-sm-5',
+            ),
+        )
+    ); ?>
 
         <?php echo $form->textFieldGroup(
             $model,
