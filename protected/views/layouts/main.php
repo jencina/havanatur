@@ -73,9 +73,8 @@
             </div>
         </div><!-- header -->
         
-        <div  id="main-menu" class="background-havana-blue">
+        <div  class="background-havana-blue">
           <div class="container">
-             <div id="mainmenu" class="row">
 
 <?php
 $programas     = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->programas));
@@ -138,7 +137,7 @@ $evenMenu = array();
 foreach ($eventos as $even){
     $evenMenu[] = array('label' => 'Evento de '. $even->cat_nombre, 'url' => array('site/eventos', 'id' => $even->cat_id));
 }
-$evenMenu[] = array('label' => 'NOTICIAS', 'url' => array('site/noticias'));
+$evenMenu[] = array('label' => 'Noticias', 'url' => array('site/noticias'));
 
 $this->widget(
     'booster.widgets.TbNavbar', array(
@@ -147,7 +146,7 @@ $this->widget(
     'brandUrl' => '#',
     'collapse' => true, // requires bootstrap-responsive.css
     'fixed' => false,
-    'htmlOptions' => array('style' => 'margin-bottom:0;'),
+   'htmlOptions' => array('class' => 'background-havana-blue', 'id' => 'menu','style'=>'margin:0;border:none;'),
     'fluid' => true,
     'items' => array(
         array(
@@ -201,7 +200,6 @@ $this->widget(
 );
 ?>
 
-            </div><!-- mainmenu -->
         </div>
     </div>
         

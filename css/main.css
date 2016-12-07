@@ -145,8 +145,6 @@ body{
     color: #fff;
 }
 
-
-
 /* BREADCRUMS*/
 
 .breadcrumb{
@@ -167,8 +165,8 @@ body{
 
 .footer-wrapper .footer {
     padding: 40px 0 20px;
-	float:left;
-	width: 100%;
+    float:left;
+    width: 100%;
 }
 
 .footer-wrapper .footer .footer-box h4 {
@@ -309,7 +307,7 @@ body{
     border:2px solid #ca070b;
     text-align: center;
     top: 0;
-    transition: all 0.3s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
     width: 50px;
 }
 
@@ -369,7 +367,7 @@ body{
     height: 200px;
     line-height: 200px;
     text-align: center;
-    transition: all 0.3s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
     vertical-align: middle;
 }
 
@@ -820,3 +818,69 @@ body{
 .padding-10{
     padding: 10px;
 }
+
+
+.related-news-ctn:hover{
+    background-size: 200% auto;
+    transition: all 0.3s ease 0s;
+    color:#fff !important;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+    
+.related-news-ctn {
+    background-size: 170% auto;
+}
+.related-news-ctn {
+    background-color: #f0f0f0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 15px;
+    min-height: 230px;
+     max-height: 230px;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+}
+.related-news-ctn-filter {
+    background-color: rgba(0, 0, 0, 0.4);
+    min-height: 230px;
+    padding-bottom: 10px;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+}
+
+.related-news-ctn-filter:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.related-news-ctn-filter > div {
+    padding: 2px 12px 5px;
+}
+
+.related-news-ctn a{
+    color: #ffffff !important;
+    text-decoration: none !important;
+     font-size: 24px;
+     font-weight: 800;
+}
+.related-news-ctn span:last-child {
+    color: #e7e7e7;
+    display: inherit;
+    font-family: "ARSMaquettePro-light",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+}
+
+.news-label {
+    background-color: #ca070b;
+    color: #ffffff;
+    display: inline-block;
+    font-family: "ARSMaquettePro-Bold",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 10px 20px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    z-index: 1;
+}
+

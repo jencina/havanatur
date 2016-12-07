@@ -69,8 +69,8 @@
            $imagen = $programaDestacado->getImagenDestacado();
         ?>
             <li class="padding-10">
-                <div class="thumbnail" style="padding:0">
-                    <div class="img" style="background-image: url('<?php echo Yii::app()->request->baseUrl; ?>/images/<?php echo $imagen;?>')"></div>
+                <div class="thumbnail" style="padding:0;">
+                    <!-- class img--><div class="related-news-ctn" style="background-image: url('<?php echo Yii::app()->request->baseUrl; ?>/images/<?php echo $imagen;?>')"></div>
                     <div class="caption">
                         <a class="product-name"><?php echo $programaDestacado->nombre; ?></a>
 
@@ -78,12 +78,11 @@
                             <?php echo $programaDestacado->descripcion; ?>
                         </div>
 
-                        <div class="price">
-                            <span class="new"><span style="font-size:15px;">desde</span> $<?php echo $programaDestacado->precio_desde?></span>
-                        </div>
-
                         <div class="button-container">
                             <?php echo CHtml::link('<i class="fa fa-info"></i>',array('site/programa','id'=>$programaDestacado->id),array('class'=>'cotizar')); ?>
+                          <div class="price">
+                            <span class="new"><span style="font-size:15px;">desde</span> $<?php echo $programaDestacado->precio_desde?></span>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -163,14 +162,13 @@
         var jcarousel = $('.jcarousel');
         jcarousel.on('jcarousel:reload jcarousel:create', function () {
                 var carousel = $(this),
-                    width = carousel.innerWidth();
+                width = carousel.innerWidth();
 
-                if (width >= 600) {
+                if (width >= 1000) {
                     width = width / 3;
-                } else if (width >= 350) {
+                } else if (width >= 600) {
                     width = width / 2;
                 }
-
                 carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
             })
             .jcarousel({

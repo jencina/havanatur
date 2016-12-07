@@ -95,7 +95,7 @@ body{
     #menu  .navbar-toggle {
         display: block;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 21px;
     }
     #menu .navbar-collapse {
         border-top: 1px solid #002575;
@@ -157,10 +157,19 @@ body{
 }
 
 
+#mainmenu ul li a{
+    color: #fff !important;
+}
+
+
 #menu .navbar-nav > li > a {
     color: #fff !important;
     text-transform: uppercase;
     border: 1px solid #002575;
+}
+
+#menu.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
 }
 
 #menu.navbar .navbar-nav > .active > a,.navbar-nav > li.active > a:focus,.navbar-nav > li > a:focus,.navbar-nav > li > a:hover{
