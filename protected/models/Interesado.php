@@ -35,7 +35,7 @@ class Interesado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('int_id, int_even_id', 'required'),
+			array('int_nombre, int_apellido,int_email, int_telefono', 'required'),
 			array('int_id', 'numerical', 'integerOnly'=>true),
 			array('int_nombre, int_apellido, int_email', 'length', 'max'=>100),
 			array('int_telefono, int_celular, int_rut, int_fechacreacion', 'length', 'max'=>45),

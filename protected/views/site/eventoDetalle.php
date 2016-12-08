@@ -10,86 +10,11 @@
     <?php echo $evento->even_contenido?>
     
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 button-container" style="min-height: 80px;margin:0;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 button-container" style="min-height: 80px;margin:0;padding: 0;">
             <a class="biography-icon cotizar" onclick="js:$('.biography-ctn').toggle('slow');"><i class="fa fa-user"></i></a>
             
-            <div class="biography-ctn" style="display:none;min-width: 100%"> 
-                
-                
-                
-               
-    <?php
-    $model = new Interesado();
-    $form = $this->beginWidget(
-        'booster.widgets.TbActiveForm',
-        array(
-            'id' => 'horizontalForm',
-            'type' => 'vertical',
-        )
-    ); ?>
-                
-                <div class="page-header" style="text-align:center;">
-        <h1>
-            Formulario Registro Evento
-        </h1>
-    </div>
-
-    <?php echo $form->textFieldGroup(
-        $model,
-        'int_nombre',
-        array(
-            'wrapperHtmlOptions' => array(
-                'class' => 'col-sm-5',
-            ),
-        )
-    ); ?>
-
-        <?php echo $form->textFieldGroup(
-            $model,
-            'int_apellido',
-            array(
-                'wrapperHtmlOptions' => array(
-                    'class' => 'col-sm-5',
-                ),
-            )
-        ); ?>
-
-        <?php echo $form->textFieldGroup(
-            $model,
-            'int_email',
-            array(
-                'wrapperHtmlOptions' => array(
-                    'class' => 'col-sm-5',
-                ),
-            )
-        ); ?>
-
-        <?php echo $form->textFieldGroup(
-            $model,
-            'int_telefono',
-            array(
-                'wrapperHtmlOptions' => array(
-                    'class' => 'col-sm-5',
-                ),
-            )
-        ); ?>
-
-        <div class="form-actions col-md-12" >
-            <?php $this->widget(
-                'booster.widgets.TbButton',
-                array(
-                    'buttonType' => 'submit',
-                    'type' => 'primary',
-                    'label' => 'Guardar'
-                )
-            ); ?>
-        </div>
-
-<?php
-$this->endWidget();
-unset($form);
-?>
-                
+            <div id="interesado" class="biography-ctn" style="display:none;min-width: 100%"> 
+                <?php echo $this->renderPartial('_interesadoForm',array('model'=>$model,'evento'=>$evento));?>
             </div>
         </div>
     </div>
@@ -124,5 +49,8 @@ unset($form);
         <li class="list-group-item"><span style="font-size: 17px"><i class="fa fa-phone-square"></i><?php echo $evento->even_telefono_2; ?></span></li>
     </ul>
 </div>
+
+
+
 
 

@@ -582,11 +582,31 @@ class SiteController extends Controller
         Yii::app()->controller->menu_activo= 'eventos';
 
         $id   = Yii::app()->request->getParam('id');
+        $model = new Interesado();
 
         $evento = Evento::model()->findByPk($id);
         $categorias = EventoCategoria::model()->findAll();
 
-        $this->render('eventoDetalle',array('evento'=>$evento,'categorias'=>$categorias));
+        $this->render('eventoDetalle',array('evento'=>$evento,'categorias'=>$categorias,'model'=>$model));
+    }
+    
+    public function actionSetInteresado(){
+        
+        $id     = Yii::app()->request->getParam('id');
+        $model  = new Interesado();
+        $evento = Evento::model()->findByPk($id);
+        if(isset($_POST['Interesado'])){
+            $model->attributes = $_POST['Interesado'];
+            $model->int_even_id = $id;
+            $model->int_fechacreacion = date("Y-m-d H:i:s");
+            if($model->validate()){
+                if($model->save()){
+                    return 'Inscrito con exito!';
+                }
+            }
+            return $this->renderPartial('_interesadoForm',array('model'=>$model,'evento'=>$evento));
+        }
+        
     }
         
 }
