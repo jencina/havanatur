@@ -87,6 +87,7 @@ $this->widget('zii.widgets.CMenu', array(
             'items' => array(
                 array('label' => 'Administrador', 'url' => array('evento/admin')),
                 array('label' => 'Categorias', 'url' => array('evento/categorias')),
+                array('label' => 'Inscritos', 'url' => array('evento/inscritos')),
             )
         ),
         array('label' => '<i class="fa fa-lg fa-fw fa-money"></i><span class="menu-item-parent">Cotizaciones</span> <span class="badge">' . $cot . '</span>', 'url' => array('cotizacion/index')),

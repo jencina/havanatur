@@ -36,7 +36,7 @@ class EventoController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','inscritos'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -271,6 +271,19 @@ class EventoController extends Controller
 		));
 	}
         
+        public function actionInscritos(){
+            
+            $model=new Interesado('search');
+            $model->unsetAttributes();  // clear any default values
+            if(isset($_GET['Interesado']))
+                    $model->attributes=$_GET['Interesado'];
+
+            $this->render('inscritos',array(
+                    'model'=>$model,
+            ));
+
+        }
+        
 	public function loadModel($id)
 	{
 		$model=Evento::model()->findByPk($id);
@@ -291,4 +304,6 @@ class EventoController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        
 }

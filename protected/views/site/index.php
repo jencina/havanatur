@@ -1,5 +1,9 @@
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.jcarousel-core.min.js"></script>
 
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/slick/slick.js"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/slick/slick.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/slick/slick-theme.css">
+
 <section>
     <div>
         <?php $lightbox = Lightbox::model()->findAllByAttributes(array('activo'=>1));
@@ -63,12 +67,11 @@
 <!-- THUMBNAIL -->
 
 <div class="destacados">
-    <div id="myCarousel" class="jcarousel">
-        <ul>
+    <div id="myCarousel" class="myCarousel slick">
         <?php foreach($programaDestacados as $programaDestacado):
            $imagen = $programaDestacado->getImagenDestacado();
         ?>
-            <li class="padding-10">
+            <li class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="thumbnail" style="padding:0;">
                     <!-- class img--><div class="related-news-ctn" style="background-image: url('<?php echo Yii::app()->request->baseUrl; ?>/images/<?php echo $imagen;?>')"></div>
                     <div class="caption">
@@ -86,11 +89,8 @@
                         </div>
                     </div>
                 </div>
-            </li>
+           </li>
         <?php endforeach;?>
-        </ul>
-        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
     </div>
 </div>
 
@@ -102,18 +102,12 @@
 </div>
 
 <div class="noticias">
-    <div id="myCarousel2" class="jcarousel">
-        <ul>
+    <div id="myCarousel2" class="myCarousel slick">
             <?php
                 foreach ($noticias as $noticia){
-                    echo '<li class="padding-10">';
                         $this->renderPartial('noticiaDestacado',array('noticia'=>$noticia));
-                    echo '</li>';
                 }
             ?>
-        </ul>
-        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
     </div>
 </div>
 
@@ -125,18 +119,12 @@
 </div>
 
 <div class="noticias">
-    <div id="myCarousel2" class="jcarousel">
-        <ul>
+    <div id="myCarousel2" class="myCarousel slick">
             <?php
                 foreach ($eventos as $evento){
-                    echo '<li class="padding-10">';
                         $this->renderPartial('eventoDestacado',array('evento'=>$evento));
-                    echo '</li>';
                 }
             ?>
-        </ul>
-        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
     </div>
 </div>
 
@@ -158,48 +146,27 @@
 
 
 <script>
- $(function() {
-        var jcarousel = $('.jcarousel');
-        jcarousel.on('jcarousel:reload jcarousel:create', function () {
-                var carousel = $(this),
-                width = carousel.innerWidth();
-
-                if (width >= 1000) {
-                    width = width / 3;
-                } else if (width >= 600) {
-                    width = width / 2;
+    $(document).ready(function(){
+        $('.slick').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow:'<button type="button" class="btn-prev btn-carousel"><i class="fa fa-arrow-left"></i></button>',
+        nextArrow:'<button type="button" class="btn-next btn-carousel"><i class="fa fa-arrow-right"></i></button>',
+        responsive: [
+                {
+                  breakpoint: 1000,
+                  settings: {
+                    slidesToShow:2
+                  }
+                },
+                {
+                  breakpoint: 710,
+                  settings: {
+                    slidesToShow: 1
+                  }
                 }
-                carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
-            })
-            .jcarousel({
-                wrap: 'circular'
-            });
-
-        $('.jcarousel-control-prev')
-            .jcarouselControl({
-                target: '-=1'
-            });
-
-        $('.jcarousel-control-next')
-            .jcarouselControl({
-                target: '+=1'
-            });
-
-        $('.jcarousel-pagination')
-            .on('jcarouselpagination:active', 'a', function() {
-                $(this).addClass('active');
-            })
-            .on('jcarouselpagination:inactive', 'a', function() {
-                $(this).removeClass('active');
-            })
-            .on('click', function(e) {
-                e.preventDefault();
-            })
-            .jcarouselPagination({
-                perPage: 1,
-                item: function(page) {
-                    return '<a href="#' + page + '">' + page + '</a>';
-                }
-            });
+              ]
+      });
     });
 </script>

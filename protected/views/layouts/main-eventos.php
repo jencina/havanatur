@@ -101,7 +101,8 @@
         foreach ($eventos as $even) {
             $evenMenu[] = array('label' => 'Evento de ' . $even->cat_nombre, 'url' => array('site/eventos', 'id' => $even->cat_id));
         }
-        $evenMenu[] = array('label' => 'NOTICIAS', 'url' => array('site/noticias'));
+        $evenMenu[] = array('label' => 'Noticias', 'url' => array('site/noticias'));
+       
         ?>
 
         <style>
