@@ -715,7 +715,7 @@ body{
 
 /** Carousel Controls **/
 .myCarousel{
-    padding-bottom: 25px;
+    padding-bottom: 35px;
 }
 
 .myCarousel > .btn-carousel,.myCarousel > .btn-carousel:focus ,.myCarousel > .btn-carousel:active {
@@ -775,13 +775,13 @@ body{
 }
     
 .related-news-ctn {
-    background-size: 170% auto;
+    background-size: 180% auto;
 }
 .related-news-ctn {
     background-color: #f0f0f0;
     background-position: center center;
     background-repeat: no-repeat;
-    margin-bottom: 15px;
+   /* margin-bottom: 15px;*/
     min-height: 230px;
      max-height: 230px;
     transition: all 0.3s ease 0s;
