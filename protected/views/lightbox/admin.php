@@ -1,21 +1,11 @@
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => 'Lightbox',
-        'links' => array(''),
-    )
-);
+$this->breadcrumbs   = array('Lightbox'=>array('Lightbox/admin'));
+$this->pagetitulo    = 'Lightbox';
+$this->pagesubtitulo = 'Administrador';
+$this->btncreate     = CHtml::link('Nuevo',array('Lightbox/create'),array('class'=>'btn btn-primary'));
+$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-caret-square-o-right';
 ?>
-
-
-<div class="page-header">
-    <h1>Lightbox <small>Administrador</small>
-        <?php echo CHtml::link('Nuevo',array('Lightbox/create'),array('class'=>'btn btn-primary'));?>
-    </h1>
-</div>
 
 <?php
 

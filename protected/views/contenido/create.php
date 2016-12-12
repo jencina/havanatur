@@ -1,20 +1,10 @@
-
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Contenido'), array('Contenido/admin')),
-        'links' => array('Crear Nuevo'),
-    )
-);
+$this->breadcrumbs   = array('Contenido'=>array('contenido/admin'),'Crear Nuevo');
+$this->pagetitulo    = 'Contenido';
+$this->pagesubtitulo = 'Crear Nuevo';
+//$this->btncreate     = CHtml::link('Nuevo',array('contenido/create'),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-keyboard-o';
 ?>
-
-
-<div class="page-header">
-    <h1>Contenido <small>Crear Nuevo</small></h1>
-</div>
-
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

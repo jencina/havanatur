@@ -1,21 +1,10 @@
 <?php
-/* @var $this LightboxController */
-/* @var $model Lightbox */
-
-$this->breadcrumbs=array(
-	'Lightboxes'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List Lightbox', 'url'=>array('index')),
-	array('label'=>'Create Lightbox', 'url'=>array('create')),
-	array('label'=>'View Lightbox', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Lightbox', 'url'=>array('admin')),
-);
+$this->breadcrumbs   = array('Lightbox'=>array('Lightbox/admin'),'Ediatar #'.$model->id);
+$this->pagetitulo    = 'Lightbox';
+$this->pagesubtitulo = 'Ediatar #'.$model->id;
+//$this->btncreate     = CHtml::link('Nuevo',array('Lightbox/create'),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-caret-square-o-right';
 ?>
-
-<h1>Update Lightbox <?php echo $model->id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

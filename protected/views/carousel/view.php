@@ -1,19 +1,11 @@
-
 <?php
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Carousel'), array('carousel/admin')),
-        'links' => array('Detalle'),
-    )
-);
+$this->breadcrumbs   = array('Carrusel'=>array('carousel/admin'),'Detalle');
+$this->pagetitulo    = 'Carrusel';
+$this->pagesubtitulo = 'Detalle #'.$model->id;
+//$this->btncreate     = CHtml::link('Nuevo',array('carousel/create'),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-picture-o';
 ?>
-
-<div class="page-header">
-    <h1>Carousel <small>Detalle #<?php echo $model->id; ?></small></h1>
-</div>
-
-
 
 <div class="col-md-12">
     <img style="width: 100%" src="<?php echo Yii::app()->request->baseUrl.'/images/carousel/'.$model->foto;?>" />

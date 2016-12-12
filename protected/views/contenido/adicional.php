@@ -1,22 +1,11 @@
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' =>  CHtml::link(Yii::t('zii', 'Contenido'), array('Contenido/admin')),
-        'links' => array(
-            'Adicional'
-        ),
-    )
-);
+$this->breadcrumbs   = array('Contenido'=>array('contenido/admin'),'Adicional',$contenido->titulo);
+$this->pagetitulo    = 'Contenido Adicional';
+$this->pagesubtitulo = $contenido->titulo;
+$this->btncreate     = CHtml::link('Nuevo',array('contenido/createAdicional','id'=>$contenido->id),array('class'=>'btn btn-primary'));
+$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-keyboard-o';
 ?>
-
-    <div class="page-header">
-        <h1>Contenido Adicional <small><?php echo $contenido->titulo?></small>
-            <?php echo CHtml::link('Nuevo',array('contenido/createAdicional','id'=>$contenido->id),array('class'=>'btn btn-primary'));?>
-        </h1>
-    </div>
 
 <?php
 

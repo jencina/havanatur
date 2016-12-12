@@ -1,18 +1,8 @@
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Usuarios'), array('usuario/admin')),
-        'links' => array('Update'),
-    )
-);
+$this->breadcrumbs   = array('Usuarios'=>array('usuario/admin'),'Editar');
+$this->pagetitulo    = 'Usuarios';
+$this->pagesubtitulo = 'Editar #'.$model->id;
+$this->pageicon      = 'fa-user';
 ?>
-
-    <div class="page-header">
-        <h1>Usuarios <small>Editar #<?php echo $model->id; ?></small></h1>
-    </div>
-
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

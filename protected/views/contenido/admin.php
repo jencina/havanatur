@@ -1,23 +1,13 @@
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => 'Contenido',
-        'links' => array(''),
-    )
-);
+$this->breadcrumbs   = array('Contenido'=>array('contenido/admin'));
+$this->pagetitulo    = 'Contenido';
+$this->pagesubtitulo = 'Administrador';
+$this->btncreate     = CHtml::link('Nuevo',array('contenido/create'),array('class'=>'btn btn-primary'));
+$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-keyboard-o';
 ?>
 
-<div class="page-header">
-    <h1>Contenido <small>Administrador</small>
-        <?php echo CHtml::link('Nuevo',array('contenido/create'),array('class'=>'btn btn-primary'));?>
-    </h1>
-</div>
-
 <?php
-
 $this->widget(
     'booster.widgets.TbExtendedGridView',
     array(

@@ -1,18 +1,10 @@
-
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Lightbox'), array('lightbox/admin')),
-        'links' => array('Crear Nuevo'),
-    )
-);
+$this->breadcrumbs   = array('Lightbox'=>array('Lightbox/admin'),'Crear Nuevo');
+$this->pagetitulo    = 'Lightbox';
+$this->pagesubtitulo = 'Crear Nuevo';
+//$this->btncreate     = CHtml::link('Nuevo',array('Lightbox/create'),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-caret-square-o-right';
 ?>
 
-
-<div class="page-header">
-    <h1>Lightbox <small>Crear Nuevo</small></h1>
-</div>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

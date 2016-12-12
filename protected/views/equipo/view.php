@@ -1,17 +1,11 @@
-
 <?php
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Equipo'), array('equipo/admin')),
-        'links' => array('Detalle'),
-    )
-);
+$this->breadcrumbs   = array('Equipo'=>array('equipo/admin'),'Detalle #'.$model->id);
+$this->pagetitulo    = 'Equipo';
+$this->pagesubtitulo = 'Detalle #'.$model->id;
+//$this->btncreate     = CHtml::link('Nuevo',array('equipo/create'),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-users';
 ?>
-
-<div class="page-header">
-    <h1>Equipo <small>Detalle #<?php echo $model->id; ?></small></h1>
-</div>
 
 <div class="col-md-12">
     <div class="col-sm-4 col-md-9">

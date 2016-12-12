@@ -1,21 +1,11 @@
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => 'Usuarios',
-        'links' => array(''),
-    )
-);
+$this->breadcrumbs   = array('Carrusel'=>array('carousel/admin'));
+$this->pagetitulo    = 'Carrusel';
+$this->pagesubtitulo = 'Administrador';
+$this->btncreate     = CHtml::link('Nuevo',array('carousel/create'),array('class'=>'btn btn-primary'));
+$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-picture-o';
 ?>
-
-
-<div class="page-header">
-    <h1>Carousel <small>Administrador</small>
-        <?php echo CHtml::link('Nuevo',array('carousel/create'),array('class'=>'btn btn-primary'));?>
-    </h1>
-</div>
 
 <?php
 $this->widget(

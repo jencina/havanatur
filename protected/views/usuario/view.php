@@ -1,20 +1,9 @@
-
 <?php
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Usuarios'), array('usuario/admin')),
-        'links' => array('Detalle'),
-    )
-);
+    $this->breadcrumbs   = array('Usuarios'=>array('usuario/admin'),'Detalle');
+    $this->pagetitulo    = 'Usuarios';
+    $this->pagesubtitulo = 'Detalle #'.$model->id;
+    $this->pageicon      = 'fa-user';
 ?>
-
-<div class="page-header">
-    <h1>Usuario <small>Detalle #<?php echo $model->id; ?></small></h1>
-</div>
-
-
-
 
 <?php
 $this->widget(

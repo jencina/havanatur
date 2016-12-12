@@ -1,39 +1,12 @@
+
 <?php
-
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Hotel'), array('hotel/admin')),
-        'links' => array('Fotos'),
-    )
-);
+$this->breadcrumbs   = array('Contenido'=>array('contenido/admin'),'Adicional',$model->contenido0->titulo=>array('contenido/adicional','id'=>$model->contenido0->id),'Fotos');
+$this->pagetitulo    = 'Contenido Adicional';
+$this->pagesubtitulo = 'Fotos';
+$this->btncreateajax = array('url'=>Yii::app()->createUrl('contenido/imagenAdicionalUpload',array('id'=>$model->id)),'id'=>'datos') ;
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-keyboard-o';
 ?>
-
-<div class="page-header">
-    <h1>Fotos Contenido Adicional<small>#<?php echo $model->id; ?></small>
-        <?php $this->widget('ext.EAjaxUpload.EAjaxUpload',
-            array(
-                'id'=>'uploadFile',
-                'config'=>array(
-                    'action'=>Yii::app()->createUrl('contenido/imagenAdicionalUpload',array('id'=>$model->id)),
-                    'allowedExtensions'=>array("jpg","png"),//array("jpg","jpeg","gif","exe","mov" and etc...
-                    'sizeLimit'=>50*1024*1024,// maximum file size in bytes
-                    'multiple'=>false,
-                    'onSubmit'=> "js:function(id, fileName){
-                     $('#ajaxupload').button('loading');
-                     $('ul.qq-upload-list').remove();
-                    }",
-                    'onComplete'=>"js:function(id, fileName, responseJSON){
-                    $.fn.yiiListView.update('datos',{});
-                    $('#ajaxupload').button('reset');
-                    }",
-
-                )
-            )); ?>
-    </h1>
-</div>
 
 <?php
 echo CHtml::openTag('div', array('class' => 'row-fluid'));
@@ -52,6 +25,7 @@ echo CHtml::closeTag('div');
 
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+
 
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
@@ -87,3 +61,5 @@ echo CHtml::closeTag('div');
         </div>
     </div>
 </div>
+
+

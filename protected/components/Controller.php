@@ -139,9 +139,16 @@ class Controller extends CController
 	 */
     public $breadcrumbs     = array();
     public $widthPageClass  = '';
-    public $headerTitulo          = '';
-    public $headerImagen          = '';
+    public $headerTitulo    = '';
+    public $headerImagen    = '';
     
+    public $pagetitulo       = '';
+    public $pagesubtitulo    = '';
+    public $pageicon         = 'fa-home';
+    public $btncreate        = '';
+    public $padding          = '';
+    public $btncreateajax    = '';
+            
     function img_350_150($img){
          if(!empty($img)){
             $imagen = explode(".", $img);

@@ -6,18 +6,18 @@
         <meta name="language" content="en">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/admin.css" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl; ?>/admin/css/smartadmin-production-plugins.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl; ?>/admin/css/smartadmin-production.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl; ?>/admin/css/smartadmin-skins.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl; ?>/admin/css/smartadmin-rtl.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl; ?>/admin-files/css/smartadmin-production-plugins.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl; ?>/admin-files/css/smartadmin-production.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl; ?>/admin-files/css/smartadmin-skins.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl; ?>/admin-files/css/smartadmin-rtl.min.css">
 
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
         <?php
         $baseUrl = Yii::app()->baseUrl;
         $cs = Yii::app()->getClientScript();
-        $cs->registerScriptFile($baseUrl . '/admin/js/app.config.seed.js',CClientScript::POS_END );
-        $cs->registerScriptFile($baseUrl . '/admin/js/app.seed.js',CClientScript::POS_END );
+        $cs->registerScriptFile($baseUrl . '/admin-files/js/app.config.seed.js',CClientScript::POS_END );
+        $cs->registerScriptFile($baseUrl . '/admin-files/js/app.seed.js',CClientScript::POS_END );
         ?>
 
     </head>
@@ -111,17 +111,75 @@ $this->widget('zii.widgets.CMenu', array(
 
         <div id="main" role="main">
             <div id="ribbon">
-                <ol class="breadcrumb"></ol>
+                <ol class="breadcrumb">
+                    <?php if(isset($this->breadcrumbs)): ?>
+                        <?php
+                        $this->widget(
+                                'booster.widgets.TbBreadcrumbs',
+                                array(
+                                    'htmlOptions'=>array('style'=>'margin:0;padding:0 !important;','class'=>'breadcrumb'),
+                                    'homeLink' => CHtml::link('Home',array('admin/home')),
+                                    //'links' => array($model->nombre)
+                                    'links' => $this->breadcrumbs
+                                )
+                            );
+                        ?><!-- breadcrumbs -->
+                    <?php endif ?>   
+                </ol>
             </div>
 
             <div id="content">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                        <h1 class="page-title txt-color-blueDark">
+                            <?php if(!empty($this->pagetitulo)): ?>
+                                <i class="fa-fw fa <?php echo $this->pageicon; ?>"></i>
+                                <?php echo $this->pagetitulo;?>
+                                <span><?php echo $this->pagesubtitulo;?></span>
+                            <?php endif;?>
+                        </h1>
+                    </div>
+                </div>
+                
                 <section id="widget-grid" class="">
                     <div class="row">
                         <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
                             <div id="wid-id-3" class="jarviswidget jarviswidget-color-blueDark jarviswidget-sortable" data-widget-colorbutton="false" role="widget">
-                                <header role="heading"></header> 
+                                <header role="heading">
+                                    <?php if(!empty($this->btncreate)){?>
+                                    <div class="widget-toolbar" role="menu">
+                                        <?php echo $this->btncreate; ?>
+                                    </div>
+                                    <?php } else if(!empty($this->btncreateajax)){ 
+                                        echo '<div class="widget-toolbar" role="menu">';
+                                        echo '<style>#uploadFile{height:30px;} #uploadFile .btn{padding: 0 3px;}</style>';
+                                        $this->widget('ext.EAjaxUpload.EAjaxUpload',
+                                                array(
+                                                    'id'=>'uploadFile',
+                                                    'config'=>array(
+                                                        'action'=>$this->btncreateajax['url'],
+                                                        'allowedExtensions'=>array("jpg","png"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                                                        'sizeLimit'=>50*1024*1024,// maximum file size in bytes
+                                                        'multiple'=>false,
+                                                        'onSubmit'=> "js:function(id, fileName){
+                                                         $('#ajaxupload').button('loading');
+                                                         $('ul.qq-upload-list').remove();
+                                                        }",
+                                                        'onComplete'=>"js:function(id, fileName, responseJSON){
+                                                        $.fn.yiiListView.update('".$this->btncreateajax['id']."',{});
+                                                        $('#ajaxupload').button('reset');
+                                                        }",
+
+                                                    )
+                                                ));
+                                        echo '</div>';
+                                                            
+                                        }?>
+                                </header> 
                                 <div role="content"> 
-<?php echo $content; ?> 
+                                    <div class="widget-body <?php echo $this->padding;?>">
+                                         <?php echo $content; ?> 
+                                    </div>
                                 </div>
                             </div>
                         </article>
