@@ -1,20 +1,12 @@
-
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Programa'), array('programa/admin')),
-        'links' => array($model->nombre),
-    )
-);
+$this->breadcrumbs   = array('Programa'=>array('programa/admin'),$model->nombre,'Combinaciones');
+$this->pagetitulo    = 'Combinaciones';
+$this->pagesubtitulo = $model->nombre;
+$this->btncreate     = CHtml::link('Nuevo',array('programa/addCombinacion','id'=>$model->id),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-plane';
 ?>
 
-
-<div class="page-header">
-    <h1>Combinaciones <small><?php echo $model->nombre?></small> <?php echo CHtml::link('Nuevo',array('programa/addCombinacion','id'=>$model->id),array('class'=>'btn btn-primary'));?></h1>
-</div>
 
 <?php
 

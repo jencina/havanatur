@@ -1,19 +1,11 @@
 <?php
-/* @var $this NoticiaController */
-/* @var $model Noticia */
-
-$this->breadcrumbs=array(
-	'Noticias'=>array('index'),
-	'Manage',
-);
+    $this->breadcrumbs   = array('Noticias'=>array('Noticia/admin'));
+    $this->pagetitulo    = 'Noticia';
+    $this->pagesubtitulo = 'Administrador';
+    $this->btncreate     = CHtml::link('Nuevo',array('Noticia/create'),array('class'=>'btn btn-primary'));
+    $this->padding       = 'no-padding';
+    $this->pageicon      = 'fa-file-text';
 ?>
-
-<div class="page-header">
-    <h1>Contenido <small>Administrador</small>
-        <?php echo CHtml::link('Nuevo',array('noticia/create'),array('class'=>'btn btn-primary'));?>
-    </h1>
-</div>
-
 
 <?php 
 $this->widget(

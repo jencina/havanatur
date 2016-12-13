@@ -99,7 +99,7 @@ $this->widget('zii.widgets.CMenu', array(
                 array('label' => 'Ciudad', 'url' => array('ciudad/admin')),
             )
         ),
-        array('label' => '<i class="fa fa-lg fa-fw fa-sign-out"></i><span class="menu-item-parent">Logout (' . Yii::app()->user->name . ')</span>', 'icon' => 'fa fa-power-off', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+        array('label' => '<i class="fa fa-lg fa-fw fa-sign-out"></i><span class="menu-item-parent">Logout (' . Yii::app()->user->name . ')</span>', 'icon' => 'fa fa-power-off', 'url' => array('/admin/logout'), 'visible' => !Yii::app()->user->isGuest)
     ),
 ));
 ?>

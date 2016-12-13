@@ -57,33 +57,6 @@ return array(
             'fontAwesomeCss' => TRUE,
         ),
         
-       /* 'clientScript' => array(
-            'scriptMap' => array(
-                'jquery.js'=>false,  //disable default implementation of jquery
-                'jquery.min.js'=>false,  //desable any others default implementation
-                'core.css'=>false, //disable
-                'styles.css'=>false,  //disable
-                'pager.css'=>false,   //disable
-                'default.css'=>false,  //disable
-            ),
-            'packages'=>array(
-                'jquery'=>array(                             // set the new jquery
-                    'baseUrl'=>'js/',
-                    'js'=>array('jquery9.js'),
-                ),
-                'bootstrap'=>array(                       //set others js libraries
-                    'baseUrl'=>'bootstrap/',
-                    'js'=>array('js/bootstrap.min.js'),
-                    'css'=>array(                        // and css
-                        'css/bootstrap.min.css',
-                        'css/custom.css',
-                        'css/bootstrap-responsive.min.css',
-                    ),
-                    'depends'=>array('jquery'),         // cause load jquery before load this.
-                ),
-            ),
-        ),*/
-        
         'user' => array(
             'loginUrl' => array('admin/index'),
             'allowAutoLogin' => true,

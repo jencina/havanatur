@@ -47,7 +47,7 @@ class AdminController extends Controller
             $model->attributes=$_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
             if($model->validate() && $model->login()){
-                $this->redirect(array('usuario/admin'));
+                $this->redirect(array('admin/home'));
             }
         }
         // display the login form
@@ -79,6 +79,6 @@ class AdminController extends Controller
     public function actionLogout()
     {
         Yii::app()->user->logout();
-        $this->redirect(Yii::app()->homeUrl);
+        $this->redirect(array('admin/index'));
     }
 }

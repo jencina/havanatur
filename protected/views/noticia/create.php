@@ -1,17 +1,12 @@
 <?php
-/* @var $this NoticiaController */
-/* @var $model Noticia */
-
-$this->breadcrumbs=array(
-	'Noticias'=>array('index'),
-	'Create',
-);
-
+    $this->breadcrumbs   = array('Noticias'=>array('Noticia/admin'),'Crear Nuevo');
+    $this->pagetitulo    = 'Noticia';
+    $this->pagesubtitulo = 'Crear Nuevo';
+    //$this->btncreate     = CHtml::link('Nuevo',array('Noticia/create'),array('class'=>'btn btn-primary'));
+    //$this->padding       = 'no-padding';
+    $this->pageicon      = 'fa-file-text';
 ?>
 
-<div class="page-header">
-    <h1>Noticia <small>Crear Nuevo</small></h1>
-</div>
 
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

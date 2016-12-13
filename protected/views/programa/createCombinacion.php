@@ -1,20 +1,12 @@
-
 <?php
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Programa'), array('programa/admin')),
-        'links' => array($model->nombre=>array('programa/combinaciones','id'=>$model->id),'Crear Combinacion'),
-    )
-);
+$this->breadcrumbs   = array('Programa'=>array('programa/admin'),$model->nombre=>array('programa/combinaciones','id'=>$model->id),'Combinaciones','Crear Combinacion');
+$this->pagetitulo    = 'Combinaciones';
+$this->pagesubtitulo = 'Crear Combinacion';
+//$this->btncreate     = CHtml::link('Nuevo',array('programa/addCombinacion','id'=>$model->id),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-plane';
 ?>
 
-
-
-<div class="page-header">
-    <h1>Crear Combinacion <small></small></h1>
-</div>
 
 <?php $this->renderPartial('_formCombinacion',array(
     'model'   => $model,

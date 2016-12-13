@@ -1,27 +1,20 @@
 <?php
-/* @var $this NoticiaController */
-/* @var $model Noticia */
-
-$this->breadcrumbs=array(
-	'Noticias'=>array('index'),
-	$model->not_id,
-);
-
-$this->menu=array(
-	array('label'=>'List Noticia', 'url'=>array('index')),
-	array('label'=>'Create Noticia', 'url'=>array('create')),
-	array('label'=>'Update Noticia', 'url'=>array('update', 'id'=>$model->not_id)),
-	array('label'=>'Delete Noticia', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->not_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Noticia', 'url'=>array('admin')),
-);
+    $this->breadcrumbs   = array('Noticias'=>array('Noticia/admin'),$model->not_id=>array('view','id'=>$model->not_id),'Detalle');
+    $this->pagetitulo    = 'Noticia';
+    $this->pagesubtitulo = 'Detalle';
+    //$this->btncreate     = CHtml::link('Nuevo',array('Noticia/create'),array('class'=>'btn btn-primary'));
+    //$this->padding       = 'no-padding';
+    $this->pageicon      = 'fa-file-text';
 ?>
 
-<h1>View Noticia #<?php echo $model->not_id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'not_id',
+<?php
+$this->widget(
+    'booster.widgets.TbDetailView',
+    array(
+        'data' => $model,
+        'attributes'=>array(
+           'not_id',
 		'not_titulo',
 		'not_subtitulo',
 		'not_contenido',
@@ -30,5 +23,7 @@ $this->menu=array(
 		'not_fechacreacion',
 		'not_fechamodificacion',
 		'usuario_id',
-	),
-)); ?>
+        ),
+    )
+); ?>
+

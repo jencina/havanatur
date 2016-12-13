@@ -6,7 +6,7 @@ $form = $this->beginWidget(
     'booster.widgets.TbActiveForm',
     array(
         'id' => 'horizontalForm',
-        'type' => 'vertical',
+        'type' => 'horizontal',
         'htmlOptions' => array('class' => 'well', 'enctype' => 'multipart/form-data')
     )
 ); ?>
