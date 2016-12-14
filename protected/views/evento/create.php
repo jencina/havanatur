@@ -1,17 +1,10 @@
 <?php
-/* @var $this NoticiaController */
-/* @var $model Noticia */
-
-$this->breadcrumbs=array(
-	'Evento'=>array('index'),
-	'Create',
-);
-
+    $this->breadcrumbs   = array('Eventos'=>array('evento/admin'),'Crear Nuevo');
+    $this->pagetitulo    = 'Eventos';
+    $this->pagesubtitulo = 'Crear Nuevo';
+    //$this->btncreate     = CHtml::link('Nuevo',array('noticia/categoriaCreate'),array('class'=>'btn btn-primary'));
+    //$this->padding       = 'no-padding';
+    $this->pageicon      = ' fa-map-marker ';
 ?>
-
-<div class="page-header">
-    <h1>Eventos <small>Crear Nuevo</small></h1>
-</div>
-
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

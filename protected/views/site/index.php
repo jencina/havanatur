@@ -23,6 +23,7 @@
 
 <?php
     $this->pageTitle=Yii::app()->name;
+    $this->carousel = $carousel;
 ?>
 
 <div id="carousel" class="carousel">

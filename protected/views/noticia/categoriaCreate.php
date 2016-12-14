@@ -1,14 +1,11 @@
 <?php
-$this->breadcrumbs=array(
-	'Noticias'=>array('index'),
-	'Create',
-);
-
+$this->breadcrumbs   = array('Noticias','Categoria'=>array('noticia/categorias'),'Crear Nuevo');
+$this->pagetitulo    = 'Categoria';
+$this->pagesubtitulo = 'Crear Nuevo';
+//$this->btncreate     = CHtml::link('Nuevo',array('noticia/categoriaCreate'),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-file-text';
 ?>
-
-<div class="page-header">
-    <h1>Categoria <small>Crear Nuevo</small></h1>
-</div>
 
 
 <?php $this->renderPartial('_categoriaForm', array('model'=>$model)); ?>

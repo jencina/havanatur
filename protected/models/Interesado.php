@@ -103,6 +103,7 @@ class Interesado extends CActiveRecord
 		$criteria->compare('int_rut',$this->int_rut,true);
 		$criteria->compare('int_fechacreacion',$this->int_fechacreacion,true);
 		$criteria->compare('int_even_id',$this->int_even_id,true);
+                
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -30,6 +30,8 @@ class Controller extends CController
         public $otroDestino   = 3;
         public $turismoSalud  = 4;
         public $otroServicio  = 5;
+        
+        public $carousel      = array();
 
 
 

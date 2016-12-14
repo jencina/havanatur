@@ -1,14 +1,11 @@
 <?php
-/* @var $this NoticiaController */
-/* @var $model Noticia */
-
-$this->breadcrumbs=array(
-	'Evento'=>array('index'),
-	$model->even_id=>array('view','id'=>$model->even_id),
-	'Update',
-);
-
+    $this->breadcrumbs   = array('Eventos'=>array('evento/admin'),'editar');
+    $this->pagetitulo    = 'Eventos';
+    $this->pagesubtitulo = 'Editar';
+    //$this->btncreate     = CHtml::link('Nuevo',array('evento/create'),array('class'=>'btn btn-primary'));
+    //$this->padding       = 'no-padding';
+    $this->pageicon      = 'fa-map-marker ';
 ?>
-<h1>Update Noticia <?php echo $model->even_id; ?></h1>
+
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

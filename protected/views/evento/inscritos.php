@@ -1,17 +1,11 @@
 <?php
-/* @var $this NoticiaController */
-/* @var $model Noticia */
-
-$this->breadcrumbs=array(
-	'Eventos'=>array('index'),
-	'Manage',
-);
+    $this->breadcrumbs   = array('Eventos','Inscritos');
+    $this->pagetitulo    = 'Inscritos';
+    $this->pagesubtitulo = 'Administrador';
+    //$this->btncreate     = CHtml::link('Nuevo',array('evento/categoriaCreate'),array('class'=>'btn btn-primary'));
+    $this->padding       = 'no-padding';
+    $this->pageicon      = 'fa-users';
 ?>
-
-<div class="page-header">
-    <h1>Inscritos Eventos <small>Administrador</small>
-    </h1>
-</div>
 
 <?php 
 $this->widget(
@@ -19,8 +13,8 @@ $this->widget(
     array(
         'fixedHeader' => true,
         'type' => 'striped',
-        'dataProvider' => $model->search(),
-        'filter'=>$model,
+        'dataProvider' => $dataProvider,
+        //'filter'=>$model,
         'responsiveTable' => true,
         'template' => "{items} {pager}",
         'columns'=>array(

@@ -36,7 +36,7 @@ class NoticiaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','categorias','categoriaCreate'),
+				'actions'=>array('admin','delete','categorias','categoriaCreate','CategoriaUpdate'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -217,6 +217,26 @@ class NoticiaController extends Controller
 		}
 
 		$this->render('categoriaCreate',array(
+			'model'=>$model,
+		));
+	}
+        
+        public function actionCategoriaUpdate($id)
+	{
+		$model= Categoria::model()->findbypk($id);
+
+		if(isset($_POST['Categoria']))
+		{
+                    $model->attributes=$_POST['Categoria'];
+
+                    if($model->validate()){
+                        if($model->save()){
+                            $this->redirect(array('categorias'));
+                        }
+                    }	
+		}
+
+		$this->render('categoriaUpdate',array(
 			'model'=>$model,
 		));
 	}

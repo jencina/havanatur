@@ -103,6 +103,7 @@ class Cotizacion extends CActiveRecord
 		$criteria->compare('respondido',$this->respondido);
 		$criteria->compare('programa_combinacion_vigencia_id',$this->programa_combinacion_vigencia_id);
 
+                $criteria->order('DESC fecha_creacion');
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

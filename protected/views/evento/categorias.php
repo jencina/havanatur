@@ -1,18 +1,12 @@
 <?php
-/* @var $this NoticiaController */
-/* @var $model Noticia */
-
-$this->breadcrumbs=array(
-	'Categoria'=>array('index'),
-	'Manage',
-);
+    $this->breadcrumbs   = array('Eventos','Categoria'=>array('evento/categorias'));
+    $this->pagetitulo    = 'Categoria';
+    $this->pagesubtitulo = 'Administrador';
+    $this->btncreate     = CHtml::link('Nuevo',array('evento/categoriaCreate'),array('class'=>'btn btn-primary'));
+    $this->padding       = 'no-padding';
+    $this->pageicon      = 'fa-file-text';
 ?>
 
-<div class="page-header">
-    <h1>Contenido <small>Administrador</small>
-        <?php echo CHtml::link('Nuevo',array('evento/categoriaCreate'),array('class'=>'btn btn-primary'));?>
-    </h1>
-</div>
 
 
 <?php 
@@ -31,26 +25,26 @@ $this->widget(
             array(
                 'htmlOptions' => array('nowrap'=>'nowrap'),
                 'class'=>'booster.widgets.TbButtonColumn',
-                'template'=>'{view} {update} {delete}',
+                'template'=>'{update} {delete}',
                 'buttons'=>array(
 
                     'view' => array
                     (
                         'options'=>array('title'=>'Ver Categoria'),
                         //'label'=>'<i class="fa fa-file-image-o"> </i>',
-                        'url'=>'Yii::app()->createUrl("/noticia/categoriaView", array("id"=>$data["cat_id"]))',
+                        'url'=>'Yii::app()->createUrl("/evento/categoriaView", array("id"=>$data["cat_id"]))',
                     ),
                     'update' => array
                     (
                         'options'=>array('title'=>'Editar Categoria'),
                          //'label'=>'<i class="fa fa-file-image-o"> </i>',
-                        'url'=>'Yii::app()->createUrl("/noticia/categoriaUpdate", array("id"=>$data["cat_id"]))',
+                        'url'=>'Yii::app()->createUrl("/evento/categoriaUpdate", array("id"=>$data["cat_id"]))',
                     ),
                     'delete' => array
                     (
                         'options'=>array('title'=>'Eliminar Categoria'),
                         //'label'=>'<i class="fa fa-file-image-o"> </i>',
-                        'url'=>'Yii::app()->createUrl("/noticia/categoriaDelete", array("id"=>$data["cat_id"]))',
+                        'url'=>'Yii::app()->createUrl("/evento/categoriaDelete", array("id"=>$data["cat_id"]))',
                     ),
                 ),
             )

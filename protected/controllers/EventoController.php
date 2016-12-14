@@ -32,7 +32,7 @@ class EventoController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','categoriaCreate','categorias'),
+				'actions'=>array('create','update','categoriaCreate','categorias','CategoriaUpdate'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -271,15 +271,37 @@ class EventoController extends Controller
 		));
 	}
         
+        public function actionCategoriaUpdate($id)
+	{
+		$model= EventoCategoria::model()->findbypk($id);
+
+		if(isset($_POST['EventoCategoria']))
+		{
+                    $model->attributes=$_POST['EventoCategoria'];
+
+                    if($model->validate()){
+                        if($model->save()){
+                            $this->redirect(array('categorias'));
+                        }
+                    }	
+		}
+
+		$this->render('categoriaUpdate',array(
+			'model'=>$model,
+		));
+	}
+        
         public function actionInscritos(){
             
-            $model=new Interesado('search');
-            $model->unsetAttributes();  // clear any default values
-            if(isset($_GET['Interesado']))
-                    $model->attributes=$_GET['Interesado'];
+            
+            $dataProvider=new CActiveDataProvider('Interesado',array(
+                    'criteria'=>array(
+                        'order'=>'int_fechacreacion DESC'
+                    )
+                ));
 
             $this->render('inscritos',array(
-                    'model'=>$model,
+                    'dataProvider'=>$dataProvider,
             ));
 
         }

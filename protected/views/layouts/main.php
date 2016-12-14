@@ -204,6 +204,7 @@ $this->widget(
         </div>
     </div>
         
+        
         <div id="breadcrums" class="background-havana-gris">
             <div class="container">
                   <?php if(isset($this->breadcrumbs)): ?>

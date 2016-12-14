@@ -1,16 +1,6 @@
+
+
 <?php
-/* @var $this CotizacionController */
-/* @var $model Cotizacion */
-
-$this->breadcrumbs=array(
-	'Cotizacions'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List Cotizacion', 'url'=>array('index')),
-	array('label'=>'Create Cotizacion', 'url'=>array('create')),
-);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){

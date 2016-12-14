@@ -122,7 +122,12 @@ class CotizacionController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Cotizacion');
+		$dataProvider=new CActiveDataProvider('Cotizacion',array(
+                    'criteria'=>array(
+                        'order'=>'fecha_creacion DESC'
+                    )
+                ));
+                
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
