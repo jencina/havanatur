@@ -1,21 +1,12 @@
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => 'Configuraciones',
-        'links' => array(''),
-    )
-);
+$this->breadcrumbs   = array('Configuracion'=>array('configuracion/admin'));
+$this->pagetitulo    = 'Configuracion';
+$this->pagesubtitulo = 'Administrador';
+$this->btncreate     = CHtml::link('Nuevo',array('configuracion/create'),array('class'=>'btn btn-primary'));
+$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-cog';
 ?>
 
-
-<div class="page-header">
-    <h1>Configuracion <small>Administrador</small>
-        <?php echo CHtml::link('Nuevo',array('configuracion/create'),array('class'=>'btn btn-primary'));?>
-    </h1>
-</div>
 
 <?php
 

@@ -1,21 +1,10 @@
 <?php
-/* @var $this ConfiguracionController */
-/* @var $model Configuracion */
-
-$this->breadcrumbs=array(
-	'Configuracions'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List Configuracion', 'url'=>array('index')),
-	array('label'=>'Create Configuracion', 'url'=>array('create')),
-	array('label'=>'View Configuracion', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Configuracion', 'url'=>array('admin')),
-);
+$this->breadcrumbs   = array('Configuracion'=>array('configuracion/admin'),'Editar');
+$this->pagetitulo    = 'Configuracion';
+$this->pagesubtitulo = 'Editar #'.$model->id;
+//$this->btncreate     = CHtml::link('Nuevo',array('configuracion/create'),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-cog';
 ?>
-
-<h1>Update Configuracion <?php echo $model->id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

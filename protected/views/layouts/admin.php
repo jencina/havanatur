@@ -26,7 +26,7 @@
 
         <header id="header">
             <div id="logo-group">
-                <span id="logo"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png" alt="Havanatur"> </span>
+                <span id=""> <img style="margin: 2px 3px 1px;width: 50px;float:left;" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-havana1.png" alt="Havanatur"> <h3 style="float:left;">Havanatur<small>v2.0</small></h3></span>
             </div>
 
             <!-- projects dropdown -->
@@ -54,7 +54,7 @@
                 <span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
 
                     <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-havana1.png" alt="me" class="online" /> 
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/male.png" alt="me" class="online" /> 
                         <span>
 <?php echo Yii::app()->user->name; ?> 
                         </span>
@@ -70,6 +70,7 @@ $this->widget('zii.widgets.CMenu', array(
     'encodeLabel' => false, //allows you to use html in labels
     'activateParents' => true,
     'items' => array(
+        array('label' => '<i class="fa fa-lg fa-fw fa-home"></i><span class="menu-item-parent">Home</span>', 'url' => array('admin/home')),
         array('label' => '<i class="fa fa-lg fa-fw fa-users"></i><span class="menu-item-parent">Usuarios</span>', 'url' => array('usuario/admin')),
         array('label' => '<i class="fa fa-lg fa-fw fa-picture-o"></i><span class="menu-item-parent">Carrusel</span>', 'url' => array('carousel/admin')),
         array('label' => '<i class="fa fa-lg fa-fw fa-caret-square-o-right"></i><span class="menu-item-parent">Lightbox</span>', 'url' => array('lightbox/admin')),

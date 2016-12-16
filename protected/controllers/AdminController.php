@@ -56,8 +56,23 @@ class AdminController extends Controller
     
     public function actionHome(){
         
+        $cotSql = 'SELECT date(fecha_creacion) name,COUNT(*) count FROM `cotizacion` where fecha_creacion BETWEEN date(NOW() - INTERVAL 60 DAY) and date(now()) GROUP BY date(fecha_creacion)';
         
-        $this->render('home',array());
+        $c = array();
+        $cot = Yii::app()->db->createCommand($cotSql)->queryAll();
+        foreach ($cot as $index=>$co){
+            $c[] = array('name'=>$co['name'],'y'=>(float)$co['count']);
+        }
+        
+        $intSql = 'SELECT date(int_fechacreacion) name,COUNT(*) count FROM `interesado` where int_fechacreacion BETWEEN date(NOW() - INTERVAL 60 DAY) and date(now()) GROUP BY date(int_fechacreacion)';
+        
+        $i = array();
+        $int = Yii::app()->db->createCommand($intSql)->queryAll();
+        foreach ($int as $index=>$in){
+            $i[] = array('name'=>$in['name'],'y'=>(float)$in['count']);
+        }
+        
+        $this->render('home',array('cot'=>$c,'int'=>$i));
     }
 
 

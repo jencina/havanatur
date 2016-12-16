@@ -1,19 +1,10 @@
-
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
-$this->widget(
-    'booster.widgets.TbBreadcrumbs',
-    array(
-        'homeLink' => CHtml::link(Yii::t('zii', 'Condiciones Generales'), array('condiciones/admin')),
-        'links' => array('Editar'),
-    )
-);
+$this->breadcrumbs   = array('Condiciones'=>array('condiciones/admin'),'Editar');
+$this->pagetitulo    = 'Condiciones';
+$this->pagesubtitulo = 'Editar #'.$model->id;
+//$this->btncreate     = CHtml::link('Nuevo',array('condiciones/create'),array('class'=>'btn btn-primary'));
+//$this->padding       = 'no-padding';
+$this->pageicon      = 'fa-users';
 ?>
-
-
-<div class="page-header">
-    <h1>Condiciones Generales <small>Editar</small></h1>
-</div>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
