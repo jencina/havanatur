@@ -195,7 +195,7 @@ $this->widget('zii.widgets.CMenu', array(
                 <div class="col-xs-12 col-sm-6">
                     <span class="txt-color-white">Copyright © 2016
                         HavanaTur
-                        Powered by<span class="hidden-xs"> - <a target="_blank" href="">Jonathan Encina</a></span> © 2014-2016</span>
+                        Powered by<span class="hidden-xs"> - <a target="_blank" href="http://www.jesolutions.cl">JE Solutions</a></span> © 2014-2016</span>
                 </div>
             </div>
         </div>
