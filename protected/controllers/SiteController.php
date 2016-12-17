@@ -609,7 +609,7 @@ class SiteController extends Controller
                     $cuerpo   = '<b>Estimado Usuario:</b> <br>';
                     //$cuerpo  .= 'cuerpo';
                     $html     = $this->bodyEmailInteresado($titulo2,$model);
-                    //$this->sendMail($to,$subject,$html,$model->int_email);
+                    $this->sendMail($to,$subject,$html,$model->int_email);
                     
                     header("Content-type: application/json");
                     echo json_encode('<div class="alert alert-success fade in alert-block">
