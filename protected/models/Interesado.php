@@ -35,10 +35,12 @@ class Interesado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('int_nombre, int_apellido,int_email, int_telefono', 'required'),
+			array('int_nombre, int_apellido,int_email, int_telefono,int_rut', 'required'),
 			array('int_id', 'numerical', 'integerOnly'=>true),
 			array('int_nombre, int_apellido, int_email', 'length', 'max'=>100),
 			array('int_telefono, int_celular, int_rut, int_fechacreacion', 'length', 'max'=>45),
+                        array('int_email','email'),
+                        array('int_rut','valida_rut'),
 			array('int_even_id', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -57,6 +59,41 @@ class Interesado extends CActiveRecord
 			'intEven' => array(self::BELONGS_TO, 'Evento', 'int_even_id'),
 		);
 	}
+        
+        public function valida_rut($attribute,$params)
+        {
+            $rut = $this->int_rut;
+            if (!preg_match("/^[0-9.]+[-]?+[0-9kK]{1}/", $rut)) {
+                $this->addError($attribute, 'rut no valido!');
+            }
+            $rut = preg_replace('/[\.\-]/i', '', $rut);
+            $dv = substr($rut, -1);
+            $numero = substr($rut, 0, strlen($rut) - 1);
+            $i = 2;
+            $suma = 0;
+            foreach (array_reverse(str_split($numero)) as $v) {
+                if ($i == 8)
+                    $i = 2;
+                $suma += $v * $i;
+                ++$i;
+            }
+            $dvr = 11 - ($suma % 11);
+            if ($dvr == 11){
+                $dvr = 0;
+            }
+                
+            if ($dvr == 10){
+                $dvr = 'K';
+            }
+                
+            if ($dvr == strtoupper($dv)){
+                 //$this->addError($attribute, 'rut valido!');
+                return true;
+            }else{
+                $this->addError($attribute, 'rut no valido!');
+            }
+                
+        }
 
 	/**
 	 * @return array customized attribute labels (name=>label)

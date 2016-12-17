@@ -44,7 +44,8 @@ class Evento extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('even_titulo,even_email,even_contenido,even_telefono_1, even_subtitulo, even_imagen, even_imagen_detail, even_cat_id', 'required'),
+			array('even_titulo,even_email,even_contenido,even_telefono_1, even_subtitulo, even_cat_id', 'required'),
+                        array('even_imagen, even_imagen_detail','required','on'=>'insert'),
 			array('even_destacado, even_activo, usuario_id, even_cat_id', 'numerical', 'integerOnly'=>true),
 			array('even_titulo, even_subtitulo, even_imagen, even_imagen_detail', 'length', 'max'=>255),
 			array('even_email, even_telefono_1, even_telefono_2', 'length', 'max'=>45),

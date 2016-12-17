@@ -64,12 +64,12 @@ class AdminController extends Controller
             $c[] = array('name'=>$co['name'],'y'=>(float)$co['count']);
         }
         
-        $intSql = 'SELECT date(int_fechacreacion) name,COUNT(*) count FROM `interesado` where int_fechacreacion BETWEEN date(NOW() - INTERVAL 60 DAY) and date(now()) GROUP BY date(int_fechacreacion)';
+        $intSql = 'SELECT date(int_fechacreacion) name,COUNT(*) contador FROM `interesado` where date(int_fechacreacion) BETWEEN date(NOW() - INTERVAL 60 DAY) and date(now()) GROUP BY date(int_fechacreacion)';
         
         $i = array();
         $int = Yii::app()->db->createCommand($intSql)->queryAll();
         foreach ($int as $index=>$in){
-            $i[] = array('name'=>$in['name'],'y'=>(float)$in['count']);
+            $i[] = array('name'=>$in['name'],'y'=>(float)$in['contador']);
         }
         
         $this->render('home',array('cot'=>$c,'int'=>$i));

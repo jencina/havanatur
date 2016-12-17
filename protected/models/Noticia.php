@@ -40,7 +40,8 @@ class Noticia extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('not_titulo,not_contenido, not_subtitulo, not_imagen,not_imagen_detail,usuario_id', 'required'),
+			array('not_titulo,not_contenido, not_subtitulo,usuario_id', 'required'),
+                        array('not_imagen,not_imagen_detail','required','on'=>'insert'),
 			array('usuario_id, not_destacado, categoria_cat_id', 'numerical', 'integerOnly'=>true),
 			array('not_titulo, not_subtitulo, not_imagen, not_imagen_detail', 'length', 'max'=>255),
 			array('not_activo', 'length', 'max'=>45),

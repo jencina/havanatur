@@ -600,11 +600,27 @@ class SiteController extends Controller
             $model->int_even_id = $id;
             $model->int_fechacreacion = date("Y-m-d H:i:s");
             if($model->validate()){
+                
                 if($model->save()){
-                    return 'Inscrito con exito!';
+                    $subject  = 'Inscripion Evento Havanatur';
+                    //$to       = 'ger.general@havanatur.cl,ger.comercial@havanatur.cl';
+                    $to       = 'jonny.encina@gmail.com';
+                    $titulo2  = 'Inscripcion';
+                    $cuerpo   = '<b>Estimado Usuario:</b> <br>';
+                    //$cuerpo  .= 'cuerpo';
+                    $html     = $this->bodyEmailInteresado($titulo2,$model);
+                    $this->sendMail($to,$subject,$html,$model->int_email);
+                    
+                    echo json_encode('<div class="alert alert-success fade in alert-block">
+                            <h4 class="alert-heading">Inscripcion Realizada!</h4>
+                                Su inscripcion ha sido realizada con exito!<br>
+                                nos pondremos en contacto con usted a la brevedad.
+                            </div>');
+                    exit;
                 }
             }
-            return $this->renderPartial('_interesadoForm',array('model'=>$model,'evento'=>$evento));
+            echo json_encode($this->renderPartial('_interesadoForm',array('model'=>$model,'evento'=>$evento)),true);
+            exit;
         }
         
     }

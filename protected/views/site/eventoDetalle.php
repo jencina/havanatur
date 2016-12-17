@@ -29,7 +29,7 @@
     <ul class="include list-group">
         <?php foreach($categorias as $cat){ ?>
             <li class="list-group-item">
-                <?php echo CHtml::link('<span style="font-size: 17px;color:#898989;">Evento de '.$cat->cat_nombre.'</span>');?> 
+                <?php echo CHtml::link('<span style="font-size: 17px;color:#898989;">Evento de '.$cat->cat_nombre.'</span>',array('site/eventos','id'=>$cat->cat_id));?> 
             </li>
         <?php } ?>
     </ul>

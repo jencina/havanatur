@@ -59,6 +59,7 @@ $form = $this->beginWidget(
                 )
         );*/ ?>
     
+        <?php if($model->isNewRecord):?>
         <?php echo $form->fileFieldGroup($model, 'not_imagen',
                 array(
                         'wrapperHtmlOptions' => array(
@@ -74,6 +75,8 @@ $form = $this->beginWidget(
                         ),
                 )
         ); ?>
+        <?php endif;?>
+    
     
         <?php echo $form->textFieldGroup(
            $model,
