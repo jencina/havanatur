@@ -205,7 +205,7 @@
         <?php } else { ?>
             <header class="masthead subhead"> 
                 <div class="header-wrapper">
-                    <div class="header_bg">
+                    <div class="header_bg_evento">
                         <div class="container">
                             <div class="frase">
                                 <span><?php echo $this->headerTitulo ?></span>
