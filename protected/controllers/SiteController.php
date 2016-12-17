@@ -609,8 +609,9 @@ class SiteController extends Controller
                     $cuerpo   = '<b>Estimado Usuario:</b> <br>';
                     //$cuerpo  .= 'cuerpo';
                     $html     = $this->bodyEmailInteresado($titulo2,$model);
-                    $this->sendMail($to,$subject,$html,$model->int_email);
+                    //$this->sendMail($to,$subject,$html,$model->int_email);
                     
+                    header("Content-type: application/json");
                     echo json_encode('<div class="alert alert-success fade in alert-block">
                             <h4 class="alert-heading">Inscripcion Realizada!</h4>
                                 Su inscripcion ha sido realizada con exito!<br>
@@ -619,8 +620,10 @@ class SiteController extends Controller
                     exit;
                 }
             }
-            echo json_encode($this->renderPartial('_interesadoForm',array('model'=>$model,'evento'=>$evento)),true);
+            
+            return $this->renderPartial('_interesadoForm',array('model'=>$model,'evento'=>$evento));
             exit;
+           
         }
         
     }

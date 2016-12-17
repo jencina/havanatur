@@ -102,7 +102,7 @@ $("#interesado-form").submit(function(){
         type : 'post',
         cache: false ,
         data : $(this).serialize(),
-        dataType: 'json',
+        //dataType: 'json',
         beforeSend : function(){
             $("#btn-int").button('loading');
         },
