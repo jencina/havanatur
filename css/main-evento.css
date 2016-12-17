@@ -1,7 +1,21 @@
-body{
+html{
+    min-height: 100%;
     position: relative;
+}
+
+body{
+    /*height: 100%;*/
+    padding-bottom: 360px;
     padding-top: 60px;
     background-image: url("/admin-files/img/mybg.png");
+}
+
+.footer-wrapper {
+    background-color: #edeff4;
+    bottom: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
 }
 
 /*************************************************************/

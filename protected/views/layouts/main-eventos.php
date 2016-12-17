@@ -256,84 +256,7 @@
 <?php echo $content; ?>
         </div>
 
-        <div class="footer-wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="footer">
-                        <div class="">
-                            <div class="footer-boxes">
-                                <div class="footer-box  col-xs-12 col-sm-6 col-md-3">
-                                    <h4>Programas</h4>
-
-                                    <ul>
-<?php foreach ($programas as $pro): ?>
-                                            <li>
-                                            <?php echo CHtml::link($pro->nombre, array('site/programa', 'id' => $pro->id)); ?>
-                                            </li>
-                                            <?php endforeach; ?>
-                                    </ul>
-                                </div>
-
-                                <div class="footer-box  col-xs-12 col-sm-6 col-md-3">
-                                    <h4>Indicadores Economicos</h4>
-                                    <ul id="indicadores">
-                                    </ul>
-                                </div>
-
-                                <div class="footer-box  col-xs-12 col-sm-6 col-md-3">
-
-                                    <h4>Siguenos</h4>
-
-                                    <ul>
-                                        <li>
-                                            <a href="www.facebook.com">Facebook</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="www.twetter.com">Twitter</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="https://plus.google.com/">Google+</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="footer-box col-xs-12 col-sm-6 col-md-3">
-                                    <h4>Ubicacion</h4>
-
-                                    <ul>
-                                        <li>
-                                            <span><i class="fa fa-map-marker"></i></span> Padre Mariano # 82 Oficina 502.Providencia. Santiago de Chile
-                                        </li>
-
-                                        <li>
-                                            <span><i class="fa fa-mobile"></i></span> (562) 22330844
-                                        </li>
-
-                                        <li>
-                                            <span><i class="fa fa-envelope"></i></span> (562) 22330844
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="copyright">
-                <div class="container">
-                    <div class="footer-copyright">
-                        Copyright © 2016
-                        HavanaTur
-                        Powered by
-                        <a target="_blank" href="http://jesolutions.cl">JE Solutions</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/lightbox2-master/js/lightbox.min.js"></script>
         <script>
 
@@ -356,5 +279,84 @@
 
         </script>
     </body>
+
+    <div class="footer-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="footer">
+                    <div class="">
+                        <div class="footer-boxes">
+                            <div class="footer-box  col-xs-12 col-sm-6 col-md-3">
+                                <h4>Programas</h4>
+
+                                <ul>
+                                    <?php foreach ($programas as $pro): ?>
+                                        <li>
+                                            <?php echo CHtml::link($pro->nombre, array('site/programa', 'id' => $pro->id)); ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+
+                            <div class="footer-box  col-xs-12 col-sm-6 col-md-3">
+                                <h4>Indicadores Economicos</h4>
+                                <ul id="indicadores">
+                                </ul>
+                            </div>
+
+                            <div class="footer-box  col-xs-12 col-sm-6 col-md-3">
+
+                                <h4>Siguenos</h4>
+
+                                <ul>
+                                    <li>
+                                        <a href="www.facebook.com">Facebook</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="www.twetter.com">Twitter</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://plus.google.com/">Google+</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="footer-box col-xs-12 col-sm-6 col-md-3">
+                                <h4>Ubicacion</h4>
+
+                                <ul>
+                                    <li>
+                                        <span><i class="fa fa-map-marker"></i></span> Padre Mariano # 82 Oficina 502.Providencia. Santiago de Chile
+                                    </li>
+
+                                    <li>
+                                        <span><i class="fa fa-mobile"></i></span> (562) 22330844
+                                    </li>
+
+                                    <li>
+                                        <span><i class="fa fa-envelope"></i></span> (562) 22330844
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div class="container">
+                <div class="footer-copyright">
+                    Copyright © 2016
+                    HavanaTur
+                    Powered by
+                    <a target="_blank" href="http://jesolutions.cl">JE Solutions</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </html>
 
