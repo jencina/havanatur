@@ -87,7 +87,7 @@
                                             </tr>
                                             <tr>
                                                 <td width="100"></td>
-                                                <td width="150" style="text-align:left;"><b>Apellidos</b></td><td> <?php echo $cuerpo->int_apellidos?></td>
+                                                <td width="150" style="text-align:left;"><b>Apellidos</b></td><td> <?php echo $cuerpo->int_apellido?></td>
                                             </tr>
                                             <tr>
                                                 <td width="100"></td>
