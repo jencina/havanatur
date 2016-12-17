@@ -80,7 +80,9 @@
                 array(
                     'buttonType' => 'submit',
                     'type' => 'primary',
-                    'label' => 'Guardar'
+                    'label' => 'Enviar Inscripcion',
+                    'loadingText'=>'<i class="fa fa-circle-o-notch fa-spin"></i> Enviando ...',
+                    'htmlOptions'   => array('id'=> 'btn-int'),
                 )
             ); ?>
         </div>
@@ -102,10 +104,12 @@ $("#interesado-form").submit(function(){
         data : $(this).serialize(),
         dataType: 'json',
         beforeSend : function(){
-            
+            $("#btn-int").button('loading');
         },
         success: function(data){
             $("#interesado").html(data);
+        },complete:function(){
+             $("#btn-int").button('reset');
         }
     });
     
