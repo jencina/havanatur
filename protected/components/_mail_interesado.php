@@ -75,7 +75,7 @@
                                 <tr style="background-color: #ffffff">
                                     <td align='center' valign='top' class='bodyContent' style='color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:15px; line-height:150%; padding-top:40px; padding-right:40px;padding-left:40px; text-align:center;'>
                                         <b>Estimado Usuario:</b>
-                                        <br>Se han enviado los siguientes datos como inscripcion al evento <br><b><?php //echo $cuerpo->intEven->even_titulo?></b></td>
+                                        <br>Se han enviado los siguientes datos como inscripcion al evento <br><b><?php echo $cuerpo->intEven->even_titulo?></b></td>
                                     </td>
                                 </tr>
                                 <tr style="background-color: #ffffff;padding: 20px" >
