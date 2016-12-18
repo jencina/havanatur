@@ -159,14 +159,9 @@
         <?php if ($this->headerTitulo != '' && $this->headerImagen != '' ) { ?>
             <header class="masthead subhead" style="background-color: #000000;" > 
                 <div class="header-wrapper">
-                    <div class="" style="
+                    <div class="header-background" style="
                          background-image: linear-gradient(55deg, rgba(0, 37, 117, 0.68) 0%, rgba(51, 30, 245, 0.32) 67%, rgba(121, 93, 93, 0.78) 100%), url(<?php echo Yii::app()->request->baseUrl . '/images/noticias/' . $this->img_450_350($this->headerImagen) ?>);
-                         background-repeat: no-repeat;
-                         background-position: center,92% 100%;
-                         background-size: cover,420px 338px;
-                         padding-top: 25px;
-                         padding-bottom: 30px;
-                         min-height: 200px;">
+                         ;">
 
                         <div class="container" >
 
@@ -258,6 +253,55 @@
         <div class="container <?php echo $this->widthPageClass ?>" id="page">
 <?php echo $content; ?>
         </div>
+            
+        
+           <?php if($this->otrosNoticias):?>
+    
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/slick/slick.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/slick/slick-theme.css">
+
+    <div id="otros" class="header-background">
+        <div class="container">
+            <div class="row">
+                <h1 style="color:#fff">OTRAS NOTICIAS:</h1>
+                <div id="otros-carousel" class="myCarousel slick">
+                        <?php
+                            foreach ($this->otrosNoticias as $noticia){
+                                    $this->renderPartial('noticiaDestacado',array('noticia'=>$noticia));
+                            }
+                        ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    $(document).ready(function(){
+        $('.slick').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow:'<button type="button" class="btn-prev btn-carousel"><i class="fa fa-arrow-left"></i></button>',
+        nextArrow:'<button type="button" class="btn-next btn-carousel"><i class="fa fa-arrow-right"></i></button>',
+        responsive: [
+                {
+                  breakpoint: 1000,
+                  settings: {
+                    slidesToShow:2
+                  }
+                },
+                {
+                  breakpoint: 710,
+                  settings: {
+                    slidesToShow: 1
+                  }
+                }
+              ]
+      });
+    });
+</script>
+    <?php endif;?>     
 
         
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/lightbox2-master/js/lightbox.min.js"></script>
@@ -282,6 +326,8 @@
 
         </script>
     </body>
+    
+
 
     <div class="footer-wrapper">
         <div class="container">

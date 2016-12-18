@@ -553,8 +553,14 @@ class SiteController extends Controller
         $id   = Yii::app()->request->getParam('id');
 
         $noticia = Noticia::model()->findByPk($id);
+        
+        $criteria= new CDbCriteria();
+        $criteria->condition = 'categoria_cat_id='.$noticia->categoria_cat_id;
+        $criteria->limit     = 3;
 
-        $this->render('noticiaDetalle',array('noticia'=>$noticia));
+        $otros   = Noticia::model()->findAll($criteria);
+        
+        $this->render('noticiaDetalle',array('noticia'=>$noticia,'otros'=>$otros));
     }
     
     public function actionEventos(){

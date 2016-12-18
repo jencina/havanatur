@@ -46,6 +46,8 @@ class Controller extends CController
         public $btncreate        = '';
         public $padding          = '';
         public $btncreateajax    = '';
+        
+        public $otrosNoticias   = array();
 
 
 
