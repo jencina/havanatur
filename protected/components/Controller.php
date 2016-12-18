@@ -32,6 +32,20 @@ class Controller extends CController
         public $otroServicio  = 5;
         
         public $carousel      = array();
+        
+        public $breadcrumbs     = array();
+        public $widthPageClass  = '';
+        public $headerTitulo    = '';
+        public $headerImagen    = '';
+        public $headerCategoria = '';
+        public $headerFecha     = '';
+
+        public $pagetitulo       = '';
+        public $pagesubtitulo    = '';
+        public $pageicon         = 'fa-home';
+        public $btncreate        = '';
+        public $padding          = '';
+        public $btncreateajax    = '';
 
 
 
@@ -146,17 +160,7 @@ class Controller extends CController
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
 	 * for more details on how to specify this property.
 	 */
-    public $breadcrumbs     = array();
-    public $widthPageClass  = '';
-    public $headerTitulo    = '';
-    public $headerImagen    = '';
     
-    public $pagetitulo       = '';
-    public $pagesubtitulo    = '';
-    public $pageicon         = 'fa-home';
-    public $btncreate        = '';
-    public $padding          = '';
-    public $btncreateajax    = '';
             
     function img_350_150($img){
          if(!empty($img)){

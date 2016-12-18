@@ -113,3 +113,12 @@
     float: right;
     width: 250px;
 }
+
+.nav ul li a:hover,.nav ul li.active a{
+    background-color: #000d5d !important;
+    border: 1px solid #00104d !important;
+    color: #fff;
+}
+.nav ul li a:hover{
+    font-weight: bold;
+}

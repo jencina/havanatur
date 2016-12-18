@@ -105,10 +105,6 @@
        
         ?>
 
-        <style>
-
-        </style>
-
         <?php
         $this->widget(
                 'booster.widgets.TbNavbar', array(
@@ -192,11 +188,18 @@
                                 </a>
                             </div>
 
-                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                                <h1 class="frase" style="line-height:150px;font-weight: 200;line-height: 1.2;color: #fff;font-size: 40px">
-                                    <?php echo $this->headerTitulo ?>
-                                </h1>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                    <header style="color: #fff;float: left;padding-top: 5px;">
+                                        <span class="btn-red" style="margin-top:5px;float: left"><?php echo $this->headerCategoria ?></span>
+                                        <h1 class="header-titulo" style="font-weight: 200;color: #fff;font-size: 40px">
+                                            <?php echo $this->headerTitulo ?>
+                                        </h1>
+                                        <span style=" float: left;"><?php echo $this->headerFecha ?></span>
+                                    </header>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,10 @@
 <?php
     $this->breadcrumbs = array('Eventos Academicos','Eventos de '.$evento->evenCat->cat_nombre =>array('site/eventos','id'=>$evento->even_cat_id),$evento->even_titulo);
-    $this->widthPageClass = '';
-    $this->headerTitulo = $evento->even_titulo;
-    $this->headerImagen = $evento->even_imagen_detail;
+    $this->widthPageClass  = '';
+    $this->headerTitulo    = $evento->even_titulo;
+    $this->headerCategoria = $evento->evenCat->cat_nombre;
+    $this->headerFecha     = ($evento->even_fecha == '0000-00-00')?date("F d,Y",strtotime($evento->even_fechacreacion)):date("F d,Y",strtotime($evento->even_fecha));
+    $this->headerImagen    = $evento->even_imagen_detail;
 ?>
 
 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="font-size: 18px;color:#898989;padding: 20px 25px">

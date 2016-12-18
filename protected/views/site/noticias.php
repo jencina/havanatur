@@ -21,12 +21,16 @@
         text-decoration: none;
     }
     
+    #filtro-noticias a.active{
+        background-color: #ca070b;
+        color: #8c0a0a;
+    }
 </style>
 
 <div id="filtro-noticias" class="col-md-12">
-    <?php echo CHtml::link('Todos','',array('class'=>'','onclick'=>'js:filterNoticias(0);'));?>
+    <?php echo CHtml::link('Todos','',array('id'=>'0','class'=>'active','onclick'=>'js:filterNoticias(0);'));?>
     <?php foreach ($categorias as $cat){ ?>
-        <?php echo CHtml::link($cat->cat_nombre,'',array('class'=>'','onclick'=>'js:filterNoticias('.$cat->cat_id.');'));?>
+        <?php echo CHtml::link($cat->cat_nombre,'',array('id'=>$cat->cat_id,'onclick'=>'js:filterNoticias('.$cat->cat_id.');'));?>
     <?php } ?>
 </div>
 
@@ -48,7 +52,8 @@ $this->widget('zii.widgets.CListView', array(
 
 <script>
     function filterNoticias(id){
-        console.log(id);
+        $("#filtro-noticias a").attr("class","");
+        $("#"+id).attr("class","active");
         $.fn.yiiListView.update(
                 'noticias',{
                     data: {id:id}
