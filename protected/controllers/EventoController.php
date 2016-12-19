@@ -51,6 +51,7 @@ class EventoController extends Controller
 	 */
 	public function actionView($id)
 	{
+             Yii::app()->controller->menu_activo= 'eventos';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +63,7 @@ class EventoController extends Controller
 	 */
 	public function actionCreate()
 	{
+            Yii::app()->controller->menu_activo= 'eventos';
 		$model=new Evento;
 
 		if(isset($_POST['Evento']))
@@ -132,6 +134,7 @@ class EventoController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            Yii::app()->controller->menu_activo= 'eventos';
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -228,6 +231,7 @@ class EventoController extends Controller
 	 */
 	public function actionAdmin()
 	{
+            Yii::app()->controller->menu_activo= 'eventos';
 		$model=new Evento('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Evento']))
@@ -241,6 +245,7 @@ class EventoController extends Controller
 	
         public function actionCategorias()
 	{
+            Yii::app()->controller->menu_activo= 'eventoscategorias';
 		$model=new EventoCategoria('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['EventoCategoria']))
@@ -253,6 +258,7 @@ class EventoController extends Controller
         
         public function actionCategoriaCreate()
 	{
+            Yii::app()->controller->menu_activo= 'eventoscategorias';
 		$model=new EventoCategoria();
 
 		if(isset($_POST['EventoCategoria']))
@@ -273,6 +279,7 @@ class EventoController extends Controller
         
         public function actionCategoriaUpdate($id)
 	{
+            Yii::app()->controller->menu_activo= 'eventoscategorias';
 		$model= EventoCategoria::model()->findbypk($id);
 
 		if(isset($_POST['EventoCategoria']))
@@ -292,7 +299,7 @@ class EventoController extends Controller
 	}
         
         public function actionInscritos(){
-            
+            Yii::app()->controller->menu_activo= 'eventosinscritos';
             
             $dataProvider=new CActiveDataProvider('Interesado',array(
                     'criteria'=>array(

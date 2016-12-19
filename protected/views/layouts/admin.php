@@ -83,24 +83,45 @@ $this->widget('zii.widgets.CMenu', array(
         array('label' => '<i class="fa fa-lg fa-fw fa-building-o "></i><span class="menu-item-parent">Hotel</span>', 'url' => array('hotel/admin')),
         array('label' => '<i class="fa fa-lg fa-fw fa-file-text"></i><span class="menu-item-parent">Noticias</span>', 'url' => '',
             'items' => array(
-                array('label' => 'Administrador', 'url' => array('noticia/admin')),
-                array('label' => 'Categorias', 'url' => array('noticia/categorias')),
+                array('label' => 'Administrador', 
+                        'url' => array('noticia/admin'),
+                        'active' => (Yii::app()->controller->menu_activo == 'noticias') ? true : false
+                    ),
+                array('label' => 'Categorias',
+                    'url' => array('noticia/categorias'),
+                    'active' => (Yii::app()->controller->menu_activo == 'noticiascategorias') ? true : false
+                    ),
             )
         ),
         array('label' => '<i class="fa fa-lg fa-fw fa-map-marker "></i><span class="menu-item-parent">Eventos</span>', 'url' => '',
             'items' => array(
-                array('label' => 'Administrador', 'url' => array('evento/admin')),
-                array('label' => 'Categorias', 'url' => array('evento/categorias')),
-                array('label' => 'Inscritos', 'url' => array('evento/inscritos')),
+                array('label' => 'Administrador', 
+                        'url' => array('evento/admin'),
+                        'active' => (Yii::app()->controller->menu_activo == 'eventos') ? true : false),
+                array('label' => 'Categorias', 
+                    'url' => array('evento/categorias'),
+                    'active' => (Yii::app()->controller->menu_activo == 'eventoscategorias') ? true : false
+                ),
+                array('label' => 'Inscritos', 
+                    'url' => array('evento/inscritos'),
+                    'active' => (Yii::app()->controller->menu_activo == 'eventosinscritos') ? true : false
+                    ),
             )
         ),
         array('label' => '<i class="fa fa-lg fa-fw fa-money"></i><span class="menu-item-parent">Cotizaciones</span> <span class="badge">' . $cot . '</span>', 'url' => array('cotizacion/index')),
         array('label' => '<i class="fa fa-lg fa-fw fa-cog"></i><span class="menu-item-parent">Configuraciones</span>',
             'url' => '',
             'items' => array(
-                array('label' => 'Configuracion', 'url' => array('configuracion/admin')),
-                array('label' => 'Condiciones Generales', 'url' => array('condiciones/admin')),
-                array('label' => 'Ciudad', 'url' => array('ciudad/admin')),
+                array('label' => 'Configuracion', 
+                      'url' => array('configuracion/admin'),
+                      'active' => (Yii::app()->controller->menu_activo == 'configuracion') ? true : false
+                    ),
+                array('label' => 'Condiciones Generales', 
+                      'url' => array('condiciones/admin'),
+                      'active' => (Yii::app()->controller->menu_activo == 'condicion') ? true : false),
+                array('label' => 'Ciudad', 
+                      'url' => array('ciudad/admin'),
+                      'active' => (Yii::app()->controller->menu_activo == 'ciudad') ? true : false),
             )
         ),
         array('label' => '<i class="fa fa-lg fa-fw fa-sign-out"></i><span class="menu-item-parent">Logout (' . Yii::app()->user->name . ')</span>', 'icon' => 'fa fa-power-off', 'url' => array('/admin/logout'), 'visible' => !Yii::app()->user->isGuest)

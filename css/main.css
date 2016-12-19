@@ -828,3 +828,8 @@ body{
     z-index: 1;
 }
 
+@media screen and (min-width:0px) and (max-width: 767px) {
+    #carousel .item > div {
+        height: 280px;
+    }
+}

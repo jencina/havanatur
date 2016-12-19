@@ -51,6 +51,8 @@ class NoticiaController extends Controller
 	 */
 	public function actionView($id)
 	{
+            Yii::app()->controller->menu_activo= 'noticias';
+            
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +64,8 @@ class NoticiaController extends Controller
 	 */
 	public function actionCreate()
 	{
+            Yii::app()->controller->menu_activo= 'noticias';
+            
 		$model=new Noticia;
 
 		if(isset($_POST['Noticia']))
@@ -132,6 +136,8 @@ class NoticiaController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            Yii::app()->controller->menu_activo= 'noticias';
+		
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -179,6 +185,8 @@ class NoticiaController extends Controller
 	 */
 	public function actionAdmin()
 	{
+            Yii::app()->controller->menu_activo= 'noticias';
+            
 		$model=new Noticia('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Noticia']))
@@ -191,6 +199,8 @@ class NoticiaController extends Controller
         
         public function actionCategorias()
 	{
+            Yii::app()->controller->menu_activo= 'noticiascategorias';
+            
 		$model=new Categoria('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Categoria']))
@@ -203,6 +213,7 @@ class NoticiaController extends Controller
         
         public function actionCategoriaCreate()
 	{
+            Yii::app()->controller->menu_activo= 'noticiascategorias';
 		$model=new Categoria();
 
 		if(isset($_POST['Categoria']))
@@ -223,6 +234,7 @@ class NoticiaController extends Controller
         
         public function actionCategoriaUpdate($id)
 	{
+             Yii::app()->controller->menu_activo= 'noticiascategorias';
 		$model= Categoria::model()->findbypk($id);
 
 		if(isset($_POST['Categoria']))

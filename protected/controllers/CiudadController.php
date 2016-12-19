@@ -44,6 +44,7 @@ class CiudadController extends Controller
 	 */
 	public function actionView($id)
 	{
+             Yii::app()->controller->menu_activo= 'ciudad';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -55,6 +56,7 @@ class CiudadController extends Controller
 	 */
 	public function actionCreate()
 	{
+            Yii::app()->controller->menu_activo= 'ciudad';
 		$model=new Ciudad;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -79,6 +81,7 @@ class CiudadController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            Yii::app()->controller->menu_activo= 'ciudad';
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -126,6 +129,7 @@ class CiudadController extends Controller
 	 */
 	public function actionAdmin()
 	{
+            Yii::app()->controller->menu_activo= 'ciudad';
 		$model=new Ciudad('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Ciudad']))

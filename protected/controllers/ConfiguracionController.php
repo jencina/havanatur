@@ -52,6 +52,8 @@ class ConfiguracionController extends Controller
 	 */
 	public function actionView($id)
 	{
+            Yii::app()->controller->menu_activo= 'configuracion';
+            
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -63,6 +65,7 @@ class ConfiguracionController extends Controller
 	 */
 	public function actionCreate()
 	{
+            Yii::app()->controller->menu_activo= 'configuracion';
 		$model=new Configuracion;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -93,6 +96,7 @@ class ConfiguracionController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            Yii::app()->controller->menu_activo= 'configuracion';
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -133,6 +137,7 @@ class ConfiguracionController extends Controller
 	 */
 	public function actionIndex()
 	{
+            
 		$dataProvider=new CActiveDataProvider('Configuracion');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -144,6 +149,8 @@ class ConfiguracionController extends Controller
 	 */
 	public function actionAdmin()
 	{
+            Yii::app()->controller->menu_activo= 'configuracion';
+            
 		$model=new Configuracion('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Configuracion']))

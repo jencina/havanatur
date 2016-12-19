@@ -51,6 +51,7 @@ class CondicionesController extends Controller
 	 */
 	public function actionView($id)
 	{
+            Yii::app()->controller->menu_activo= 'condicion';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +63,7 @@ class CondicionesController extends Controller
 	 */
 	public function actionCreate()
 	{
+             Yii::app()->controller->menu_activo= 'condicion';
 		$model=new Condiciones;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -86,6 +88,7 @@ class CondicionesController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+             Yii::app()->controller->menu_activo= 'condicion';
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -133,6 +136,7 @@ class CondicionesController extends Controller
 	 */
 	public function actionAdmin()
 	{
+             Yii::app()->controller->menu_activo= 'condicion';
 		$model=new Condiciones('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Condiciones']))
