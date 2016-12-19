@@ -99,7 +99,7 @@ body{
     }
 }
 
-@media screen and (min-width:0px) and (max-width: 490px){
+@media screen and (min-width: 0px) and(max-width: 490px){
     .frase{
         font-size: 27px !important;
         margin-top: 60px !important;
@@ -112,6 +112,18 @@ body{
     }
 }
 
+@media screen and (min-width: 0px) and (max-width: 320px){
+    .frase{
+        font-size: 23px !important;
+        margin-top: 60px !important;
+    }
+
+    .header-wrapper .logo {
+        height: 100px !important;
+        margin-top: 50px !important;
+        width: 100px !important;
+    }
+}
 
 .frase{
     color: #fff;
