@@ -29,7 +29,7 @@ $this->pageicon      = 'fa-home';
         <span class="widget-icon">
             <i class="fa fa-bar-chart-o"></i>
         </span>
-        <h2>Inscritos ha Eventos Ultimos 60 dias</h2>
+        <h2>Inscritos a Eventos Ultimos 60 dias</h2>
     </header>
     <div role="content"> <div id="interesados"></div></div>
 </div>

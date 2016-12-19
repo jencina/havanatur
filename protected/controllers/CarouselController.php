@@ -96,6 +96,9 @@ class CarouselController extends Controller
                         $thumb->adaptiveResize(1024,400);
                         $imagen = explode(".", $fileName);
                         $thumb->save(Yii::app()->basePath.'/../images/carousel/'.$imagen[0].'_1024_400.'.$imagen[1]);
+                        $model->foto = $imagen[0].'_1024_400.'.$imagen[1];
+                        $model->update();
+                        unlink(Yii::app()->basePath.'/../images/carousel/'.$fileName);
                     endif;
 
                     $this->redirect(array('view','id'=>$model->id));

@@ -41,7 +41,10 @@
                 </div>
 
                 <div id="logout" class="btn-header transparent pull-right">
-                    <span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/login.php" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+                    <span> 
+                        <!--<a href="<?php echo Yii::app()->request->baseUrl; ?>/login.php"data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> -->
+                        <?php echo CHtml::link('<i class="fa fa-sign-out"></i>',array('admin/logout'),array('title'=>"Sign Out"));?>
+                    </span>
                 </div>
             </div>
             <!-- end pulled right: nav area -->
@@ -195,7 +198,7 @@ $this->widget('zii.widgets.CMenu', array(
                 <div class="col-xs-12 col-sm-6">
                     <span class="txt-color-white">Copyright © 2016
                         HavanaTur
-                        Powered by<span class="hidden-xs"> - <a target="_blank" href="http://www.jesolutions.cl">JE Solutions</a></span> © 2014-2016</span>
+                        Powered by<span class="hidden-xs"> - <a target="_blank" href="http://www.jesolutions.cl">JE Solutions</a></span> © <?php echo date('Y')?></span>
                 </div>
             </div>
         </div>

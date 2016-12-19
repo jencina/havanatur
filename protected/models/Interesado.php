@@ -41,6 +41,7 @@ class Interesado extends CActiveRecord
 			array('int_telefono, int_celular, int_rut, int_fechacreacion', 'length', 'max'=>45),
                         array('int_email','email'),
                         array('int_rut','valida_rut'),
+                        array('int_rut','unique'),
 			array('int_even_id', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -72,8 +73,9 @@ class Interesado extends CActiveRecord
             $i = 2;
             $suma = 0;
             foreach (array_reverse(str_split($numero)) as $v) {
-                if ($i == 8)
+                if ($i == 8){
                     $i = 2;
+                } 
                 $suma += $v * $i;
                 ++$i;
             }

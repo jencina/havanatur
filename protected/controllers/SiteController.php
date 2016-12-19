@@ -37,7 +37,7 @@ class SiteController extends Controller
             $imagen = explode(".", $caro->foto);
             $carousel[] =array(
                 //'image' => Yii::app()->request->baseUrl.'/images/carousel/'.$caro->foto,
-                'div' => '<div style="background-image: url('."'".Yii::app()->request->baseUrl.'/images/carousel/'.$imagen[0].'_1024_400.'.$imagen[1]."'".')"></div>',
+                'div' => '<div style="background-image: url('."'".Yii::app()->request->baseUrl.'/images/carousel/'.$caro->foto."'".')"></div>',
                 'label' => $caro->titulo,
                 'caption' => $caro->descripcion
             );
