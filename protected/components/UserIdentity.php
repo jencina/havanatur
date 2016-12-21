@@ -17,6 +17,7 @@ class UserIdentity extends CUserIdentity
      */
     const ERROR_USERNAME_NOT_ACTIVE = 3;
     private $_id;
+    
     public function authenticate()
     {
         $user = Usuario::model()->findByAttributes(array('usuario'=>$this->username));
@@ -32,6 +33,27 @@ class UserIdentity extends CUserIdentity
         }else{
             $this->_id=$user->id;
             $this->setState('tipo_usuario',$user->usuarioTipo->nombre);
+            $this->setState('type','admin');
+            $this->errorCode = self::ERROR_NONE;
+        }
+        return !$this->errorCode;
+    }
+    
+    public function authenticateWeb()
+    {
+        $user = Interesado::model()->findByAttributes(array('int_user'=>$this->username));
+        if(!isset($user)){
+            $this->errorCode = self::ERROR_USERNAME_INVALID;
+            //   }elseif ($user->password !== crypt($this->password, $user->password)) {
+        }elseif ($user->int_password !== md5($this->password)) {
+            /*  $time = rand(1,5);
+              sleep($time);*/
+            $this->errorCode = self::ERROR_PASSWORD_INVALID;
+        }elseif($user->int_activo == 1){
+            $this->errorCode=self::ERROR_USERNAME_NOT_ACTIVE;
+        }else{
+            $this->_id=$user->int_id;
+            $this->setState('type','web');
             $this->errorCode = self::ERROR_NONE;
         }
         return !$this->errorCode;

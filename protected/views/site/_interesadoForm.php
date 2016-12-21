@@ -4,17 +4,19 @@
         'booster.widgets.TbActiveForm',
         array(
             'id' => 'interesado-form',
-            'type' => 'vertical',
+            'type' => 'horizontal',
+        'htmlOptions' => array('class' => 'well')
         )
     ); ?>
-                
-    <div class="page-header" style="text-align:center;">
-        <h1>
-            Formulario Registro Evento
-        </h1>
-    </div>
 
-    <?php echo $form->textFieldGroup(
+<fieldset>
+    
+    <div class="row">
+        <div class="col-md-6" style="text-align: right"><h4>Datos Personales:</h4></div>
+    </div>
+    
+    
+        <?php echo $form->textFieldGroup(
         $model,
         'int_nombre',
         array(
@@ -22,7 +24,7 @@
                 'class' => 'col-sm-5',
             ),
         )
-    ); ?>
+        ); ?>
 
         <?php echo $form->textFieldGroup(
             $model,
@@ -73,6 +75,43 @@
                 ),
             )
         ); ?>
+    
+        <hr>
+    
+        <div class="row">
+            <div class="col-md-6" style="text-align: right"><h4>Datos Usuario:</h4></div>
+        </div>
+        
+         
+        <?php echo $form->textFieldGroup(
+            $model,
+            'int_user',
+            array(
+                'wrapperHtmlOptions' => array(
+                    'class' => 'col-sm-5',
+                ),
+            )
+        ); ?>
+        
+         <?php echo $form->passwordFieldGroup(
+            $model,
+            'int_password',
+            array(
+                'wrapperHtmlOptions' => array(
+                    'class' => 'col-sm-5',
+                ),
+            )
+        ); ?>
+        
+        <?php echo $form->passwordFieldGroup(
+            $model,
+            'int_password_repetir',
+            array(
+                'wrapperHtmlOptions' => array(
+                    'class' => 'col-sm-5',
+                ),
+            )
+        ); ?>
 
         <div class="form-actions col-md-12" >
             <?php $this->widget(
@@ -80,13 +119,13 @@
                 array(
                     'buttonType' => 'submit',
                     'type' => 'primary',
-                    'label' => 'Enviar Inscripcion',
+                    'label' => 'Registrar',
                     'loadingText'=>'<i class="fa fa-circle-o-notch fa-spin"></i> Enviando ...',
                     'htmlOptions'   => array('id'=> 'btn-int'),
                 )
             ); ?>
         </div>
-
+</fieldset>
 <?php
 $this->endWidget();
 unset($form);
@@ -98,17 +137,26 @@ unset($form);
 $("#interesado-form").submit(function(){
     
     $.ajax({
-        url  : "<?php echo Yii::app()->createURL('site/setInteresado',array('id'=>$evento->even_id));?>",
+        url  : "<?php echo Yii::app()->createURL('site/registrar');?>",
         type : 'post',
-        cache: false ,
+        dataType: 'json',
         data : $(this).serialize(),
-        //dataType: 'json',
         beforeSend : function(){
             $("#btn-int").button('loading');
         },
         success: function(data){
-            $("#interesado").html(data);
-        },complete:function(){
+            if(data.status == "failed"){
+                $("#interesado").html(data.data);
+            }else if(data.status == "success"){
+                 $("#interesado").html(data.data);
+                 setTimeout(
+                  window.location.href = "<?php echo Yii::app()->createURL('site/ingresar');?>"
+                , 5000);
+                
+            }
+            
+        },
+        complete:function(){
              $("#btn-int").button('reset');
         }
     });

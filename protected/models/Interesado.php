@@ -12,16 +12,23 @@
  * @property string $int_celular
  * @property string $int_rut
  * @property string $int_fechacreacion
- * @property string $int_even_id
+ * @property string $int_user
+ * @property string $int_password
+ *  * @property string $int_password_repetir
+ * @property string $int_pasaporte
+ * @property integer $int_activo
  *
  * The followings are the available model relations:
- * @property Evento $intEven
+ * @property Evento[] $eventos
  */
 class Interesado extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
+    
+        public $int_password_repetir = '';
+        
 	public function tableName()
 	{
 		return 'interesado';
@@ -35,31 +42,27 @@ class Interesado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('int_nombre, int_apellido,int_email, int_telefono,int_rut', 'required'),
-			array('int_id', 'numerical', 'integerOnly'=>true),
+                        array('int_email, int_nombre, int_apellido, int_user, int_password, int_password_repetir, int_rut','required'),
+			array('int_activo', 'numerical', 'integerOnly'=>true),
 			array('int_nombre, int_apellido, int_email', 'length', 'max'=>100),
-			array('int_telefono, int_celular, int_rut, int_fechacreacion', 'length', 'max'=>45),
-                        array('int_email','email'),
-                        array('int_rut','valida_rut'),
+			array('int_telefono, int_celular, int_rut, int_user, int_password', 'length', 'max'=>45),
+			array('int_pasaporte', 'length', 'max'=>255),
+                    
                         array('int_rut','unique'),
-			array('int_even_id', 'length', 'max'=>20),
+                        array('int_rut','valida_rut'),
+                        array('int_password','repetir'),
+			array('int_fechacreacion', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('int_id, int_nombre, int_apellido, int_email, int_telefono, int_celular, int_rut, int_fechacreacion, int_even_id', 'safe', 'on'=>'search'),
+			array('int_id, int_nombre, int_apellido, int_email, int_telefono, int_celular, int_rut, int_fechacreacion, int_user, int_password, int_pasaporte, int_activo', 'safe', 'on'=>'search'),
 		);
 	}
-
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'intEven' => array(self::BELONGS_TO, 'Evento', 'int_even_id'),
-		);
-	}
+        
+        public function repetir($attribute,$params){           
+            if($this->int_password != $this->int_password_repetir){
+                $this->addError($attribute, 'Las password son distintas');
+            }
+        }
         
         public function valida_rut($attribute,$params)
         {
@@ -98,6 +101,18 @@ class Interesado extends CActiveRecord
         }
 
 	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+			'eventos' => array(self::MANY_MANY, 'Evento', 'evento_has_interesado(interesado_int_id, evento_even_id)'),
+		);
+	}
+
+	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
@@ -105,13 +120,17 @@ class Interesado extends CActiveRecord
 		return array(
 			'int_id' => 'Int',
 			'int_nombre' => 'Nombre',
-			'int_apellido' => 'Apellido',
+			'int_apellido' => 'Apellidos',
 			'int_email' => 'Email',
 			'int_telefono' => 'Telefono',
 			'int_celular' => 'Celular',
 			'int_rut' => 'Rut',
 			'int_fechacreacion' => 'Fechacreacion',
-			'int_even_id' => 'Even',
+			'int_user' => 'Usuario',
+			'int_password' => 'Password',
+			'int_pasaporte' => 'Pasaporte',
+			'int_activo' => 'Activo',
+                        'int_password_repetir'=>'Repetir Password'
 		);
 	}
 
@@ -141,8 +160,10 @@ class Interesado extends CActiveRecord
 		$criteria->compare('int_celular',$this->int_celular,true);
 		$criteria->compare('int_rut',$this->int_rut,true);
 		$criteria->compare('int_fechacreacion',$this->int_fechacreacion,true);
-		$criteria->compare('int_even_id',$this->int_even_id,true);
-                
+		$criteria->compare('int_user',$this->int_user,true);
+		$criteria->compare('int_password',$this->int_password,true);
+		$criteria->compare('int_pasaporte',$this->int_pasaporte,true);
+		$criteria->compare('int_activo',$this->int_activo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

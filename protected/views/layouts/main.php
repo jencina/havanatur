@@ -22,6 +22,21 @@
                 $cambio2 = Configuracion::model()->findByAttributes(array('nombre' => 'tipo_cambio_2'));
                 ?>
                 <div class="contenido">
+                    <?php if(!Yii::app()->user->isGuest) { ?>
+                    <div class="body">
+                        <div class="icon"><i class="fa fa-power-off"></i></div>
+                        <div class="titulo"> <div class="titulo"><?php echo CHtml::link('Salir',array('site/logout'),array('style'=>'color:#fff;cursor:pointer;'));?></div></div>
+                    </div>
+                    <?php } ?>
+                    <div class="body">
+                        <div class="icon"><i class="fa fa-user"></i></div>
+                        <?php if(Yii::app()->user->isGuest) { ?>
+                            <div class="titulo"><?php echo CHtml::link('Ingresar / Inscribir',array('site/ingresar'),array('style'=>'color:#fff;cursor:pointer;'));?></div>
+                        <?php }else if(Yii::app()->user->type=='web'){ ?>
+                            <div class="titulo"><?php echo CHtml::link(Yii::app()->user->name,array('site/ingresar'),array('style'=>'color:#fff;cursor:pointer;'));?></div>
+                        <?php } ?>
+                        
+                    </div>
 
                     <div class="body">
                         <div class="icon"><i class="fa fa-usd"></i></div>

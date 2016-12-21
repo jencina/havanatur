@@ -30,13 +30,21 @@ class UsuarioController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update','index','view','admin','delete'),
 				'users'=>array('@'),
-                'expression'=>'Usuario::model()->findByPk(Yii::app()->user->id)->usuario_tipo_id == 1',
+                                'expression'=>'Usuario::model()->findByPk(Yii::app()->user->id)->usuario_tipo_id == 1',
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
 	}
+        
+        public function init() {
+            if(!Yii::app()->user->isGuest){
+                if(Yii::app()->user->type == 'web'){
+                    $this->redirect(array('admin/index'));
+                }
+            }
+        }
 
 	/**
 	 * Displays a particular model.

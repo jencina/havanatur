@@ -633,5 +633,69 @@ class SiteController extends Controller
         }
         
     }
+    
+    
+    public function actionIngresar()
+	{
+            $model=new LoginForm;
+
+            // if it is ajax validation request
+            if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+            {
+                    echo CActiveForm::validate($model);
+                    Yii::app()->end();
+            }
+
+            // collect user input data
+            if(isset($_POST['LoginForm']))
+            {
+            
+                    $model->attributes=$_POST['LoginForm'];
+                    $model->type = 'web';                  
+                    // validate user input and redirect to the previous page if valid
+                    if($model->validate() && $model->login())
+                            $this->redirect(array('site/index'));
+            }
+            // display the login form
+            $this->render('ingresar',array('model'=>$model));
+	}
+       
+    public function actionRegistrar(){
+        
+        $model = new Interesado();
+        
+        if(isset($_POST['Interesado']))
+        {
+            $model->attributes=$_POST['Interesado'];                
+            // validate user input and redirect to the previous page if valid
+            if($model->validate()){
+                $model->int_activo        = 0;
+                $model->int_fechacreacion = date('Y-m-d H:i:s');
+                $model->int_password      = md5($model->int_password);
+                
+                if($model->insert()){
+                    header("Content-type: application/json");
+                    echo CJSON::encode(array(
+                        'status'=>'success',
+                        'data'  => '<div class="alert alert-success" role="alert">
+                                    <strong>Usuario registrado con exito!</strong>
+                                     Te estamos redirigiendo hacia el login.
+                                    </div>'
+                        ));
+                    exit;
+                }  
+            }
+            
+            header("Content-type: application/json");
+            echo CJSON::encode(
+                    array(
+                        'status'=>'failed',
+                        'data'=>$this->renderPartial('_interesadoForm',array('model'=>$model),true)
+                        ));
+            exit;
+        }        
+                
+        $this->render('registrar',array('model'=>$model));
+    }
         
 }
