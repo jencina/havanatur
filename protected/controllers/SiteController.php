@@ -168,8 +168,8 @@ class SiteController extends Controller
             'bottom_model'=>$bottom_model));
     }
 	
-	public function actionOtros(){
-		Yii::app()->controller->menu_activo= 'otros';
+    public function actionOtros(){
+        Yii::app()->controller->menu_activo= 'otros';
 		
         $id   = Yii::app()->request->getParam('id');
         $model = Contenido::model()->findByPk($id);
@@ -690,12 +690,12 @@ class SiteController extends Controller
             echo CJSON::encode(
                     array(
                         'status'=>'failed',
-                        'data'=>$this->renderPartial('_interesadoForm',array('model'=>$model),true)
+                        'data'=>$this->renderPartial('application.views.user.registrar',array('model'=>$model),true)
                         ));
             exit;
         }        
                 
-        $this->render('registrar',array('model'=>$model));
+        $this->render('application.views.user.registrar',array('model'=>$model));
     }
-        
+    
 }

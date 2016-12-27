@@ -47,17 +47,17 @@ class TbSelect2 extends CInputWidget {
 	 */
 	public $options;
 
-    /**
-     * @var bool
-     * @since 2.1.0
-     */
-    public $readonly = false;
+        /**
+         * @var bool
+         * @since 2.1.0
+         */
+        public $readonly = false;
 
-    /**
-     * @var bool
-     * @since 2.1.0
-     */
-    public $disabled = false;
+        /**
+         * @var bool
+         * @since 2.1.0
+         */
+        public $disabled = false;
 
 	/**
 	 *### .init()

@@ -245,48 +245,58 @@ h1.header-titulo{
 }
 
 .biography-icon {
-            background-color: #ffffff;
-            background-position: center center;
-            background-repeat: no-repeat;
-            border-radius: 50%;
-            height: 70px !important;
-            left: 50%;
-            margin-left: -35px;
-            margin-right: auto;
-            margin-top: 10px;
-            padding: 10px;
-            position: absolute;
-            width: 70px !important;
-            line-height: 70px !important;
-            cursor: pointer;
-        }
+    background-color: #ffffff;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    height: 70px !important;
+    left: 50%;
+    margin-left: -35px;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 10px;
+    position: absolute;
+    width: 70px !important;
+    line-height: 70px !important;
+    cursor: pointer;
+}
 
-        .biography-ctn {
-            background-color: #f6f6f6;
-            font-size: 16px;
-            margin-top: 50px;
-               padding: 20px 20px 60px 20px;
-        }
-        
-        
-        .btn-red {
-            background-color: #ca070b;
-            border: medium none;
-            color: #8c0a0a;
-            font-size: 14px;
-            font-weight: 800;
-            padding: 6px 16px;
-        }
-        
-        #otros{
-            background: linear-gradient(55deg, rgba(0, 37, 117, 0.68) 0%, rgba(51, 30, 245, 0.32) 67%, rgba(121, 93, 93, 0.78) 100%) repeat scroll 0 0%, rgba(0, 0, 0, 0) none repeat scroll 0 0;
-            padding-bottom: 20px;
-            padding-top: 10px;
-            background-color: #222;
-        }
-        
-        #otros h1{
-            color: #fff;
-            font-size: 20px;
-            margin: 0 13px 13px;
-        }
+.biography-ctn {
+    background-color: #f6f6f6;
+    font-size: 16px;
+    margin-top: 50px;
+       padding: 20px 20px 60px 20px;
+}
+
+
+.btn-red {
+    background-color: #ca070b;
+    border: medium none;
+    color: #8c0a0a;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 6px 16px;
+}
+
+#otros{
+    background: linear-gradient(55deg, rgba(0, 37, 117, 0.68) 0%, rgba(51, 30, 245, 0.32) 67%, rgba(121, 93, 93, 0.78) 100%) repeat scroll 0 0%, rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    background-color: #222;
+}
+
+#otros h1{
+    color: #fff;
+    font-size: 20px;
+    margin: 0 13px 13px;
+}
+
+.footer-wrapper{
+    box-shadow: 0 10px 15px #222;  
+}     
+
+.background-havana-gris {
+    box-shadow: 0 -8px 16px #222;
+}
+      
+    

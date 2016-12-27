@@ -33,7 +33,7 @@
                         <?php if(Yii::app()->user->isGuest) { ?>
                             <div class="titulo"><?php echo CHtml::link('Ingresar / Inscribir',array('site/ingresar'),array('style'=>'color:#fff;cursor:pointer;'));?></div>
                         <?php }else if(Yii::app()->user->type=='web'){ ?>
-                            <div class="titulo"><?php echo CHtml::link(Yii::app()->user->name,array('site/ingresar'),array('style'=>'color:#fff;cursor:pointer;'));?></div>
+                            <div class="titulo"><?php echo CHtml::link(Yii::app()->user->name,array('user/perfil'),array('style'=>'color:#fff;cursor:pointer;'));?></div>
                         <?php } ?>
                         
                     </div>

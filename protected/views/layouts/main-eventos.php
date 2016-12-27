@@ -21,70 +21,61 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main-evento.css">
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/lightbox2-master/css/lightbox.min.css">
-        <title><?php echo CHtml::encode($this->pageTitle); ?></title>
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/smartadmin-production-plugins.min.css">
+        <title><?php echo CHtml::encode($this->pageTitle); ?></title>      
+        <script>
+            $.sound_path = "<?php echo Yii::app()->request->baseUrl; ?>/js/sound/";
+            $.sound_on = true; 
+        </script>
+        <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/SmartNotification.min.js"></script>
     </head>
 
     <body>
         <?php
-        $programas = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->programas));
-
-        $bloqueos = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->bloqueos));
-
-        $otroDestinos = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->otroDestino));
-
+        $programas     = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->programas));
+        $bloqueos      = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->bloqueos));
+        $otroDestinos  = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->otroDestino));
         $turismoSaluds = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->turismoSalud));
-
         $otroServicios = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->otroServicio));
-
-        $quienesSomos = Contenido::model()->findAllByAttributes(array('contenido_tipo_id' => $this->quienessomos));
-
+        $quienesSomos  = Contenido::model()->findAllByAttributes(array('contenido_tipo_id' => $this->quienessomos));
         $informaciones = Contenido::model()->findAllByAttributes(array('contenido_tipo_id' => $this->informaciones));
-
-        $otros = Contenido::model()->findAllByAttributes(array('contenido_tipo_id' => $this->otros));
-
-        $turismos = Contenido::model()->findAllByAttributes(array('contenido_tipo_id' => $this->turismo));
+        $otros         = Contenido::model()->findAllByAttributes(array('contenido_tipo_id' => $this->otros));
+        $turismos      = Contenido::model()->findAllByAttributes(array('contenido_tipo_id' => $this->turismo));
 
         $programa = array();
 
         foreach ($programas as $pro) {
-
             $programa[] = array('label' => $pro->nombre, 'url' => array('site/programa', 'id' => $pro->id));
         }
 
         $bloqueo = array();
 
         foreach ($bloqueos as $blo) {
-
             $bloqueo[] = array('label' => $blo->nombre, 'url' => array('site/programa', 'id' => $blo->id));
         }
 
         $turismoSalud = array();
 
         foreach ($turismoSaluds as $tur) {
-
             $turismoSalud[] = array('label' => $tur->nombre, 'url' => array('site/programa', 'id' => $tur->id));
         }
 
         foreach ($turismos as $tur) {
-
             $turismoSalud[] = array('label' => $tur->titulo, 'url' => array('site/TurismoSalud', 'id' => $tur->id));
         }
 
         $otroServicio = array();
 
         foreach ($otroServicios as $otro) {
-
             $otroServicio[] = array('label' => $otro->nombre, 'url' => array('site/programa', 'id' => $otro->id));
         }
 
         foreach ($otros as $otro) {
-
             $otroServicio[] = array('label' => $otro->titulo, 'url' => array('site/Otros', 'id' => $otro->id));
         }
 
         $quienesSomo = array();
         foreach ($quienesSomos as $qui) {
-
             $quienesSomo[] = array('label' => $qui->titulo, 'url' => array('site/nuestraEmpresa', 'id' => $qui->id)); //strtoupper($qui->titulo)
         }
 
@@ -92,7 +83,6 @@
 
         $informacion = array();
         foreach ($informaciones as $info) {
-
             $informacion[] = array('label' => $info->titulo, 'url' => array('site/informaciones', 'id' => $info->id));
         }
 
@@ -107,7 +97,7 @@
 
         <?php
         $this->widget(
-                'booster.widgets.TbNavbar', array(
+            'booster.widgets.TbNavbar', array(
             'id' => 'menu',
             'type' => 'havana',
             'brand' => '<img width="80" src="' . Yii::app()->request->baseUrl . '/images/logo-havana1.png">',

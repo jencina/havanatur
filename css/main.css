@@ -845,3 +845,18 @@ body{
         height: 280px;
     }
 }
+
+#eventos .items .noticia .thumbnail:hover{
+      box-shadow: 0px 0px 8px 0px #000;       
+}
+
+#eventos .items .noticia .thumbnail a,.btn-custom .button-container a.cotizar{
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: "ARSMaquettePro-bold",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+    

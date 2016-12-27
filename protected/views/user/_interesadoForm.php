@@ -76,6 +76,44 @@
             )
         ); ?>
     
+        <?php echo $form->select2Group(
+            $model,
+            'regiones_id',
+            array(
+                'wrapperHtmlOptions' => array(
+                        'class' => 'col-sm-5',
+                ),
+                'widgetOptions' => array(
+                    'val'=>$model->regiones_id,
+                    'data'=> CHtml::listData(Regiones::model()->findAll(array('order'=>'nombre ASC')),'id', 'nombre'),
+                    'events' => array('change' => 'js:function(){ loadComuna($(this).val()); }'),
+                    'options' => array(
+                            'placeholder' => 'Seleccione Region',
+                           // 'tokenSeparators' => array(',', ' ')
+                    )
+                )
+            )
+        );?>
+    
+        <?php echo $form->select2Group(
+        $model,
+        'comunas_id',
+        array(
+                'wrapperHtmlOptions' => array(
+                        'class' => 'col-sm-5',
+                ),
+                'widgetOptions' => array(
+                        'val'=>$model->comunas_id,
+                        'data'=> (empty($model->regiones_id))?array():CHtml::listData(Comunas::model()->findAllByAttributes(array("regiones_id"=>$model->regiones_id),array('order'=>'nombre ASC')),'id', 'nombre'),
+                        'options' => array(
+                                'placeholder' => 'Seleccione Comuna',
+                                //'tokenSeparators' => array(',', ' ')
+                        )
+                )
+        )
+        );?>
+    
+        <?php if($model->isNewRecord):?>
         <hr>
     
         <div class="row">
@@ -113,6 +151,8 @@
             )
         ); ?>
 
+         <?php endif;?>
+        
         <div class="form-actions col-md-12" >
             <?php $this->widget(
                 'booster.widgets.TbButton',
@@ -131,36 +171,29 @@ $this->endWidget();
 unset($form);
 ?>
 
-
 <script>
 
-$("#interesado-form").submit(function(){
+function loadComuna(id){
     
     $.ajax({
-        url  : "<?php echo Yii::app()->createURL('site/registrar');?>",
+        url  : "<?php echo Yii::app()->createURL('user/loadComunas');?>",
         type : 'post',
         dataType: 'json',
-        data : $(this).serialize(),
+        data : {id:id},
         beforeSend : function(){
             $("#btn-int").button('loading');
         },
-        success: function(data){
-            if(data.status == "failed"){
-                $("#interesado").html(data.data);
-            }else if(data.status == "success"){
-                 $("#interesado").html(data.data);
-                 setTimeout(
-                  window.location.href = "<?php echo Yii::app()->createURL('site/ingresar');?>"
-                , 5000);
-                
-            }
-            
+        success: function(re){
+            $("#Interesado_comunas_id").html("");
+            $("#Interesado_comunas_id").html(re.data);
         },
         complete:function(){
              $("#btn-int").button('reset');
         }
     });
-    
     return false;
-});
+    
+}
+
 </script>
+

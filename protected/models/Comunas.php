@@ -1,21 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "evento_has_interesado".
+ * This is the model class for table "comunas".
  *
- * The followings are the available columns in table 'evento_has_interesado':
- * @property string $evento_even_id
- * @property integer $interesado_int_id
- * @property string $fecha_creacion
+ * The followings are the available columns in table 'comunas':
+ * @property integer $id
+ * @property string $nombre
+ * @property integer $regiones_id
+ *
+ * The followings are the available model relations:
+ * @property Regiones $regiones
+ * @property Interesado[] $interesados
  */
-class EventoHasInteresado extends CActiveRecord
+class Comunas extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'evento_has_interesado';
+		return 'comunas';
 	}
 
 	/**
@@ -26,25 +30,14 @@ class EventoHasInteresado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('evento_even_id, interesado_int_id', 'required'),
-			array('interesado_int_id', 'numerical', 'integerOnly'=>true),
-			array('evento_even_id', 'length', 'max'=>20),
-                        array('evento_even_id', 'unico'),
-			array('fecha_creacion', 'safe'),
+			array('regiones_id', 'required'),
+			array('regiones_id', 'numerical', 'integerOnly'=>true),
+			array('nombre', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('evento_even_id, interesado_int_id, fecha_creacion', 'safe', 'on'=>'search'),
+			array('id, nombre, regiones_id', 'safe', 'on'=>'search'),
 		);
 	}
-        
-        public function unico($attribute,$params){
-            
-            $model = EventoHasInteresado::model()->findByAttributes(array('evento_even_id'=>$this->evento_even_id,'interesado_int_id'=>$this->interesado_int_id));
-            if($model){
-                $this->addError($attribute, 'Usted ya se encuentra inscrito en este evento');
-            }
-            
-        }
 
 	/**
 	 * @return array relational rules.
@@ -54,6 +47,8 @@ class EventoHasInteresado extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'regiones' => array(self::BELONGS_TO, 'Regiones', 'regiones_id'),
+			'interesados' => array(self::HAS_MANY, 'Interesado', 'comunas_id'),
 		);
 	}
 
@@ -63,9 +58,9 @@ class EventoHasInteresado extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'evento_even_id' => 'Evento Even',
-			'interesado_int_id' => 'Interesado Int',
-			'fecha_creacion' => 'Fecha Creacion',
+			'id' => 'ID',
+			'nombre' => 'Comuna',
+			'regiones_id' => 'Regiones',
 		);
 	}
 
@@ -87,9 +82,9 @@ class EventoHasInteresado extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('evento_even_id',$this->evento_even_id,true);
-		$criteria->compare('interesado_int_id',$this->interesado_int_id);
-		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('regiones_id',$this->regiones_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -100,7 +95,7 @@ class EventoHasInteresado extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return EventoHasInteresado the static model class
+	 * @return Comunas the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
