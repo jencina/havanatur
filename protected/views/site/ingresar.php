@@ -11,14 +11,14 @@ $this->breadcrumbs=array(
 
 <div class="row" style="padding-top: 20px;">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"> 
-       <div class="page-header">
+        <div class="page-header">
             <h1>
                 Restrate como usuario
                 <small></small>
             </h1>
         </div>
-        <!--</div>-->
-        <ul class="list-group">
+        <div class="col-md-12">
+            <ul class="list-group">
                 <li class="padding-10">
                     Al crear una cuenta de usuario en Havanatur,
                     podras inscribirte a los distintos eventos 
@@ -33,7 +33,8 @@ $this->breadcrumbs=array(
                     Si no tienes una cuenta con nosotros, ingresa al siguiente link:
                     <?php echo CHtml::link('Registrar',array('site/registrar'));?>
                 </li>
-        </ul>   
+            </ul>
+        </div>   
     </div>
     
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"> 

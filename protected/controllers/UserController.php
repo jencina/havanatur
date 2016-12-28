@@ -27,7 +27,7 @@ class UserController extends Controller
 	public function accessRules()
 	{
             return array(
-                 array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                    array('allow', // allow authenticated user to perform 'create' and 'update' actions
                             'actions'=>array('LoadComunas'),
                             'users'=>array('*'),
                     ),
@@ -127,21 +127,28 @@ class UserController extends Controller
         public function actionInscribirEvento(){
             $id = Yii::app()->request->getParam('id');
             
-            $model = new EventoHasInteresado();
-            $model->evento_even_id = $id;
-            $model->interesado_int_id = Yii::app()->user->id;
-            $model->fecha_creacion = date("Y-m-d H:i:s");
-            if($model->save()){
-                echo CJSON::encode(array('status'=>'success'));
-                exit;   
+            $inscrito = DatosAdicional::model()->findAllByAttributes(array('interesado_int_id'=>Yii::app()->user->id));
+            
+            if($inscrito){
+                
+                $model = new EventoHasInteresado();
+                $model->evento_even_id = $id;
+                $model->interesado_int_id = Yii::app()->user->id;
+                $model->fecha_creacion = date("Y-m-d H:i:s");
+                
+                if($model->save()){
+                    $count = EventoHasInteresado::model()->countByAttributes(array('evento_even_id'=>$id));
+                    echo CJSON::encode(array('status'=>'success','count'=>$count));
+                    exit;   
+                }else{
+                    echo CJSON::encode(array('status'=>'failed','msj'=>$model->getErrors('evento_even_id')[0]));
+                    exit;  
+                }
+                
             }else{
-                echo CJSON::encode(array('status'=>'failed','msj'=>$model->getErrors('evento_even_id')[0]));
-                exit;  
-            }
-            
-           
-            
-             
+                echo CJSON::encode(array('status'=>'failed','msj'=>"Debe agregar sus datos adicionales en su perfil de usuario" ));
+                exit; 
+            } 
         }
 
 	/**

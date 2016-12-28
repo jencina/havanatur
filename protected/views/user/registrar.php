@@ -30,13 +30,11 @@ $("#interesado-form").submit(function(){
             if(data.status == "failed"){
                 $("#content").html(data.data);
             }else if(data.status == "success"){
-                 $("#content").html(data.data);
-                 setTimeout(
-                  window.location.href = "<?php echo Yii::app()->createURL('site/ingresar');?>"
-                , 5000);
-                
-            }
-            
+                $("#content").html(data.data);
+                setTimeout(
+                window.location.href = "<?php echo Yii::app()->createURL('site/ingresar');?>"
+                , 5000); 
+            }  
         },
         complete:function(){
              $("#btn-int").button('reset');

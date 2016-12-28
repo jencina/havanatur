@@ -1,6 +1,6 @@
 <?php
-    $this->breadcrumbs = array('Eventos Academicos','Noticias'=>array('site/noticias'),$noticia->not_titulo);
-    $this->widthPageClass = 'news-body';
+    $this->breadcrumbs     = array('Eventos Academicos','Noticias'=>array('site/noticias'),$noticia->not_titulo);
+    $this->widthPageClass  = 'news-body';
     $this->headerTitulo    = $noticia->not_titulo;
     $this->headerCategoria = $noticia->categoriaCat->cat_nombre;
     $this->headerFecha     = ($noticia->not_fecha == '0000-00-00')?date("F d,Y",strtotime($noticia->not_fechacreacion)):date("F d,Y",strtotime($noticia->not_fecha));

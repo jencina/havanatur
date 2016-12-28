@@ -60,7 +60,7 @@
     </div>
     <ul class="include list-group">
         <li class="list-group-item">
-            <span style="font-size: 17px"><i class="fa fa-users"></i>Usuarios Inscritos: <span class="label label-primary"><?php echo EventoHasInteresado::model()->countByAttributes(array('evento_even_id'=>$evento->even_id)); ?></span></span>
+            <span style="font-size: 17px"><i class="fa fa-users"></i>Usuarios Inscritos: <span id="contador" class="label label-primary"><?php echo EventoHasInteresado::model()->countByAttributes(array('evento_even_id'=>$evento->even_id)); ?></span></span>
         </li>
         <?php if(!Yii::app()->user->isGuest):?>
         <li class="list-group-item">
@@ -102,6 +102,9 @@ $("#btn-inscribir").on("click",function(){
                                 color : "#C79121",
                                 icon : "fa fa-users fadeInLeft animated",
                             });
+                            
+                            $("#contador").html(data.count);
+                    
                         }else if(data.status=="failed"){
                             $.bigBox({
                                 title : "Error al Inscribir Evento",

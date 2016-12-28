@@ -104,7 +104,7 @@
             'brandOptions' => array('style' => 'padding:0;'),
             'brandUrl' => '#',
             'fixed' => 'top',
-            'htmlOptions' => array('class' => 'background-havana-blue', 'id' => 'menu','style'=>'margin:0;border:none;'),
+            'htmlOptions' => array('class' => 'background-havana-blue', 'id' => 'menu','style'=>'margin:0;border:none;box-shadow: 0 0 11px #222;'),
             'items' => array(
                 array(
                     'class' => 'booster.widgets.TbMenu',
