@@ -49,8 +49,17 @@
             <span style="font-size: 17px"><i class="fa fa-envelope"></i><?php echo $evento->even_email; ?></span>
         </li>
         <li class="list-group-item"><span style="font-size: 17px"><i class="fa fa-phone-square"></i><?php echo $evento->even_telefono_1; ?></span></li>
+         <?php if(!empty($evento->even_telefono_2)):?>
         <li class="list-group-item"><span style="font-size: 17px"><i class="fa fa-phone-square"></i><?php echo $evento->even_telefono_2; ?></span></li>
-        <li class="list-group-item"><span style="font-size: 17px"><i class="fa fa-file-pdf-o"></i>Evento :<?php echo CHtml::link('descargar');?></span></li>
+        <?php endif;?>
+        <li class="list-group-item">
+            <span style="font-size: 17px">
+                <i class="fa fa-file-pdf-o"></i>Evento :
+                    <?php if(!empty($evento->even_pdf)):?>
+                        <a class="" target="_blank" href="<?php echo Yii::app()->request->baseUrl.'/images/eventos/pdf/'.$evento->even_pdf; ?>">Descargar</a>
+                    <?php endif;?>
+            </span>
+        </li>
     </ul>
     
     <div class="page-header-detail btn-success">
@@ -122,11 +131,8 @@ $("#btn-inscribir").on("click",function(){
             if (ButtonPressed === "No") {
                 return false;
             }
-
     });
-    
-    return false;
-    
+    return false;   
 });
 
 </script>

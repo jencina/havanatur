@@ -1,7 +1,7 @@
 <div class="noticia col-sm-6 col-md-4" style="padding-top: 40px">
     <div class="thumbnail">
         
-        <img width="350" height="150" src="<?php echo Yii::app()->request->baseUrl.'/images/noticias/'.$this->img_350_150($data->not_imagen);?>" alt="...">
+        <img width="350" height="150" style="margin:0;" src="<?php echo Yii::app()->request->baseUrl.'/images/noticias/'.$this->img_350_150($data->not_imagen);?>" alt="...">
         
         <div class="caption">
             <h3 style="font-weight: 800;"><?php echo $data->not_titulo ?></h3>

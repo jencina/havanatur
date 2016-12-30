@@ -20,7 +20,6 @@
  * @property string $even_telefono_1
  * @property string $even_telefono_2
  * @property integer $even_cat_id
- * @property string $even_pdf
  *
  * The followings are the available model relations:
  * @property EventoCategoria $evenCat
@@ -42,17 +41,19 @@ class Evento extends CActiveRecord
 	 */
 	public function rules()
 	{
-            return array(
-                    array('even_titulo,even_email,even_contenido,even_telefono_1, even_subtitulo, even_cat_id', 'required'),
-                    array('even_imagen, even_imagen_detail','required','on'=>'insert'),
-                    array('even_destacado, even_activo, usuario_id, even_cat_id', 'numerical', 'integerOnly'=>true),
-                    array('even_titulo, even_subtitulo, even_imagen, even_imagen_detail, even_pdf', 'length', 'max'=>255),
-                    array('even_email, even_telefono_1, even_telefono_2', 'length', 'max'=>45),
-                    array('even_contenido, even_fecha, even_fechacreacion, even_fechamodificacion', 'safe'),
-                    // The following rule is used by search().
-                    // @todo Please remove those attributes that should not be searched.
-                    array('even_id, even_titulo, even_subtitulo, even_contenido, even_imagen, even_imagen_detail, even_fecha, even_fechacreacion, even_fechamodificacion, even_destacado, even_activo, usuario_id, even_email, even_telefono_1, even_telefono_2, even_cat_id, even_pdf', 'safe', 'on'=>'search'),
-            );  
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('even_titulo,even_email,even_contenido,even_telefono_1, even_subtitulo, even_cat_id', 'required'),
+                        array('even_imagen, even_imagen_detail','required','on'=>'insert'),
+			array('even_destacado, even_activo, usuario_id, even_cat_id', 'numerical', 'integerOnly'=>true),
+			array('even_titulo, even_subtitulo, even_imagen, even_imagen_detail', 'length', 'max'=>255),
+			array('even_email, even_telefono_1, even_telefono_2', 'length', 'max'=>45),
+			array('even_contenido, even_fecha, even_fechacreacion, even_fechamodificacion', 'safe'),
+			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
+			array('even_id, even_titulo, even_subtitulo, even_contenido, even_imagen, even_imagen_detail, even_fecha, even_fechacreacion, even_fechamodificacion, even_destacado, even_activo, usuario_id, even_email, even_telefono_1, even_telefono_2, even_cat_id', 'safe', 'on'=>'search'),
+		);
 	}
 
 	/**
@@ -65,7 +66,7 @@ class Evento extends CActiveRecord
 		return array(
 			'evenCat' => array(self::BELONGS_TO, 'EventoCategoria', 'even_cat_id'),
 			'usuario' => array(self::BELONGS_TO, 'Usuario', 'usuario_id'),
-			'interesados' => array(self::MANY_MANY, 'Interesado', 'evento_has_interesado(evento_even_id, interesado_int_id)'),
+			'interesados' => array(self::HAS_MANY, 'Interesado', 'int_even_id'),
 		);
 	}
 
@@ -90,8 +91,7 @@ class Evento extends CActiveRecord
 			'even_email' => 'Email',
 			'even_telefono_1' => 'Telefono 1',
 			'even_telefono_2' => 'Telefono 2',
-			'even_cat_id' => 'Even Cat',
-			'even_pdf' => 'Even Pdf',
+			'even_cat_id' => 'Categoria',
 		);
 	}
 
@@ -129,7 +129,6 @@ class Evento extends CActiveRecord
 		$criteria->compare('even_telefono_1',$this->even_telefono_1,true);
 		$criteria->compare('even_telefono_2',$this->even_telefono_2,true);
 		$criteria->compare('even_cat_id',$this->even_cat_id);
-		$criteria->compare('even_pdf',$this->even_pdf,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -60,7 +60,7 @@ $form = $this->beginWidget(
                 )
         ); ?>
 
-	 <?php echo $form->textFieldGroup(
+	<?php echo $form->textFieldGroup(
            $model,
            'even_fecha',
            array(
@@ -69,6 +69,23 @@ $form = $this->beginWidget(
                ),
            )
         ); ?>
+    
+        <?php /* echo $form->datePickerGroup(
+            $model,
+            'even_fecha',
+            array(
+                    'widgetOptions' => array(
+                            'options' => array(
+                                    'language' => 'es',
+                            ),
+                    ),
+                    'wrapperHtmlOptions' => array(
+                            'class' => 'col-sm-5',
+                    ),
+                    'hint' => 'Click inside! This is a super cool date field.',
+                    'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
+            )
+        ); */ ?>
 
 	 <?php echo $form->textFieldGroup(
            $model,

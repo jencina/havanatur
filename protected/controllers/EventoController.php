@@ -56,6 +56,47 @@ class EventoController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+        
+        public function actionGeneratePdf($id){
+
+            $model     = Evento::model()->findByPk($id);	
+            $filename  = $this->string_sanitize($model->even_titulo);
+            $path      = Yii::app()->basePath.'/../images/eventos/pdf/';
+            if(file_exists($path.$filename.'.pdf')){
+                $random   = rand(100,200);
+                $filename = $filename.$random;
+            }
+
+            $mPDF1 = Yii::app()->ePdf->mpdf();
+            $stylesheet = file_get_contents(Yii::getPathOfAlias('ext.booster.assets.bootstrap.css'). DIRECTORY_SEPARATOR .'bootstrap.min.css');
+            $stylesheet2 = file_get_contents(Yii::getPathOfAlias('webroot.css').DIRECTORY_SEPARATOR .'pdf.css');
+            $font = file_get_contents(Yii::getPathOfAlias('ext.booster.assets.font-awesome.css'). DIRECTORY_SEPARATOR .'font-awesome.min.css');
+            $mPDF1->WriteHTML($stylesheet,1);
+            $mPDF1->WriteHTML($stylesheet2,1);
+            $mPDF1->WriteHTML($font,1);
+            $mPDF1->setFooter('<div style="text-align:center;width:800px;font-weight:0;padding-top:5px;">
+                            <p><span style="font-weight:bold;">Havanatur Chile – Operador Mayorista</span> / Padre Mariano 82 Of. 502</p>
+                            <p>Tel: (562) 22330844 - 22331381</p>
+                            <p>ventas1@havanatur.cl - ventas2@havanatur.cl – ventas3@havanatur.cl - ger.comercial@havanatur.cl </p>
+                    </div>');
+
+            $mPDF1->WriteHTML($this->renderPartial('application.views.evento.pdf.pdf_template',
+                array('model'     => $model
+                ), true));
+
+            $mPDF1->Output($path.$filename.'.pdf', 'F');
+
+            $old = $model->even_pdf;
+
+            $model->even_pdf = $filename.'.pdf';
+            $model->update();
+
+            if($old != ''){
+                if($old != $model->even_pdf){
+                    unlink($path.$old);
+                }
+            }
+        }
 
 	/**
 	 * Creates a new model.
@@ -117,6 +158,8 @@ class EventoController extends Controller
                                 $thumb->save(Yii::app()->basePath.'/../images/eventos/'.$imagen[0].'_450_350.'.$imagen[1]);
                             endif;
                             
+                            $this->actionGeneratePdf($model->even_id);
+                            
                             $this->redirect(array('view','id'=>$model->even_id));
                         }
                     }	
@@ -135,70 +178,75 @@ class EventoController extends Controller
 	public function actionUpdate($id)
 	{
             Yii::app()->controller->menu_activo= 'eventos';
-		$model=$this->loadModel($id);
+            $model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+            $titulo = $model->even_imagen; 
+            $detail = $model->even_imagen_detail; 
+            if(isset($_POST['Evento']))
+            {
+                $model->attributes             = $_POST['Evento'];
+                $model->even_fechacreacion     = date("Y-m-d H:i:s"); 
+                $model->even_fechamodificacion = date("Y-m-d H:i:s"); 
+                $model->usuario_id             = Yii::app()->user->id;
+                $uploadedFile                  = CUploadedFile::getInstance($model,'even_imagen');
+                $uploadedDetail                = CUploadedFile::getInstance($model,'even_imagen_detail');
 
-		if(isset($_POST['Evento']))
-		{
-                    $model->attributes             = $_POST['Evento'];
-                    $model->even_fechacreacion     = date("Y-m-d H:i:s"); 
-                    $model->even_fechamodificacion = date("Y-m-d H:i:s"); 
-                    $model->usuario_id             = Yii::app()->user->id;
-                    $uploadedFile                  = CUploadedFile::getInstance($model,'even_imagen');
-                    $uploadedDetail                = CUploadedFile::getInstance($model,'even_imagen_detail');
-                    
-                    if(isset($uploadedFile->name)){
-                        $fileName    = "{$uploadedFile}";  // random number + file name
-                        $fileName    = str_replace(" ","_",$fileName);
-                        if(file_exists(Yii::app()->basePath.'/../images/eventos/'.$fileName)){
-                            $ran=rand(100,999);
-                            $fileName =$ran.'_'.$fileName;
-                            $model->even_imagen = $fileName;
-                        }else{
-                            $model->even_imagen = $fileName;
-                        }
+                if(isset($uploadedFile->name)){
+                    $fileName    = "{$uploadedFile}";  // random number + file name
+                    $fileName    = str_replace(" ","_",$fileName);
+                    if(file_exists(Yii::app()->basePath.'/../images/eventos/'.$fileName)){
+                        $ran=rand(100,999);
+                        $fileName =$ran.'_'.$fileName;
+                        $model->even_imagen = $fileName;
+                    }else{
+                        $model->even_imagen = $fileName;
                     }
-                    
-                    if(isset($uploadedDetail->name)){
-                        $fileName2    = "{$uploadedDetail}";  // random number + file name
-                        $fileName2    = str_replace(" ","_",$fileName2);
-                        if(file_exists(Yii::app()->basePath.'/../images/eventos/'.$fileName2)){
-                            $ran=rand(100,999);
-                            $fileName2 =$ran.'_'.$fileName2;
-                            $model->even_imagen_detail = $fileName2;
-                        }else{
-                            $model->even_imagen_detail = $fileName2;
-                        }
-                    }
-                    
-                    if($model->validate()){
-                        if($model->save()){
-                            if(!empty($model->even_imagen)):
-                                $uploadedFile->saveAs(Yii::app()->basePath.'/../images/eventos/'.$fileName);
-                                $thumb=Yii::app()->phpThumb->create(Yii::app()->basePath.'/../images/eventos/'.$fileName);
-                                $thumb->adaptiveResize(350,150);
-                                $imagen = explode(".", $fileName);
-                                $thumb->save(Yii::app()->basePath.'/../images/eventos/'.$imagen[0].'_350_150.'.$imagen[1]);
-                            endif;
-                            
-                            if(!empty($model->even_imagen_detail)):
-                                $uploadedDetail->saveAs(Yii::app()->basePath.'/../images/eventos/'.$fileName2);
-                                $thumb=Yii::app()->phpThumb->create(Yii::app()->basePath.'/../images/eventos/'.$fileName2);
-                                $thumb->adaptiveResize(450,350);
-                                $imagen = explode(".", $fileName2);
-                                $thumb->save(Yii::app()->basePath.'/../images/eventos/'.$imagen[0].'_450_350.'.$imagen[1]);
-                            endif;
-                            
-                            $this->redirect(array('view','id'=>$model->even_id));
-                        }
-                    }	
-		}
+                }else{
+                     $model->even_imagen = $titulo;
+                }
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+                if(isset($uploadedDetail->name)){
+                    $fileName2    = "{$uploadedDetail}";  // random number + file name
+                    $fileName2    = str_replace(" ","_",$fileName2);
+                    if(file_exists(Yii::app()->basePath.'/../images/eventos/'.$fileName2)){
+                        $ran=rand(100,999);
+                        $fileName2 =$ran.'_'.$fileName2;
+                        $model->even_imagen_detail = $fileName2;
+                    }else{
+                        $model->even_imagen_detail = $fileName2;
+                    }
+                }else{
+                     $model->even_imagen_detail = $detail;
+                }
+
+                if($model->validate()){
+                    if($model->save()){
+                        if(isset($uploadedFile->name)):
+                            $uploadedFile->saveAs(Yii::app()->basePath.'/../images/eventos/'.$fileName);
+                            $thumb=Yii::app()->phpThumb->create(Yii::app()->basePath.'/../images/eventos/'.$fileName);
+                            $thumb->adaptiveResize(350,150);
+                            $imagen = explode(".", $fileName);
+                            $thumb->save(Yii::app()->basePath.'/../images/eventos/'.$imagen[0].'_350_150.'.$imagen[1]);
+                        endif;
+
+                        if(isset($uploadedDetail->name)):
+                            $uploadedDetail->saveAs(Yii::app()->basePath.'/../images/eventos/'.$fileName2);
+                            $thumb=Yii::app()->phpThumb->create(Yii::app()->basePath.'/../images/eventos/'.$fileName2);
+                            $thumb->adaptiveResize(450,350);
+                            $imagen = explode(".", $fileName2);
+                            $thumb->save(Yii::app()->basePath.'/../images/eventos/'.$imagen[0].'_450_350.'.$imagen[1]);
+                        endif;
+
+                        $this->actionGeneratePdf($model->even_id);
+
+                        $this->redirect(array('view','id'=>$model->even_id));
+                    }
+                }	
+            }
+
+            $this->render('update',array(
+                    'model'=>$model,
+            ));
 	}
 
 	/**
