@@ -4,7 +4,7 @@
     $this->headerTitulo    = $evento->even_titulo;
     $this->headerCategoria = $evento->evenCat->cat_nombre;
     $this->headerFecha     = ($evento->even_fecha == '0000-00-00')?date("F d,Y",strtotime($evento->even_fechacreacion)):date("F d,Y",strtotime($evento->even_fecha));
-    $this->headerImagen    = $evento->even_imagen_detail;
+    $this->headerImagen    = 'eventos/'.$evento->even_imagen_detail;
 ?>
 
 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="font-size: 18px;color:#898989;padding: 20px 25px">

@@ -150,7 +150,7 @@
             <header class="masthead subhead" style="background-color: #000000;" > 
                 <div class="header-wrapper">
                     <div class="header-background" style="
-                         background-image: linear-gradient(55deg, rgba(0, 37, 117, 0.68) 0%, rgba(51, 30, 245, 0.32) 67%, rgba(121, 93, 93, 0.78) 100%), url(<?php echo Yii::app()->request->baseUrl . '/images/noticias/' . $this->img_450_350($this->headerImagen) ?>);
+                         background-image: linear-gradient(55deg, rgba(0, 37, 117, 0.68) 0%, rgba(51, 30, 245, 0.32) 67%, rgba(121, 93, 93, 0.78) 100%), url(<?php echo Yii::app()->request->baseUrl . '/images/' . $this->img_450_350($this->headerImagen) ?>);
                          ;">
 
                         <div class="container" >

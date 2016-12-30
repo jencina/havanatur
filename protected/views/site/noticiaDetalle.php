@@ -4,7 +4,7 @@
     $this->headerTitulo    = $noticia->not_titulo;
     $this->headerCategoria = $noticia->categoriaCat->cat_nombre;
     $this->headerFecha     = ($noticia->not_fecha == '0000-00-00')?date("F d,Y",strtotime($noticia->not_fechacreacion)):date("F d,Y",strtotime($noticia->not_fecha));
-    $this->headerImagen    = $noticia->not_imagen_detail;
+    $this->headerImagen    = 'noticias/'.$noticia->not_imagen_detail;
     
     $this->otrosNoticias   = $otros;
 ?>
