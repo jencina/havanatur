@@ -42,7 +42,7 @@
                                     <table border='0' cellpadding='0' cellspacing='0' width='100%' id='emailBody' style='background-color:#FFFFFF; border-collapse:separate !important; border-radius:4px;padding-bottom:40px'>
                                         <tr>
                                             <td align='center' valign='top' class='bodyContent' style='color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:15px; line-height:150%; padding-top:40px; padding-right:40px; padding-bottom:30px; padding-left:40px; text-align:center;'>
-                                                <h1 style='color:#606060 !important; font-family:Helvetica, Arial, sans-serif; font-size:40px; font-weight:bold; letter-spacing:-1px; line-height:115%; margin:0; padding:0; text-align:center;'>Cotizacion</h1>
+                                                <h1 style='color:#606060 !important; font-family:Helvetica, Arial, sans-serif; font-size:40px; font-weight:bold; letter-spacing:-1px; line-height:115%; margin:0; padding:0; text-align:center;'>Registro Usuario</h1>
                                             </td>
                                         </tr>
                                         <tr>
@@ -74,44 +74,41 @@
                                         </tr>
                                         <tr style="background-color: #ffffff">
                                             <td align='center' valign='top' class='bodyContent' style='color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:15px; line-height:150%; padding-top:40px; padding-right:40px;padding-left:40px; text-align:center;'>
-                                                <b>Estimado Usuario:</b>
-                                                <br>Se han enviado los siguientes datos como inscripcion al evento <br></td>
-                                                        </td>
-                                                        </tr>
-                                                        <tr style="background-color: #ffffff;padding: 20px" >
-                                                            <td style="background-color: #ffffff">
-                                                                <table align='left' valign='top' class='bodyContent' style='background-color: #ffffff;color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:15px; line-height:150%;padding-right:40px; padding-bottom:50px; padding-left:40px; text-align:center;'>
-                                                                    <tr>
-                                                                        <td width="100"></td>
-                                                                        <td width="150" style="text-align:left;"><b>Nombre</b></td><td> <?php echo $cuerpo->int_nombre ?></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="100"></td>
-                                                                        <td width="150" style="text-align:left;"><b>Apellidos</b></td><td> <?php echo $cuerpo->int_apellido ?></td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                        </table>
-                                                        </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td align='center' valign='top'>
-                                                                <table border='0' cellpadding='0' cellspacing='0' width='100%' id='emailFooter'>
-                                                                    <tr>
-                                                                        <td align='center' valign='top' class='footerContent' style='color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:13px; line-height:125%;'>Havanatur Chile &copy; </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td align='center' valign='top' style='color:#FFBF00;padding-top:30px;'>&#9733;&#9733;&#9733;&#9733;&#9733;
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                        </table>
-                                                        </td>
-                                                        </tr>
-                                                        </table>
-                                                        </center>
-                                                        </body>
-                                                        </html>
+                                                <b>Bienvenido a Havanatur Chile!</b>
+                                                <br><?php echo $cuerpo->int_nombre . ' ' . $cuerpo->int_apellido ?>, tu registro en nuestro sitio esta casi completado<br>
+                                                        <br>
+
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr style="background-color: #ffffff;padding: 20px" >
+                                            <td align='center' valign='top' class='bodyContent' style='color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:15px; line-height:150%; padding-top:40px; padding-right:40px;padding-left:40px; text-align:center;'>
+                                                Ingresa al siguiente link para poder finalizar tu inscripcion:
+                                                <br>
+                                                <a href="<?php echo $link ?>" target="_blank"><?php echo $link ?></a>
+                                            </td>
+                                        </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            
+                                <tr>
+                                    <td align='center' valign='top'>
+                                        <table border='0' cellpadding='0' cellspacing='0' width='100%' id='emailFooter'>
+                                            <tr>
+                                                <td align='center' valign='top' class='footerContent' style='color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:13px; line-height:125%;'>Havanatur Chile &copy; </td>
+                                            </tr>
+                                            <tr>
+                                                <td align='center' valign='top' style='color:#FFBF00;padding-top:30px;'>&#9733;&#9733;&#9733;&#9733;&#9733;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+            </table>
+        </center>
+    </body>
+</html>

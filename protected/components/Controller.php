@@ -158,9 +158,9 @@ class Controller extends CController
         return $html;
     }
     
-    function bodyEmailRegistro($titulo2,$cuerpo,$titulo1 = ''){
+    function bodyEmailRegistro($titulo2,$cuerpo,$link){
 
-        $html = $this->renderPartial('application.components._mail_registro',array('titulo'=>$titulo2,'cuerpo'=>$cuerpo,'totulo1'=>$titulo1),true);
+        $html = $this->renderPartial('application.components._mail_registro',array('titulo'=>$titulo2,'cuerpo'=>$cuerpo,'link'=>$link),true);
 
         return $html;
     }

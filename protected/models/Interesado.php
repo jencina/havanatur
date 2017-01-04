@@ -18,8 +18,10 @@
  * @property integer $int_activo
  * @property integer $regiones_id
  * @property integer $comunas_id
+ * @property string $int_codigo
  *
  * The followings are the available model relations:
+ * @property DatosAdicional[] $datosAdicionals
  * @property Evento[] $eventos
  * @property Comunas $comunas
  * @property Regiones $regiones
@@ -29,40 +31,52 @@ class Interesado extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
-    
-        public $int_password_repetir = '';
-         
 	public function tableName()
 	{
 		return 'interesado';
 	}
+        
+        public $int_password_repetir = '';
 
 	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
+
+            return array(
+                    array('regiones_id, comunas_id,int_email, int_nombre, int_apellido, int_rut','required'),
+                    array('int_user, int_password, int_password_repetir','required','on'=>'insert'),
+                    array('int_activo, regiones_id, comunas_id', 'numerical', 'integerOnly'=>true),
+                    array('int_nombre, int_apellido, int_email, int_codigo', 'length', 'max'=>100),
+                    array('int_telefono, int_celular, int_rut, int_user, int_password', 'length', 'max'=>45),
+                    array('int_pasaporte', 'length', 'max'=>255),
+                    array('int_rut','unique'),
+                    array('int_rut','valida_rut'),
+                    array('int_password','repetir','on'=>'insert'),
+                    array('int_fechacreacion', 'safe'),
+                    // The following rule is used by search().
+                    // @todo Please remove those attributes that should not be searched.
+                    array('int_id, int_nombre, int_apellido, int_email, int_telefono, int_celular, int_rut, int_fechacreacion, int_user, int_password, int_pasaporte, int_activo, regiones_id, comunas_id, int_codigo', 'safe', 'on'=>'search'),
+            );
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
 		return array(
-                        array('regiones_id, comunas_id,int_email, int_nombre, int_apellido, int_rut','required'),
-                        array('int_user, int_password, int_password_repetir','required','on'=>'insert'),
-			array('int_activo, regiones_id, comunas_id', 'numerical', 'integerOnly'=>true),
-			array('int_nombre, int_apellido, int_email', 'length', 'max'=>100),
-			array('int_telefono, int_celular, int_rut, int_user, int_password', 'length', 'max'=>45),
-			array('int_pasaporte', 'length', 'max'=>255),
-                    
-                        array('int_rut','unique'),
-                        array('int_rut','valida_rut'),
-                        array('int_password','repetir','on'=>'insert'),
-			array('int_fechacreacion', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('int_id, int_nombre, int_apellido, int_email, int_telefono, int_celular, int_rut, int_fechacreacion, int_user, int_password, int_pasaporte, int_activo, regiones_id, comunas_id', 'safe', 'on'=>'search'),
+			'datosAdicionals' => array(self::HAS_MANY, 'DatosAdicional', 'interesado_int_id'),
+			'eventos' => array(self::MANY_MANY, 'Evento', 'evento_has_interesado(interesado_int_id, evento_even_id)'),
+			'comunas' => array(self::BELONGS_TO, 'Comunas', 'comunas_id'),
+			'regiones' => array(self::BELONGS_TO, 'Regiones', 'regiones_id'),
 		);
 	}
         
-         public function repetir($attribute,$params){           
+        public function repetir($attribute,$params){           
             if($this->int_password != $this->int_password_repetir){
                 $this->addError($attribute, 'Las password son distintas');
             }
@@ -105,20 +119,6 @@ class Interesado extends CActiveRecord
         }
 
 	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'eventos' => array(self::MANY_MANY, 'Evento', 'evento_has_interesado(interesado_int_id, evento_even_id)'),
-			'comunas' => array(self::BELONGS_TO, 'Comunas', 'comunas_id'),
-			'regiones' => array(self::BELONGS_TO, 'Regiones', 'regiones_id'),
-		);
-	}
-
-	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
@@ -139,6 +139,7 @@ class Interesado extends CActiveRecord
                         'int_password_repetir'=>'Repetir Password',
 			'regiones_id' => 'Region',
 			'comunas_id' => 'Comuna',
+			'int_codigo' => 'Codigo',
 		);
 	}
 
@@ -174,6 +175,7 @@ class Interesado extends CActiveRecord
 		$criteria->compare('int_activo',$this->int_activo);
 		$criteria->compare('regiones_id',$this->regiones_id);
 		$criteria->compare('comunas_id',$this->comunas_id);
+		$criteria->compare('int_codigo',$this->int_codigo,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

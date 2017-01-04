@@ -27,7 +27,7 @@ class UserController extends Controller
 	{
             return array(
                     array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                            'actions'=>array('LoadComunas'),
+                            'actions'=>array('LoadComunas','activateUser'),
                             'users'=>array('*'),
                     ),
                     array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -160,6 +160,35 @@ class UserController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
+        
+        public function actionActivateUser(){
+            $cod = Yii::app()->request->getParam('cod');
+            $codigo = Yii::app()->request->getParam('codigo');
+            
+            $user = Interesado::model()->findByAttributes(array('int_codigo'=>$cod,'int_id'=>$codigo));
+            
+            if($user){
+                $datetime1 = new DateTime($user->int_fechacreacion);
+                $datetime2 = new DateTime(date("Y-m-d H:i:s"));
+                $interval = $datetime1->diff($datetime2);
+                $dia      = $interval->format('%a');
+                
+                if($dia > 1){
+                    $this->render('activate',array('status'=>'failed','msj'=>'el link ha expirado, consulte con el administrador'));
+                }else{
+                    if($user->int_activo == 1){
+                        $this->render('activate',array('status'=>'failed','msj'=>'no se encuentra usuario'));
+                    }else{
+                        $user->int_activo = 1;
+                        $user->update();
+                        $this->render('activate',array('status'=>'success','msj'=>'usuario registrado con exito, ya puede ingresar a tu cuenta'));
+                    }
+                }
+                
+            }else{
+                $this->render('activate',array('status'=>'failed','msj'=>'no se encuentra usuario'));
+            }
+        }
 
 
 	/**

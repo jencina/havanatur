@@ -49,7 +49,7 @@ class UserIdentity extends CUserIdentity
             /*  $time = rand(1,5);
               sleep($time);*/
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
-        }elseif($user->int_activo == 1){
+        }elseif($user->int_activo == 0){
             $this->errorCode=self::ERROR_USERNAME_NOT_ACTIVE;
         }else{
             $this->_id=$user->int_id;

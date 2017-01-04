@@ -671,22 +671,39 @@ class SiteController extends Controller
                 if($model->insert()){
                     
                     $subject  = 'Registro Havanatur';
-                    //$to       = 'ger.general@havanatur.cl,ger.comercial@havanatur.cl';
-                    $to       = 'jonny.encina@gmail.com';
+                    //$to     = 'ger.general@havanatur.cl,ger.comercial@havanatur.cl';
+                    $to       = $model->int_email;
                     $titulo2  = 'Registro';
                     $cuerpo   = '<b>Estimado Usuario:</b> <br>';
-                    $html     = $this->bodyEmailRegistro($titulo2,$model);
-                    $this->sendMail($to,$subject,$html,$model->int_email);
                     
-                    header("Content-type: application/json");
-                    echo CJSON::encode(array(
-                        'status'=>'success',
-                        'data'  => '<div class="alert alert-success" role="alert">
-                                    <strong>Usuario registrado con exito!</strong>
-                                     Te estamos redirigiendo hacia el login.
-                                    </div>'
-                        ));
-                    exit;
+                    $model->int_codigo = md5($model->int_email.'_registro'.$model->int_id);
+                    $model->update();
+                    
+                    $link     = Yii::app()->request->hostInfo.Yii::app()->createUrl('user/activateUser',array('cod'=>$model->int_codigo,'codigo'=>$model->int_id));
+                    $html     = $this->bodyEmailRegistro($titulo2,$model,$link);
+                    if($this->sendMail($to,$subject,$html,$model->int_email)){
+                        header("Content-type: application/json");
+                        echo CJSON::encode(array(
+                            'status'=>'success',
+                            'data'  => '<div class="alert alert-success" role="alert">
+                                        <strong>Usuario registrado con exito!</strong>
+                                         Te estamos redirigiendo hacia el login.
+                                        </div>'
+                            ));
+                        exit;
+                    }else{
+                         header("Content-type: application/json");
+                        echo CJSON::encode(array(
+                            'status'=>'success',
+                            'data'  => '<div class="alert alert-danger" role="alert">
+                                        <strong>Usuario registrado con exito!</strong>
+                                         error al enviar email, contactar al administrador
+                                        </div>'
+                            ));
+                        exit;
+                    }
+                    
+                    
                 }  
             }
             
