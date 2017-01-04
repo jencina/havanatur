@@ -31,6 +31,46 @@
     </head>
 
     <body>
+        
+        <div id="top" class="top">
+            <div class="container">
+                <?php
+                $cambio1 = Configuracion::model()->findByAttributes(array('nombre' => 'tipo_cambio_1'));
+                $cambio2 = Configuracion::model()->findByAttributes(array('nombre' => 'tipo_cambio_2'));
+                ?>
+                <div class="contenido">
+                    <?php if(!Yii::app()->user->isGuest && Yii::app()->user->type=='web' ) { ?>
+                    <div class="body">
+                        <div class="icon"><i class="fa fa-power-off"></i></div>
+                        <div class="titulo"> <div class="titulo"><?php echo CHtml::link('Salir',array('site/logout'),array('style'=>'color:#fff;cursor:pointer;'));?></div></div>
+                    </div>
+                    <?php } ?>
+                    <div class="body">
+                        <div class="icon"><i class="fa fa-user"></i></div>
+                        <?php if(Yii::app()->user->isGuest || Yii::app()->user->type!='web' ) { ?>
+                            <div class="titulo"><?php echo CHtml::link('Ingresar / Inscribir',array('site/ingresar'),array('style'=>'color:#fff;cursor:pointer;'));?></div>
+                        <?php }else if(Yii::app()->user->type=='web'){ ?>
+                            <div class="titulo"><?php echo CHtml::link(Yii::app()->user->name,array('user/perfil'),array('style'=>'color:#fff;cursor:pointer;'));?></div>
+                        <?php } ?>
+                        
+                    </div>
+
+                    <div class="body">
+                        <div class="icon"><i class="fa fa-usd"></i></div>
+                        <div class="titulo"><?php echo $cambio1->valor; ?></div>
+                        <div class="valor"><?php echo $cambio1->valor2; ?></div>
+                    </div>
+
+                    <div class="body">
+                        <div class="icon"><i class="fa fa-usd"></i></div>
+                        <div class="titulo"><?php echo $cambio2->valor; ?></div>
+                        <div class="valor"><?php echo $cambio2->valor2; ?></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
         <?php
         $programas     = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->programas));
         $bloqueos      = Programa::model()->findAll(array('condition' => 'activo =1 and programa_tipo_id = ' . $this->bloqueos));
@@ -104,7 +144,7 @@
             'brandOptions' => array('style' => 'padding:0;'),
             'brandUrl' => '#',
             'fixed' => 'top',
-            'htmlOptions' => array('class' => 'background-havana-blue', 'id' => 'menu','style'=>'margin:0;border:none;box-shadow: 0 0 11px #222;'),
+            'htmlOptions' => array('class' => 'background-havana-blue', 'id' => 'menu','style'=>'margin:0;border:none;box-shadow: 0 0 11px #222;top:30px'),
             'items' => array(
                 array(
                     'class' => 'booster.widgets.TbMenu',

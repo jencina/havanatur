@@ -157,6 +157,13 @@ class Controller extends CController
 
         return $html;
     }
+    
+    function bodyEmailRegistro($titulo2,$cuerpo,$titulo1 = ''){
+
+        $html = $this->renderPartial('application.components._mail_registro',array('titulo'=>$titulo2,'cuerpo'=>$cuerpo,'totulo1'=>$titulo1),true);
+
+        return $html;
+    }
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}

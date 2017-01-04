@@ -1,13 +1,37 @@
-<div class="page-header">
-    <h1>Perfil de Usuario</h1>
+<?php
+
+$this->breadcrumbs = array('Perfil de Usuario');
+
+?>
+
+<style>
+    .panel-success > .panel-heading {
+        background-color: #002575;
+        border-color: #000d5d;
+        color: #fff;
+    }
+    
+    .panel-heading .btn{
+        padding: 0 12px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-desktop fa-user"></i>
+            Perfil de Usuario
+        </h1>
+    </div>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <div class="thumbnail">
+        <div class="thumbnail" style="background-color: inherit">
             <img src="<?php echo Yii::app()->request->baseUrl.'/images/user.png'?>" style="width: 200px">
             <div class="caption" style="text-align: center">
               <h3><?php echo Yii::app()->user->name?></h3>
+              <p><span style="font-size: 17px">Eventos Inscritos: <span id="contador" class="label label-primary"><?php echo EventoHasInteresado::model()->countByAttributes(array('interesado_int_id'=>Yii::app()->user->id)); ?></span></span></p>
             </div>
         </div>
     </div>

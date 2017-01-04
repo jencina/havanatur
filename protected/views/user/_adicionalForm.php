@@ -88,7 +88,7 @@
                 array(
                     'buttonType' => 'submit',
                     'type' => 'primary',
-                    'label' => 'Registrar',
+                    'label' => 'Guardar',
                     'loadingText'=>'<i class="fa fa-circle-o-notch fa-spin"></i> Enviando ...',
                     'htmlOptions'   => array('id'=> 'btn-int'),
                 )

@@ -42,8 +42,6 @@ class SiteController extends Controller
                 'caption' => $caro->descripcion
             );
         }
-        // renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index',array(
                     'carousel'          => $carousel,
                     'programaDestacados'=> $programaDestacados,
@@ -630,31 +628,28 @@ class SiteController extends Controller
             return $this->renderPartial('_interesadoForm',array('model'=>$model,'evento'=>$evento));
             exit;
            
-        }
-        
+        }   
     }
-    
     
     public function actionIngresar()
 	{
+            $this->layout='//layouts/main-eventos';
             $model=new LoginForm;
 
             // if it is ajax validation request
             if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
             {
-                    echo CActiveForm::validate($model);
-                    Yii::app()->end();
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
             }
-
             // collect user input data
             if(isset($_POST['LoginForm']))
             {
-            
-                    $model->attributes=$_POST['LoginForm'];
-                    $model->type = 'web';                  
-                    // validate user input and redirect to the previous page if valid
-                    if($model->validate() && $model->login())
-                            $this->redirect(array('site/index'));
+                $model->attributes=$_POST['LoginForm'];
+                $model->type = 'web';                  
+                // validate user input and redirect to the previous page if valid
+                if($model->validate() && $model->login())
+                        $this->redirect(array('site/index'));
             }
             // display the login form
             $this->render('ingresar',array('model'=>$model));
@@ -674,6 +669,15 @@ class SiteController extends Controller
                 $model->int_password      = md5($model->int_password);
                 
                 if($model->insert()){
+                    
+                    $subject  = 'Registro Havanatur';
+                    //$to       = 'ger.general@havanatur.cl,ger.comercial@havanatur.cl';
+                    $to       = 'jonny.encina@gmail.com';
+                    $titulo2  = 'Registro';
+                    $cuerpo   = '<b>Estimado Usuario:</b> <br>';
+                    $html     = $this->bodyEmailRegistro($titulo2,$model);
+                    $this->sendMail($to,$subject,$html,$model->int_email);
+                    
                     header("Content-type: application/json");
                     echo CJSON::encode(array(
                         'status'=>'success',

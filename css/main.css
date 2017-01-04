@@ -47,19 +47,19 @@ body{
 
 .top .contenido .body{
     float: right;
-    border-right: 1px solid #fff;
     margin: 5px 0;
     padding: 1px 7px;
 }
 
 .top .contenido .body .icon{
-    background: #fff none repeat scroll 0 0;
-    color: #002575;
+    background: #00104d  none repeat scroll 0 0;
+    color: #ffffff;
     font-size: 13px;
     margin-right: 5px;
     padding: 1px;
     text-align: center;
     width: 22px;
+    border-radius: 100%;
 }
 
 .top .contenido .body div{
