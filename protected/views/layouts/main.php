@@ -148,12 +148,22 @@ foreach ($informaciones as $info) {
     $informacion[] = array('label' => $info->titulo, 'url' => array('site/informaciones', 'id' => $info->id));
 }
 
-$eventos  = EventoCategoria::model()->findAll();
+$eventomenu = CategoriaMenuEvento::model()->findAll();
+$evenMenu   = '';
+foreach ($eventomenu as $even) {
+    $submenu = '';
+    foreach ($even->eventoCategorias as $cat){
+         $submenu .= '<li>'. CHtml::link($cat->cat_nombre, array('site/eventos', 'id' => $cat->cat_id)).'</li>';
+    }
+    $evenMenu .= '<li><b style="clear: both;display: block;line-height: 1.42857;padding: 3px 5px;white-space: nowrap;">'.$even->cat_nombre.'</b></li>';
+    $evenMenu .= $submenu;
+}
+/*$eventos  = EventoCategoria::model()->findAll();
 $evenMenu = array();
 foreach ($eventos as $even){
     $evenMenu[] = array('label' => 'Evento de '. $even->cat_nombre, 'url' => array('site/eventos', 'id' => $even->cat_id));
 }
-$evenMenu[] = array('label' => 'Noticias', 'url' => array('site/noticias'));
+$evenMenu[] = array('label' => 'Noticias', 'url' => array('site/noticias'));*/
 
 $this->widget(
     'booster.widgets.TbNavbar', array(
@@ -194,12 +204,12 @@ $this->widget(
                     'active' => (Yii::app()->controller->menu_activo == 'bloqueos') ? true : false,
                     'items' => $bloqueo
                 ),*/
-                array(
+                /*array(
                     'label' => 'EVENTOS ACADEMICOS',
                     'url' => '#',
                     'active' => (Yii::app()->controller->menu_activo == 'eventos') ? true : false,
                     'items' => $evenMenu
-                ),
+                ),*/
                 array('label' => 'TURISMO Y SALUD',
                     'active' => (Yii::app()->controller->menu_activo == 'turismoSalud') ? true : false,
                     'url' => '#', 'items' => $turismoSalud),
@@ -211,6 +221,16 @@ $this->widget(
             //array('label' => 'CONTACTO', 'url' =>'#'),
             ),
         ),
+        '<ul id="yw2" class="nav navbar-nav">'
+        . '<li class="dropdown">'
+        . '<a class="dropdown-toggle" href="#" data-toggle="dropdown">EVENTOS ACADEMICOS<span class="caret"></span></a>'
+        . '<ul class="dropdown-menu">'
+        . $evenMenu
+        . '<li class="divider"></li>'
+        . '<li>'.CHtml::link('Noticias',array('site/noticias')).'</li>'
+        . '</ul>'
+        . '</li>'
+        . '</ul>'    
     ),
         )
 );

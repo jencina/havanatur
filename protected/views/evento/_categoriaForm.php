@@ -21,6 +21,20 @@ $form = $this->beginWidget(
            )
         ); ?>
     
+         <?php  echo $form->dropDownListGroup(
+            $model,
+            'categoria_menu_evento_cat_id',
+            array(
+                'wrapperHtmlOptions' => array(
+                    'class' => 'col-sm-5',
+                ),
+                'widgetOptions' => array(
+                    'data' => CHtml::listData(CategoriaMenuEvento::model()->findAll(),'cat_id', 'cat_nombre'),
+                    'htmlOptions'=>array('prompt'=>'Seleccione Categoria')
+                )
+            )
+        );?>
+    
         <div class="form-actions col-md-12" >
             <?php $this->widget(
                 'booster.widgets.TbButton',

@@ -124,14 +124,28 @@
         foreach ($informaciones as $info) {
             $informacion[] = array('label' => $info->titulo, 'url' => array('site/informaciones', 'id' => $info->id));
         }
+        
+        $eventomenu = CategoriaMenuEvento::model()->findAll();
 
-        $eventos = EventoCategoria::model()->findAll();
-        $evenMenu = array();
-        foreach ($eventos as $even) {
-            $evenMenu[] = array('label' => 'Evento de ' . $even->cat_nombre, 'url' => array('site/eventos', 'id' => $even->cat_id));
+        //$eventos = EventoCategoria::model()->findAll();
+       // $evenMenu = array();
+         $evenMenu = '';
+        foreach ($eventomenu as $even) {
+            $submenu = '';
+            //$submenu = array();
+            foreach ($even->eventoCategorias as $cat){
+                 $submenu .= '<li>'. CHtml::link($cat->cat_nombre, array('site/eventos', 'id' => $cat->cat_id)).'</li>';
+                //$submenu[] = array('label' => $cat->cat_nombre,'url' => array('site/eventos', 'id' => $cat->cat_id));
+            }
+            //$evenMenu[] = array('label' => $even->cat_nombre,'items'=>$submenu );
+            $evenMenu .= '<li><b style="clear: both;display: block;line-height: 1.42857;padding: 3px 5px;white-space: nowrap;">'.$even->cat_nombre.'</b></li>';
+            $evenMenu .= $submenu;
         }
-        $evenMenu[] = array('label' => 'Noticias', 'url' => array('site/noticias'));
+        //$evenMenu[] = '---';
+        //$evenMenu[] = array('label' => 'Noticias', 'url' => array('site/noticias'));
        
+        
+        
         ?>
 
         <?php
@@ -147,7 +161,7 @@
             'items' => array(
                 array(
                     'class' => 'booster.widgets.TbMenu',
-                    'type' => 'navbar',
+                    'type' => 'navbar', 
                     'items' => array(
                         array('label' => 'HOME', 'url' => array('site/index')),
                         array('label' => 'NUESTRA EMPRESA', 'url' => '#',
@@ -164,12 +178,12 @@
                             'active' => (Yii::app()->controller->menu_activo == 'programa') ? true : false,
                             'items' => $programa
                         ),
-                        array(
+                        /*array(
                             'label' => 'EVENTOS ACADEMICOS',
                             'url' => '#',
                             'active' => (Yii::app()->controller->menu_activo == 'eventos') ? true : false,
                             'items' => $evenMenu
-                        ),
+                        ),*/
                         array('label' => 'TURISMO Y SALUD',
                             'active' => (Yii::app()->controller->menu_activo == 'turismoSalud') ? true : false,
                             'url' => '#', 'items' => $turismoSalud),
@@ -177,10 +191,23 @@
                             'url' => '#',
                             'active' => (Yii::app()->controller->menu_activo == 'otros') ? true : false,
                             'items' => $otroServicio),
-                    //array('label' => 'CONTACTO', 'url' =>'#'),
+                            //array('label' => 'CONTACTO', 'url' =>'#'),
                     ),
                 ),
+                  '<ul id="yw2" class="nav navbar-nav">'
+                . '<li class="dropdown">'
+                . '<a class="dropdown-toggle" href="#" data-toggle="dropdown">EVENTOS ACADEMICOS<span class="caret"></span></a>'
+                . '<ul class="dropdown-menu">'
+                . $evenMenu
+                . '<li class="divider"></li>'
+                . '<li>'.CHtml::link('Noticias',array('site/noticias')).'</li>'
+                . '</ul>'
+                . '</li>'
+                . '</ul>'    
             ),
+            
+                
+                
                 )
         );
         ?>
