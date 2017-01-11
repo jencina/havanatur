@@ -3,6 +3,7 @@ $this->pageTitle=Yii::app()->name . ' - Registar Usuario';
 $this->breadcrumbs=array(
 	'Ingresar'=>array('site/ingresar'),'Registar Usuario'
 );
+$this->headerTitulo    = 'Registro Usuario';
 ?>
 
 <div class="page-header" style="">

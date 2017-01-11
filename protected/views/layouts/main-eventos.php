@@ -194,10 +194,10 @@
                             //array('label' => 'CONTACTO', 'url' =>'#'),
                     ),
                 ),
-                  '<ul id="yw2" class="nav navbar-nav">'
+                  '<ul id="yw2" class="nav navbar-nav" >'
                 . '<li class="dropdown">'
                 . '<a class="dropdown-toggle" href="#" data-toggle="dropdown">EVENTOS ACADEMICOS<span class="caret"></span></a>'
-                . '<ul class="dropdown-menu">'
+                . '<ul class="dropdown-menu" style="padding:0">'
                 . $evenMenu
                 . '<li class="divider"></li>'
                 . '<li>'.CHtml::link('Noticias',array('site/noticias')).'</li>'
@@ -317,10 +317,10 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/slick/slick-theme.css">
 
-    <div id="otros" class="header-background">
+    <div id="otros" class="header-background" style="background:none">
         <div class="container">
             <div class="row">
-                <h1 style="color:#fff">OTRAS NOTICIAS:</h1>
+                <h1 style="color:#222">OTRAS NOTICIAS:</h1>
                 <div id="otros-carousel" class="myCarousel slick">
                         <?php
                             foreach ($this->otrosNoticias as $noticia){

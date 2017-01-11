@@ -656,7 +656,7 @@ class SiteController extends Controller
 	}
        
     public function actionRegistrar(){
-        
+        $this->layout='//layouts/main-eventos';
         $model = new Interesado();
         
         if(isset($_POST['Interesado']))
