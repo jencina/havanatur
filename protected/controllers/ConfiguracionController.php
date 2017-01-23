@@ -45,6 +45,14 @@ class ConfiguracionController extends Controller
 			),
 		);
 	}
+        
+        public function init() {
+            if(!Yii::app()->user->isGuest){
+                if(Yii::app()->user->type == 'web'){
+                    $this->redirect(array('admin/index'));
+                }
+            }
+        }
 
 	/**
 	 * Displays a particular model.

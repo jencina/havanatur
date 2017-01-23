@@ -47,6 +47,14 @@ class ProgramaController extends Controller
 			),
 		);
 	}
+        
+        public function init() {
+            if(!Yii::app()->user->isGuest){
+                if(Yii::app()->user->type == 'web'){
+                    $this->redirect(array('admin/index'));
+                }
+            }
+        }
 
     public function actionGetPdf(){
         $id   = Yii::app()->request->getParam('id');
