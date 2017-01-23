@@ -112,7 +112,7 @@
         <li class="list-group-item">
             <span style="font-size: 17px"><i class="fa fa-users"></i>Usuarios Inscritos: <span id="contador" class="label label-primary"><?php echo EventoHasInteresado::model()->countByAttributes(array('evento_even_id'=>$evento->even_id)); ?></span></span>
         </li>
-        <?php if(!Yii::app()->user->isGuest):?>
+        <?php if(!Yii::app()->user->isGuest && Yii::app()->user->type=='web' ):?>
         <li class="list-group-item">
             <div class="row btn-custom ">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 button-container">
