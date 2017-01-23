@@ -12,6 +12,46 @@
         <?php echo $evento->even_contenido?>
     </div>
     
+    <?php if($tarifas):?>
+    <div class="col-md-12" style="margin-top: 15px">
+        
+        <div class="page-header-detail btn-warning">
+            <h4 style="margin-top:15px;">
+                <i class="fa fa-dollar"></i> Tarifas
+            </h4>
+        </div>
+
+        <ul class="include list-group">
+            <li class="list-group-item table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>HOTELES</th>
+                            <th>PLAN</th>
+                            <th>SGL</th>
+                            <th>DBL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($tarifas as $tarifa):?>
+                        <tr>
+                            <td><?php 
+                                    foreach ($tarifa->hotels  as $hotel){
+                                      echo $hotel->nombre.'<br>';  
+                                    }
+                            ?></td>
+                            <td><?php echo $tarifa->tar_plan?></td>
+                            <td><?php echo $tarifa->tar_sgl?></td>
+                            <td><?php echo $tarifa->tar_dbl?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+    </div>
+    <?php endif;?>
+    
     <?php if(Yii::app()->user->isGuest):?>
     <div class="col-md-12 margin-top-10" style="margin-top: 20px">
         <div class="row btn-custom ">
@@ -44,6 +84,7 @@
             <i class="fa fa-info-circle"></i> Consultas
         </h4>
     </div>
+    
     <ul class="include list-group">
         <li class="list-group-item">
             <span style="font-size: 17px"><i class="fa fa-envelope"></i><?php echo $evento->even_email; ?></span>
@@ -76,7 +117,7 @@
             <div class="row btn-custom ">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 button-container">
                     <div class="button-container">
-                        <?php echo CHtml::link('Inscribir Evento',null,array('id'=>'btn-inscribir','class'=>'cotizar'));?>
+                        <?php echo CHtml::link('Inscribir',null,array('id'=>'btn-inscribir','class'=>'cotizar'));?>
                     </div>
                 </div>
             </div>

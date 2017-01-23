@@ -5,7 +5,7 @@
         array(
             'id' => 'interesado-form',
             'type' => 'horizontal',
-        'htmlOptions' => array('class' => 'well')
+        'htmlOptions' => array('class' => 'well', 'enctype' => 'multipart/form-data')
         )
     ); ?>
 
@@ -14,7 +14,6 @@
     <div class="row">
         <div class="col-md-6" style="text-align: right"><h4>Datos Personales:</h4></div>
     </div>
-    
     
         <?php echo $form->textFieldGroup(
         $model,
@@ -46,15 +45,19 @@
         )
         ); ?>
     
-        <?php echo $form->textFieldGroup(
-        $model,
-        'ad_pasaporte',
-        array(
-            'wrapperHtmlOptions' => array(
-                'class' => 'col-sm-5',
-            ),
-        )
-        ); ?>
+    
+        <?php 
+        if($model->isNewRecord){
+        echo $form->fileFieldGroup($model, 'ad_pasaporte',
+                array(
+                        'wrapperHtmlOptions' => array(
+                                'class' => 'col-sm-5',
+                        ),
+                )
+        );
+        
+        }
+        ?>
     
         <hr>
     
@@ -72,15 +75,19 @@
         )
         ); ?>
     
-        <?php echo $form->textFieldGroup(
-        $model,
-        'ad_contacto_telefono',
-        array(
-            'wrapperHtmlOptions' => array(
-                'class' => 'col-sm-5',
-            ),
-        )
-        ); ?>
+        <?php 
+            
+                echo $form->textFieldGroup(
+                $model,
+                'ad_contacto_telefono',
+                array(
+                    'wrapperHtmlOptions' => array(
+                        'class' => 'col-sm-5',
+                    ),
+                )
+                );
+            
+        ?>
     
         <div class="form-actions col-md-12" >
             <?php $this->widget(

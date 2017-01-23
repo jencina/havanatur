@@ -105,11 +105,20 @@ class EventoController extends Controller
 	public function actionCreate()
 	{
             Yii::app()->controller->menu_activo= 'eventos';
-		$model=new Evento;
+            $model   = new Evento();
+            $hoteles = new EventoTarifaHasHotel();
+            $tarifa  = new EventoTarifa();
 
-		if(isset($_POST['Evento']))
+            if(isset($_POST['Evento']))
 		{
                     $model->attributes             = $_POST['Evento'];
+                    $tarifa->attributes            = $_POST['EventoTarifa'];
+                    if(isset($_POST['EventoTarifaHasHotel'])){
+                        $hoteles->attributes = $_POST['EventoTarifaHasHotel'];
+                    }else{
+                        $hoteles->hotel_id  = null;
+                    }
+                    
                     $model->even_fechacreacion     = date("Y-m-d H:i:s"); 
                     $model->even_fechamodificacion = date("Y-m-d H:i:s"); 
                     $model->usuario_id             = Yii::app()->user->id;
@@ -140,7 +149,11 @@ class EventoController extends Controller
                         }
                     }
                     
-                    if($model->validate()){
+                    $valid= $model->validate();
+                    $valid= $hoteles->validate() && $valid;
+                    $valid= $tarifa->validate() && $valid;
+        
+                    if($valid){
                         if($model->save()){
                             if(!empty($model->even_imagen)):
                                 $uploadedFile->saveAs(Yii::app()->basePath.'/../images/eventos/'.$fileName);
@@ -149,7 +162,7 @@ class EventoController extends Controller
                                 $imagen = explode(".", $fileName);
                                 $thumb->save(Yii::app()->basePath.'/../images/eventos/'.$imagen[0].'_350_150.'.$imagen[1]);
                             endif;
-                            
+
                             if(!empty($model->even_imagen_detail)):
                                 $uploadedDetail->saveAs(Yii::app()->basePath.'/../images/eventos/'.$fileName2);
                                 $thumb=Yii::app()->phpThumb->create(Yii::app()->basePath.'/../images/eventos/'.$fileName2);
@@ -158,15 +171,27 @@ class EventoController extends Controller
                                 $thumb->save(Yii::app()->basePath.'/../images/eventos/'.$imagen[0].'_450_350.'.$imagen[1]);
                             endif;
                             
-                            $this->actionGeneratePdf($model->even_id);
+                            $tarifa->evento_id = $model->even_id;
+                            $tarifa->insert();
                             
+                            foreach ($hoteles->hotel_id as $hotel){
+                                $h = new EventoTarifaHasHotel();
+                                $h->hotel_id = $hotel;
+                                $h->evento_tarifa_tar_id = $tarifa->tar_id;
+                                $h->insert();
+                            }
+
+                            $this->actionGeneratePdf($model->even_id);
+
                             $this->redirect(array('view','id'=>$model->even_id));
                         }
                     }	
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'  => $model,
+                        'hoteles'=> $hoteles,
+                        'tarifa' => $tarifa
 		));
 	}
 
@@ -178,13 +203,39 @@ class EventoController extends Controller
 	public function actionUpdate($id)
 	{
             Yii::app()->controller->menu_activo= 'eventos';
-            $model=$this->loadModel($id);
+            $model  = $this->loadModel($id);           
+            $tarifa = EventoTarifa::model()->findByAttributes(array('evento_id'=>$model->even_id));
+
+            if(!$tarifa){
+               $tarifa = new EventoTarifa();
+               $tarifa->evento_id = $model->even_id;
+               $tarifa->insert();
+            }
+            
+            $hoteles = new EventoTarifaHasHotel();
+            
+            $hot = array();
+            if(isset($tarifa->hotels)){
+                foreach($tarifa->hotels as $h){
+                    $hot[] = $h->id;
+                }
+            }
+            
+            $hoteles->hotel_id = $hot;
 
             $titulo = $model->even_imagen; 
             $detail = $model->even_imagen_detail; 
             if(isset($_POST['Evento']))
             {
                 $model->attributes             = $_POST['Evento'];
+                 $tarifa->attributes            = $_POST['EventoTarifa'];
+                    if(isset($_POST['EventoTarifaHasHotel'])){
+                        $hoteles->attributes = $_POST['EventoTarifaHasHotel'];
+                    }else{
+                        $hoteles->hotel_id  = null;
+                    }
+                    
+                
                 $model->even_fechacreacion     = date("Y-m-d H:i:s"); 
                 $model->even_fechamodificacion = date("Y-m-d H:i:s"); 
                 $model->usuario_id             = Yii::app()->user->id;
@@ -218,8 +269,12 @@ class EventoController extends Controller
                 }else{
                      $model->even_imagen_detail = $detail;
                 }
+                
+                $valid= $model->validate();
+                $valid= $hoteles->validate() && $valid;
+                $valid= $tarifa->validate() && $valid;
 
-                if($model->validate()){
+                if($valid){
                     if($model->save()){
                         if(isset($uploadedFile->name)):
                             $uploadedFile->saveAs(Yii::app()->basePath.'/../images/eventos/'.$fileName);
@@ -236,16 +291,27 @@ class EventoController extends Controller
                             $imagen = explode(".", $fileName2);
                             $thumb->save(Yii::app()->basePath.'/../images/eventos/'.$imagen[0].'_450_350.'.$imagen[1]);
                         endif;
+                        
+                        $tarifa->update();
+                        EventoTarifaHasHotel::model()->deleteAllByAttributes(array('evento_tarifa_tar_id'=>$tarifa->tar_id));
+                        
+                        foreach ($hoteles->hotel_id as $hotel){
+                            $h = new EventoTarifaHasHotel();
+                            $h->hotel_id = $hotel;
+                            $h->evento_tarifa_tar_id = $tarifa->tar_id;
+                            $h->insert();
+                        }
 
                         $this->actionGeneratePdf($model->even_id);
-
                         $this->redirect(array('view','id'=>$model->even_id));
                     }
                 }	
             }
 
             $this->render('update',array(
-                    'model'=>$model,
+                    'model'  => $model,
+                    'hoteles'=> $hoteles,
+                    'tarifa' => $tarifa
             ));
 	}
 

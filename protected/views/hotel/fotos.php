@@ -25,7 +25,6 @@ $this->pageicon      = 'fa-keyboard-o';
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 
-<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
     <!-- The container for the modal slides -->
     <div class="slides"></div>

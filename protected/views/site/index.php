@@ -94,7 +94,7 @@
         <?php endforeach;?>
     </div>
 </div>
-
+<?php if($noticias):?>
 <div class="page-header">
     <h1>
         Noticias
@@ -111,7 +111,9 @@
             ?>
     </div>
 </div>
+<?php endif;?>
 
+<?php if($eventos):?>
 <div class="page-header">
     <h1>
         Eventos
@@ -128,6 +130,7 @@
             ?>
     </div>
 </div>
+<?php endif;?>
 
 <div class="page-header">
     <h1>

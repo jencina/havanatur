@@ -131,33 +131,72 @@ $form = $this->beginWidget(
             )
         );?>
     
-         <?php echo $form->switchGroup($model, 'even_activo',
-            array(
-                'widgetOptions' => array(
-                    'events'=>array(
-                        'switchChange'=>'js:function(event, state) {
-                                                     // console.log(this); // DOM element
-                                                      //console.log(event); // jQuery event
-                                                      //console.log(state); // true | false
-                                                    }'
-                    )
-                )
-            )
-        ); ?>
+        <?php echo $form->switchGroup($model, 'even_activo'); ?>
     
-        <?php echo $form->switchGroup($model, 'even_destacado',
-            array(
-                'widgetOptions' => array(
-                    'events'=>array(
-                        'switchChange'=>'js:function(event, state) {
-                                                     // console.log(this); // DOM element
-                                                      //console.log(event); // jQuery event
-                                                      //console.log(state); // true | false
-                                                    }'
-                    )
-                )
-            )
-        ); ?>
+        <?php echo $form->switchGroup($model, 'even_destacado'); ?>
+    
+        <div class="row">
+            <div class="col-md-6" style="text-align: right"><h4>Tarifas Evento:</h4></div>
+        </div>
+    
+         
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Hoteles</label>
+            <?php
+            $form->widget('booster.widgets.TbSelect2',array(
+                                'model'=>$hoteles,//= Activity::model(),                  
+                                'attribute'=>'hotel_id',
+                                'value'=>$hoteles->hotel_id,                            
+                                'data'=> CHtml::listData(Hotel::model()->findAllByAttributes(array("activo"=>1),array('order'=>'nombre ASC')),'id', 'nombre'),
+                                'options'=>array(
+                                    'class'=>'col-sm-5 col-sm-9',
+                                    //'width'=>'200px',
+                                    'placeholder'=>'Seleccione Hotel', // add this line
+                                    // 'allowClear'=>true,  
+                                ),
+                                'htmlOptions'=>array('id'=>'EventoTarifaHasHotel','class'=>'col-sm-5 col-sm-9','multiple'=>'multiple',)
+                        ));
+
+            echo $form->error($hoteles,'hotel_id');
+            ?>
+        </div>
+        
+    
+        <?php //echo $form->dropDownList($hoteles, 'hotel_id', CHtml::listData(Hotel::model()->findAllByAttributes(array("activo"=>1),array('order'=>'nombre ASC')),'id','nombre'), array('id' => 'country_list', 'multiple' => true)) ?>
+    
+        <?php
+        
+        echo $form->textFieldGroup(
+           $tarifa,
+           'tar_plan',
+           array(
+               'wrapperHtmlOptions' => array(
+                   'class' => 'col-sm-5',
+               ),
+           )
+        ); 
+        
+        echo $form->textFieldGroup(
+           $tarifa,
+           'tar_sgl',
+           array(
+               'wrapperHtmlOptions' => array(
+                   'class' => 'col-sm-5',
+               ),
+           )
+        ); 
+        
+        echo $form->textFieldGroup(
+           $tarifa,
+           'tar_dbl',
+           array(
+               'wrapperHtmlOptions' => array(
+                   'class' => 'col-sm-5',
+               ),
+           )
+        );
+        
+        ?>
     
         <div class="form-actions col-md-12" >
             <?php $this->widget(

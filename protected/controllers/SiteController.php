@@ -590,8 +590,15 @@ class SiteController extends Controller
 
         $evento = Evento::model()->findByPk($id);
         $categorias = EventoCategoria::model()->findAll();
+        $tarifas = EventoTarifa::model()->findAllByAttributes(array('evento_id'=>$evento->even_id));
 
-        $this->render('eventoDetalle',array('evento'=>$evento,'categorias'=>$categorias,'model'=>$model));
+        $this->render('eventoDetalle',array(
+            'evento'=>$evento,
+            'categorias'=>$categorias,
+            'model'=>$model,
+            'tarifas'=>$tarifas
+                
+                ));
     }
     
     public function actionSetInteresado(){

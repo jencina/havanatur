@@ -7,4 +7,8 @@
     $this->pageicon      = ' fa-map-marker ';
 ?>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array(
+    'model'=>$model,
+    'hoteles'=> $hoteles,
+    'tarifa' => $tarifa
+        )); ?>

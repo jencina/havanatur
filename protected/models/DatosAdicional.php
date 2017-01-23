@@ -41,6 +41,7 @@ class DatosAdicional extends CActiveRecord
 			array('ad_profesion, ad_especialidad, ad_lugar_trabajo, ad_contacto_nombre, ad_pasaporte', 'length', 'max'=>255),
 			array('ad_contacto_telefono', 'length', 'max'=>45),
 			array('ad_fechacreacion, ad_fechamodificacion', 'safe'),
+                        array('ad_pasaporte', 'file','types'=>'jpg, png', 'allowEmpty'=>true, 'on'=>'insert'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ad_id, ad_profesion, ad_especialidad, ad_lugar_trabajo, ad_contacto_nombre, ad_contacto_telefono, ad_pasaporte, ad_fechacreacion, ad_fechamodificacion, interesado_int_id', 'safe', 'on'=>'search'),

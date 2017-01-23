@@ -30,8 +30,15 @@ $this->breadcrumbs = array('Perfil de Usuario');
         <div class="thumbnail" style="background-color: inherit">
             <img src="<?php echo Yii::app()->request->baseUrl.'/images/user.png'?>" style="width: 200px">
             <div class="caption" style="text-align: center">
-              <h3><?php echo Yii::app()->user->name?></h3>
-              <p><span style="font-size: 17px">Eventos Inscritos: <span id="contador" class="label label-primary"><?php echo EventoHasInteresado::model()->countByAttributes(array('interesado_int_id'=>Yii::app()->user->id)); ?></span></span></p>
+                <h3><?php echo Yii::app()->user->name?></h3>
+                <p><span style="font-size: 17px">Eventos Inscritos: <span id="contador" class="label label-primary"><?php echo EventoHasInteresado::model()->countByAttributes(array('interesado_int_id'=>Yii::app()->user->id)); ?></span></span></p>
+                <p>
+                  <span style="font-size: 17px">Pasaporte:
+                    <?php if(isset($adicional->ad_pasaporte )):?>
+                    <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery" data-filter="*" ><a href="<?php echo Yii::app()->request->baseUrl.'/images/passport/'.$adicional->ad_pasaporte; ?>" title="<?php echo $adicional->ad_pasaporte ?>" data-gallery><?php echo $adicional->ad_pasaporte?></a></div>
+                    <?php endif;?>
+                  </span>
+                </p>
             </div>
         </div>
     </div>
@@ -106,12 +113,49 @@ $this->breadcrumbs = array('Perfil de Usuario');
                 'ad_lugar_trabajo',
                 'ad_contacto_nombre',
                 'ad_contacto_telefono',
-                'ad_pasaporte',
             ),
                 )
         );
         ?>
         <?php $this->endWidget(); ?>
 
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+
+<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

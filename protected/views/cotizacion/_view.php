@@ -27,9 +27,20 @@
             <th><?php echo CHtml::encode($data->getAttributeLabel('fecha_creacion')); ?></th>
             <td><?php echo CHtml::encode($data->fecha_creacion); ?></td>
         </tr>
+        
         <tr class="odd">
-            <th><?php echo CHtml::encode($data->getAttributeLabel('programa_combinacion_vigencia_id')); ?></th>
-            <td><?php echo CHtml::encode($data->programa_combinacion_vigencia_id); ?></td>
+            <th><?php echo CHtml::encode('Programa'); ?></th>
+            <td><?php echo CHtml::encode($data->programaCombinacionVigencia->programaCombinacion->programa->nombre); ?></td>
+        </tr>
+        
+        <tr class="odd">
+            <th><?php echo CHtml::encode('Combinacion'); ?></th>
+            <td><?php echo CHtml::encode($data->programaCombinacionVigencia->programaCombinacion->getNombre()); ?></td>
+        </tr>
+        
+        <tr class="odd">
+            <th><?php echo CHtml::encode('Vigencia'); ?></th>
+            <td><?php echo CHtml::encode($data->programaCombinacionVigencia->desde.'  '.$data->programaCombinacionVigencia->desde); ?></td>
         </tr>
         
         

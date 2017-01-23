@@ -91,11 +91,32 @@ class UserController extends Controller
                 $model->attributes=$_POST['DatosAdicional'];                
                 $model->ad_fechamodificacion = date("Y-m-d H:i:s");
                 if($model->isNewRecord){
+                    $uploadedFile = CUploadedFile::getInstance($model,'ad_pasaporte');
+                    
                     $model->interesado_int_id = Yii::app()->user->id;
                     $model->ad_fechacreacion = date("Y-m-d H:i:s");
+                    
+                    if(isset($uploadedFile->name)){
+                        $fileName    = "{$uploadedFile}";  // random number + file name
+                        $fileName    = str_replace(" ","_",$fileName);
+                        if(file_exists(Yii::app()->basePath.'/../images/passport/'.$fileName)){
+                            $ran=rand(100,999);
+                            $fileName =$ran.'_'.$fileName;
+                            $model->ad_pasaporte = $fileName;
+                        }else{
+                            $model->ad_pasaporte = $fileName;
+                        }
+                    }
+                    
                 }
                 if($model->save()){
-                        $this->redirect(array('user/perfil'));
+                    if(!empty($model->ad_pasaporte)):
+                        if(isset($uploadedFile->name)){
+                            $uploadedFile->saveAs(Yii::app()->basePath.'/../images/passport/'.$fileName);
+                        }
+                    endif;
+                            
+                    $this->redirect(array('user/perfil'));
                 }
             } 
              

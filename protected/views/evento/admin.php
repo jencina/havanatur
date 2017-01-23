@@ -14,14 +14,15 @@ $this->widget(
         'fixedHeader' => true,
         'type' => 'striped',
         'dataProvider' => $model->search(),
-        'filter'=>$model,
+        //'filter'=>$model,
         'responsiveTable' => true,
         'template' => "{items} {pager}",
         'columns'=>array(
             'even_id',
             'even_titulo',
             'even_subtitulo',
-            'even_contenido',
+           // 'even_contenido',
+            'evenCat.cat_nombre',
             'even_imagen',
             'even_imagen_detail',
             array(
