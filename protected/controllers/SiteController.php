@@ -444,7 +444,6 @@ class SiteController extends Controller
             }
 
             return $dato;
-            //echo json_encode($dato);
         }
     }
     
@@ -497,11 +496,11 @@ class SiteController extends Controller
                 break;
             case 'utm':
                 $vigencia ='m';
-                $dolar = $dolar->UTMs[0]->Valor;
+                $dolar = (isset($dolar->UTMs[0]))?$dolar->UTMs[0]->Valor:0; 
                 break;
             case 'ipc':
                 $vigencia ='m';
-                $dolar = $dolar->IPCs[0]->Valor;
+                $dolar = (isset($dolar->IPCs[0]))?$dolar->IPCs[0]->Valor:0;
                 break;
         }
                
