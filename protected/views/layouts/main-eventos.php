@@ -243,7 +243,7 @@
                                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                                     <header style="color: #fff;float: left;padding-top: 5px;">
                                         <span class="btn-red" style="margin-top:5px;float: left"><?php echo $this->headerCategoria ?></span>
-                                        <h1 class="header-titulo" style="font-weight: 200;color: #fff;font-size: 40px">
+                                        <h1 class="header-titulo" style="font-weight: 200;color: #fff;font-size: 40px;width: 100%;">
                                             <?php echo $this->headerTitulo ?>
                                         </h1>
                                         <span style=" float: left;"><?php echo $this->headerFecha ?></span>

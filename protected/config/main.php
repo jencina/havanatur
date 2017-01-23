@@ -58,7 +58,8 @@ return array(
         ),
         
         'user' => array(
-            'loginUrl' => array('admin/index'),
+            //'loginUrl' => (Yii::app()->user->isGuest)?array('site/ingresar'):(Yii::app()->user->type=='web')?array('site/ingresar'):array('admin/index'),           
+            'loginUrl'=> array('site/ingresar'),
             'allowAutoLogin' => true,
         ),
         // uncomment the following to enable URLs in path-format
