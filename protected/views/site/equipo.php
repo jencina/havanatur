@@ -21,7 +21,7 @@ $this->widget(
     <?php foreach($gerencia as $ger):?>
         <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
-                <div class="img" style="width:200px;height:220px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($ger->foto))?$ger->foto:'../error/image-not-found.png'?>);"></div>
+                <div class="img" style="width:200px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($ger->foto))?$ger->foto:'../error/image-not-found.png'?>);"></div>
 				<div class="caption" STYLE="text-align: center">
                     <a class="product-name"><?php echo $ger->cargo?></a>
                     <P><?php echo $ger->nombre?></P>
@@ -33,6 +33,7 @@ $this->widget(
         </div>
     <?php endforeach;?>
 </div>
+
 <?php endif;?>
 
 <?php if(count($ventas)>0):?>
@@ -47,7 +48,7 @@ $this->widget(
     <?php foreach($ventas as $venta):?>
         <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
-                <div class="img" style="width:200px;height:220px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($venta->foto))?$venta->foto:'../error/image-not-found.png'?>);"></div><div class="caption" STYLE="text-align: center">
+                <div class="img" style="width:200px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($venta->foto))?$venta->foto:'../error/image-not-found.png'?>);"></div><div class="caption" STYLE="text-align: center">
                     <a class="product-name"><?php echo $venta->cargo?></a>
                     <P><?php echo $venta->nombre?></P>
                     <P><?php echo $venta->email?></P>
@@ -72,7 +73,7 @@ $this->widget(
     <?php foreach($marketin as $mar):?>
         <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
-                <div class="img" style="width:200px;height:220px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($mar->foto))?$mar->foto:'../error/image-not-found.png'?>);"></div><div class="caption" STYLE="text-align: center">
+                <div class="img" style="width:200px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($mar->foto))?$mar->foto:'../error/image-not-found.png'?>);"></div><div class="caption" STYLE="text-align: center">
                     <a class="product-name"><?php echo $mar->cargo?></a>
                     <P><?php echo $mar->nombre?></P>
                     <P><?php echo $mar->email?></P>
@@ -97,7 +98,7 @@ $this->widget(
     <?php foreach($operaciones as $operacion):?>
         <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
-                <div class="img" style="width:200px;height:220px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($operacion->foto))?$operacion->foto:'../error/image-not-found.png'?>);"></div>
+                <div class="img" style="width:200px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($operacion->foto))?$operacion->foto:'../error/image-not-found.png'?>);"></div>
                 <div class="caption" STYLE="text-align: center">
                     <a class="product-name"><?php echo $operacion->cargo?></a>
                     <P><?php echo $operacion->nombre?></P>
@@ -124,7 +125,7 @@ $this->widget(
         <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
                 
-                <div class="img" style="width:200px;height:220px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($ad->foto))?$ad->foto:'../error/image-not-found.png'?>);"></div>
+                <div class="img" style="width:200px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($ad->foto))?$ad->foto:'../error/image-not-found.png'?>);"></div>
 				<div class="caption" STYLE="text-align: center">
                     <a class="product-name"><?php echo $ad->cargo?></a>
                     <P><?php echo $ad->nombre?></P>
@@ -150,7 +151,7 @@ $this->widget(
         <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
                <!-- <img style="border: 2px solid #ddd;border-radius:100%;"src="<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($conta->foto))?$conta->foto:'../error/image-not-found.png'?>" alt="..."> -->
-                <div class="img" style="width:200px;height:220px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($conta->foto))?$conta->foto:'../error/image-not-found.png'?>);"></div>
+                <div class="img" style="width:200px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($conta->foto))?$conta->foto:'../error/image-not-found.png'?>);"></div>
 				<div class="caption" STYLE="text-align: center">
                     <a class="product-name"><?php echo $conta->cargo?></a>
                     <P><?php echo $conta->nombre?></P>
@@ -175,7 +176,7 @@ $this->widget(
     <?php foreach($asistente as $conta):?>
         <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
-			     <div class="img" style="width:200px;height:220px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($conta->foto))?$conta->foto:'../error/image-not-found.png'?>);"></div>
+			     <div class="img" style="width:200px;background-position:center;border: 2px solid #ddd;border-radius:100%;background-image:url(<?php echo Yii::app()->request->baseUrl;?>/images/equipo/<?php echo (!empty($conta->foto))?$conta->foto:'../error/image-not-found.png'?>);"></div>
                 <div class="caption" STYLE="text-align: center">
                     <a class="product-name"><?php echo $conta->cargo?></a>
                     <P><?php echo $conta->nombre?></P>

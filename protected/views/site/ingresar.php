@@ -7,6 +7,7 @@ $this->pageTitle=Yii::app()->name . ' - Ingresar';
 $this->breadcrumbs=array(
 	'Ingresar',
 );
+$this->headerTitulo = 'Login Usuarios';
 ?>
 
 <div class="row" style="padding-top: 20px;">
@@ -21,13 +22,8 @@ $this->breadcrumbs=array(
             <ul class="list-group">
                 <li class="padding-10">
                     Al crear una cuenta de usuario en Havanatur,
-                    podras inscribirte a los distintos eventos 
-                    que estamos ofraciendo.
-                </li>
-                <li class="padding-10">
-                    Al crear una cuenta de usuario en Havanatur,
-                    podras inscribirte a los distintos eventos 
-                    que estamos ofraciendo.
+                    podras realizar una inscripción a los distintos eventos 
+                    que estamos ofreciendo.
                 </li>
                 <li class="padding-10">
                     Si no tienes una cuenta con nosotros, ingresa al siguiente link:
